@@ -1632,8 +1632,7 @@ function renderGarbageResult() {
   const date = new Date(dateString + 'T12:00:00');
   const label = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日（${weekdayJP[date.getDay()]}）`;
   const types = garbageFor(region.group, dateString);
-  const officialPdfName = `2026Cal${'ender'}_${region.group}.pdf`;
-  const pdfUrl = `https://www.city.otaru.lg.jp/docs/2025102700045/file_contents/${officialPdfName}`;
+  const officialGarbagePageUrl = 'https://www.city.otaru.lg.jp/docs/2025102700045/';
 
   if (date.getFullYear() !== 2026) {
     result.innerHTML = `
@@ -1648,7 +1647,7 @@ function renderGarbageResult() {
   result.innerHTML = `
     <div class="garbage-result-head">
       <div><small>${region.label}・地区番号${region.group}</small><strong>${label}</strong></div>
-      <a href="${pdfUrl}" target="_blank" rel="noopener">地区別PDF ↗</a>
+      <a href="${officialGarbagePageUrl}" target="_blank" rel="noopener">公式ページで地区別PDFを確認 ↗</a>
     </div>
     ${types.length
       ? `<div class="garbage-types">${types.map(type => `<div class="garbage-type ${garbageTypeClass(type)}"><span>${type}</span><b>の日です</b></div>`).join('')}</div>`
