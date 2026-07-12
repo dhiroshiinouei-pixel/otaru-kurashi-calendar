@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">小樽運河をイメージした街並み</title>
+<desc id="desc">石造倉庫、ガス灯、運河、遠くの山を描いた小樽らしいイラスト</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#87c9ef"/>
+    <stop offset="0.58" stop-color="#d9eef7"/>
+    <stop offset="1" stop-color="#f6e6cf"/>
+  </linearGradient>
+  <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#3c91b0"/>
+    <stop offset="1" stop-color="#123f58"/>
+  </linearGradient>
+  <linearGradient id="warehouse" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#bfae93"/>
+    <stop offset="1" stop-color="#827668"/>
+  </linearGradient>
+  <linearGradient id="walk" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#b8b1a7"/>
+    <stop offset="1" stop-color="#77736e"/>
+  </linearGradient>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="8" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1220" cy="150" r="76" fill="#fff2c5" opacity=".9" filter="url(#glow)"/>
+
+<!-- distant hills -->
+<path d="M0 360 C180 255 350 300 520 210 C670 130 820 250 960 205 C1110 160 1265 250 1600 170 L1600 500 L0 500 Z"
+      fill="#4f7380" opacity=".65"/>
+<path d="M0 410 C220 340 410 390 615 300 C790 225 975 350 1170 295 C1320 250 1450 300 1600 260 L1600 510 L0 510 Z"
+      fill="#385d6b" opacity=".66"/>
+
+<!-- canal -->
+<path d="M0 455 C370 430 700 455 1030 510 C1240 545 1430 610 1600 690 L1600 900 L0 900 Z" fill="url(#water)"/>
+<path d="M0 485 C355 460 685 480 1010 530 C1250 568 1425 625 1600 705"
+      fill="none" stroke="#b9e4ef" stroke-width="7" opacity=".28"/>
+<path d="M140 595 C500 560 830 595 1170 690" fill="none" stroke="#e9fbff" stroke-width="5" opacity=".2"/>
+
+<!-- promenade -->
+<path d="M0 425 L850 445 L1240 610 L1090 675 L700 535 L0 520 Z" fill="url(#walk)"/>
+<path d="M0 520 L700 535 L1090 675 L1060 700 L670 565 L0 548 Z" fill="#5d5f60"/>
+
+<!-- warehouse block -->
+<g>
+  <path d="M730 245 L1540 190 L1600 240 L1600 600 L1270 555 L920 455 L730 430 Z" fill="url(#warehouse)"/>
+  <path d="M720 250 L1535 188 L1600 235 L925 315 Z" fill="#315f62"/>
+  <path d="M900 315 L1600 236 L1600 285 L900 360 Z" fill="#487c77"/>
+  <g fill="#5f554a">
+    <rect x="810" y="334" width="55" height="92" rx="3"/>
+    <rect x="935" y="319" width="55" height="108" rx="3"/>
+    <rect x="1065" y="302" width="58" height="123" rx="3"/>
+    <rect x="1205" y="285" width="61" height="130" rx="3"/>
+    <rect x="1355" y="267" width="65" height="142" rx="3"/>
+    <rect x="1495" y="252" width="63" height="154" rx="3"/>
+  </g>
+  <g fill="#e5d8bc" opacity=".7">
+    <rect x="821" y="348" width="33" height="28"/>
+    <rect x="946" y="335" width="33" height="29"/>
+    <rect x="1077" y="320" width="34" height="30"/>
+    <rect x="1218" y="304" width="35" height="31"/>
+    <rect x="1369" y="287" width="37" height="32"/>
+    <rect x="1509" y="272" width="37" height="34"/>
+  </g>
+  <path d="M730 430 L920 455 L1270 555 L1600 600 L1600 625 L1260 582 L910 480 L730 455 Z" fill="#6a5f53" opacity=".8"/>
+</g>
+
+<!-- bridge -->
+<path d="M180 410 C430 390 655 407 875 460 L850 488 C645 443 420 431 180 448 Z" fill="#574e48"/>
+<path d="M190 401 C425 377 650 396 888 451" fill="none" stroke="#242d34" stroke-width="12"/>
+<path d="M190 401 C425 377 650 396 888 451" fill="none" stroke="#aab9be" stroke-width="4"/>
+
+<!-- gas lamps -->
+<g stroke="#29343c" stroke-width="9" fill="none">
+  <path d="M130 413 L130 285 Q130 260 154 260"/>
+  <path d="M315 405 L315 295 Q315 272 339 272"/>
+  <path d="M510 408 L510 310 Q510 287 534 287"/>
+  <path d="M700 431 L700 340 Q700 317 724 317"/>
+</g>
+<g fill="#ffe7a8" stroke="#3a4449" stroke-width="5">
+  <rect x="150" y="244" width="34" height="31" rx="8" filter="url(#glow)"/>
+  <rect x="335" y="256" width="34" height="31" rx="8" filter="url(#glow)"/>
+  <rect x="530" y="271" width="34" height="31" rx="8" filter="url(#glow)"/>
+  <rect x="720" y="301" width="34" height="31" rx="8" filter="url(#glow)"/>
+</g>
+
+<!-- reflections -->
+<g opacity=".23">
+  <path d="M765 525 L840 545 L770 840 L690 805 Z" fill="#f4dea1"/>
+  <path d="M960 565 L1040 590 L975 875 L900 840 Z" fill="#d0c2a8"/>
+  <path d="M1180 620 L1260 648 L1235 895 L1160 875 Z" fill="#98b2ad"/>
+</g>
+
+<!-- foreground snow-light dots / sparkle -->
+<g fill="#fff4c8" opacity=".72">
+  <circle cx="106" cy="617" r="4"/><circle cx="245" cy="665" r="5"/><circle cx="388" cy="623" r="3"/>
+  <circle cx="540" cy="710" r="5"/><circle cx="690" cy="745" r="4"/><circle cx="860" cy="796" r="5"/>
+  <circle cx="1040" cy="780" r="4"/><circle cx="1350" cy="790" r="5"/>
+</g>
+</svg>
