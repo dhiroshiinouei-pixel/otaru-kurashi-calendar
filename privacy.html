@@ -10,28 +10,173 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WPRLRR5S');</script>
 <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>プライバシーポリシー｜小樽暮らしカレンダー</title>
-<meta name="description" content="小樽暮らしカレンダーのプライバシーポリシーです。アクセス解析、外部サービス、個人情報の取り扱いについて記載しています。">
+<title>プライバシーポリシー｜Spady</title>
+<meta name="description" content="Spadyのプライバシーポリシーです。">
 <link rel="canonical" href="https://otaru.spady.net/privacy">
 <meta name="robots" content="index,follow">
 <style>
-:root{--bg:#eef4f8;--paper:#fff;--ink:#15283a;--sub:#5d7085;--line:#d9e5ec;--navy:#0f2f44;--gold:#d8ab3f}
+:root{
+  --bg:#eef4f8;
+  --paper:#fff;
+  --ink:#15283a;
+  --sub:#5d7085;
+  --line:#d9e5ec;
+  --navy:#0f2f44;
+  --navy-2:#1d4560;
+  --sky:#e8f5fb;
+  --accent:#ed1c24;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg),#fbf7ed)}
-a{color:var(--navy);font-weight:800}
-.wrap{width:min(920px,calc(100% - 28px));margin:auto}
-header{padding:32px 0 18px}
-.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:900}
-.mark{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--navy),#4da0c8);display:grid;place-items:center;color:#fff}
-main{padding:12px 0 54px}
-.card{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,4vw,42px);box-shadow:0 16px 40px rgba(15,47,68,.08)}
-h1{font-size:clamp(28px,5vw,44px);margin:0 0 14px;line-height:1.2}
-h2{margin:32px 0 10px;font-size:20px}
-p,li{line-height:1.85;color:var(--sub)}
-.lead{font-size:15px}
-.date{display:inline-block;margin-top:10px;color:#7a8794;font-size:13px}
-footer{border-top:1px solid var(--line);padding:18px 0 36px;color:var(--sub);font-size:13px}
-.footer-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(77,160,200,.18), transparent 28%),
+    linear-gradient(180deg,var(--bg),#fbf7ed 62%,#fff);
+  min-height:100vh;
+}
+a{color:var(--navy);font-weight:850;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:min(1060px,calc(100% - 28px));margin:auto}
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:linear-gradient(135deg,rgba(255,255,255,.42),rgba(237,247,252,.22));
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  border-bottom:1px solid rgba(255,255,255,.48);
+  box-shadow:0 7px 22px rgba(15,47,68,.07);
+}
+header::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(77,160,200,.42),rgba(216,171,63,.34),transparent);
+  pointer-events:none;
+}
+.header-inner{
+  min-height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+}
+.brand-logo{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  box-shadow:0 5px 15px rgba(0,0,0,.14);
+}
+.header-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.header-nav a{
+  text-decoration:none;
+  color:var(--sub);
+  font-size:13px;
+  font-weight:850;
+  padding:8px 11px;
+  border-radius:999px;
+}
+.header-nav a:hover{
+  background:var(--sky);
+  color:var(--navy);
+  text-decoration:none;
+}
+.header-nav .accent{
+  background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;
+}
+main{padding:clamp(40px,7vw,88px) 0 64px}
+.policy{
+  width:min(780px,100%);
+  margin:0 auto;
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(217,229,236,.95);
+  border-radius:28px;
+  padding:clamp(24px,4vw,48px);
+  box-shadow:0 18px 45px rgba(15,47,68,.09);
+}
+h1{
+  font-size:clamp(28px,5vw,42px);
+  line-height:1.25;
+  margin:0 0 22px;
+  letter-spacing:.04em;
+}
+h2{
+  font-size:18px;
+  margin:34px 0 10px;
+  padding-left:14px;
+  border-left:3px solid var(--accent);
+  line-height:1.55;
+}
+p{
+  margin:0 0 1em;
+  color:var(--sub);
+  line-height:1.9;
+  font-size:15px;
+}
+.lead{
+  color:#42596f;
+  font-size:15.5px;
+  margin-bottom:30px;
+}
+.date{
+  margin-top:34px;
+  color:#7a8794;
+  font-size:13px;
+}
+.back{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:26px;
+}
+.back a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:10px 15px;
+  background:#fff;
+}
+footer{
+  border-top:1px solid var(--line);
+  padding:18px 0 36px;
+  color:var(--sub);
+  font-size:13px;
+}
+.footer-row{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+@media (max-width:760px){
+  .wrap{width:min(100% - 24px,1060px)}
+  .header-inner{min-height:58px}
+  .brand-logo{width:38px;height:38px}
+  .header-nav a:not(.accent){display:none}
+  main{padding:28px 0 48px}
+  .policy{border-radius:22px}
+}
 </style>
 </head>
 <body>
@@ -40,38 +185,50 @@ footer{border-top:1px solid var(--line);padding:18px 0 36px;color:var(--sub);fon
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <header>
-  <div class="wrap">
-    <a class="brand" href="/">
-      <span class="mark">小</span>
-      <span>小樽暮らしカレンダー</span>
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="小樽暮らしカレンダーのトップへ">
+      <img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady">
     </a>
+    <nav class="header-nav" aria-label="外部リンク">
+      <a class="accent" href="https://spady.net/" target="_blank" rel="noopener">Spady公式 ↗</a>
+    </nav>
   </div>
 </header>
 <main>
   <div class="wrap">
-    <article class="card">
+    <article class="policy">
       <h1>プライバシーポリシー</h1>
-      <p class="lead">小樽暮らしカレンダー（以下「本サイト」）は、Spadyが公開情報を整理して運営する地域情報サイトです。本サイトにおける個人情報およびアクセス情報の取り扱いについて、以下のとおり定めます。</p>
-      <span class="date">制定日：2026年7月13日</span>
+      <p class="lead">Spady（代表：井上博史、以下「当方」）は、お問い合わせ等を通じて取得する個人情報を、以下の方針にもとづいて取り扱います。</p>
 
-      <h2>取得する情報</h2>
-      <p>本サイトでは、お問い合わせ等を行うフォームを設置していません。通常の閲覧において、氏名、住所、電話番号など利用者を直接特定する情報を本サイト上で取得することはありません。</p>
+      <h2>1. 取得する情報</h2>
+      <p>お問い合わせフォームおよびLINEを通じて、お名前、事業・会社名、メールアドレス、ご相談内容などの情報を取得します。</p>
 
-      <h2>アクセス解析について</h2>
-      <p>本サイトでは、利用状況の把握と改善のため、Google Tag Manager等を利用する場合があります。これらのサービスではCookie等を使用して、閲覧ページ、利用環境、参照元などの情報が取得されることがあります。取得される情報は個人を直接特定するものではありません。</p>
+      <h2>2. 利用目的</h2>
+      <p>取得した情報は、お問い合わせへの回答、ご相談・お打ち合わせの調整、およびご依頼いただいた業務の遂行のためにのみ利用します。ご本人の同意なく、これ以外の目的で利用することはありません。</p>
 
-      <h2>外部リンクについて</h2>
-      <p>本サイトには、小樽市、各主催者、Googleマップ、Googleカレンダー等の外部サイトへのリンクが含まれます。外部サイトでの個人情報の取り扱いについては、それぞれのサイトのポリシーをご確認ください。</p>
+      <h2>3. 第三者への提供</h2>
+      <p>法令にもとづく場合を除き、ご本人の同意なく個人情報を第三者に提供することはありません。</p>
 
-      <h2>免責事項</h2>
-      <p>本サイトでは、公式情報を確認したうえで掲載するよう努めていますが、イベントの延期・中止・内容変更が発生する場合があります。参加前には必ず各主催者の公式情報をご確認ください。</p>
+      <h2>4. アクセス解析・広告ツール</h2>
+      <p>当サイトでは、サイトの改善および広告配信の効果測定のため、Google アナリティクスおよびMetaピクセル等のツールを利用する場合があります。これらのツールはCookie等を利用してデータを収集しますが、個人を特定する情報は含まれません。</p>
 
-      <h2>ポリシーの変更</h2>
-      <p>本ポリシーは、必要に応じて内容を変更することがあります。変更後の内容は、本ページに掲載した時点で効力を生じます。</p>
+      <h2>5. 安全管理</h2>
+      <p>取得した個人情報は、漏えい・滅失・毀損の防止のため、適切に管理します。</p>
 
-      <h2>運営者</h2>
-      <p>本サイトの構想・運営：Spady</p>
-      <p><a href="/">小樽暮らしカレンダーへ戻る</a></p>
+      <h2>6. 開示・訂正・削除</h2>
+      <p>ご本人からご自身の個人情報の開示・訂正・削除のお申し出があった場合、本人確認のうえ、すみやかに対応します。</p>
+
+      <h2>7. お問い合わせ窓口</h2>
+      <p>本ポリシーに関するお問い合わせは、当サイトのお問い合わせフォームまたはLINEよりご連絡ください。</p>
+
+      <h2>8. 改定</h2>
+      <p>本ポリシーの内容は、必要に応じて改定することがあります。改定した場合は、当ページにて公表します。</p>
+
+      <p class="date">制定日：2026年7月6日</p>
+      <div class="back">
+        <a href="/">小樽暮らしカレンダーへ戻る</a>
+        <a href="https://spady.net/" target="_blank" rel="noopener">Spady公式へ</a>
+      </div>
     </article>
   </div>
 </main>
