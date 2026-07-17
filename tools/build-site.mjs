@@ -1097,6 +1097,7 @@ function monthEvents(year, month, filter = 'all') {
   const ms = new Date(year, month, 1);
   const me = new Date(year, month + 1, 0, 23, 59, 59);
   return events.filter((event) => {
+    if (event.endDate < today) return false;
     if (filter !== 'all' && event.category !== filter) return false;
     const s = new Date(`${event.startDate}T00:00:00+09:00`);
     const e = new Date(`${event.endDate}T23:59:59+09:00`);
@@ -1144,8 +1145,7 @@ function renderStaticCalendar(lang) {
     const isToday = iso === today;
     html += `<div class="day${muted ? ' muted' : ''}${isToday ? ' today' : ''}" data-date="${iso}">
       <div class="day-head"><div class="date-stamp"><span class="date-num">${d}</span><span class="date-full">${fmtShortDate(cellDate, lang)}</span></div>${isToday ? `<span class="today-badge">${esc(copy[lang].today)}</span>` : ''}</div>
-      ${evs.map((event) => `<button class="event-pill ${event.category}" type="button" data-event-id="${attr(event.id)}">${esc(eventText(event, lang).name)}</button>`).join('')}
-      ${eventsForDate(cellDate, monthList).length > 3 ? `<div class="day-count">+${eventsForDate(cellDate, monthList).length - 3}</div>` : ''}
+      ${evs.map((event) => `<button class="event-pill ${event.category}" type="button" data-event-id="${attr(event.id)}">${esc(eventText(event, lang).name)}</button>`).join('')}${eventsForDate(cellDate, monthList).length > 3 ? `<div class="day-count">+${eventsForDate(cellDate, monthList).length - 3}</div>` : ''}
     </div>`;
   }
   return html;
@@ -1675,6 +1675,7 @@ function monthTitle(){
 function dateInRange(date,start,end){ return date >= parseDate(start) && date <= parseDate(end); }
 function monthEvents(){
   return events.filter(e => {
+    if(e.end < localISODate(new Date())) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     const s = parseDate(e.start), en = parseDate(e.end);
     const ms = new Date(year, month, 1), me = new Date(year, month+1, 0, 23,59,59);
