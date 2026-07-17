@@ -941,7 +941,7 @@ function ogAlternateMeta(lang) {
   return langOrder.filter((code) => code !== lang).map((code) => `<meta property="og:locale:alternate" content="${attr(langConfig[code].ogLocale)}">`).join('\n');
 }
 
-function head({ lang, title, description, canonical, kind = 'index', slug = '', type = 'website', jsonLd = [] }) {
+function head({ lang, title, description, canonical, kind = 'index', slug = '', type = 'website', jsonLd = [], robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }) {
   const cfg = langConfig[lang];
   return `<!doctype html>
 <html lang="${attr(cfg.htmlLang)}">
@@ -957,7 +957,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${attr(description)}">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="robots" content="${attr(robots)}">
 <meta name="theme-color" content="#1d4560">
 <meta name="application-name" content="${attr(cfg.siteName)}">
 <meta name="apple-mobile-web-app-title" content="${attr(cfg.siteName)}">
@@ -1613,8 +1613,11 @@ function render404(lang) {
   const t = copy[lang];
   const cfg = langConfig[lang];
   const canonical = pageUrl(lang, '404');
-  return `${head({ lang, title: `${t.notFoundTitle} | ${cfg.siteName}`, description: t.notFoundText, canonical, kind: '404', jsonLd: commonJsonLd(lang, canonical, t.notFoundTitle, t.notFoundText) })}
+  return `${head({ lang, title: `${t.notFoundTitle} | ${cfg.siteName}`, description: t.notFoundText, canonical, kind: '404', jsonLd: commonJsonLd(lang, canonical, t.notFoundTitle, t.notFoundText), robots: 'noindex,follow' })}
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPRLRR5S" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 ${renderHeader(lang, '404')}
 <main><div class="wrap"><article class="policy"><h1>${esc(t.notFoundTitle)}</h1><p class="lead">${esc(t.notFoundText)}</p><div class="back"><a href="${attr(pageUrl(lang))}">${esc(t.backHome)}</a></div></article></div></main>
 ${renderFooter(lang)}
@@ -1950,8 +1953,6 @@ function renderRedirects() {
 /zh-hant.html /zh-hant/ 301
 /zh-hans.html /zh-hans/ 301
 /ko.html /ko/ 301
-/data/* /404.html 404
-/tools/* /404.html 404
 `;
 }
 
