@@ -1,1 +1,8 @@
 /index.html / 301
+/privacy.html /privacy/ 301
+/en.html /en/ 301
+/zh-hant.html /zh-hant/ 301
+/zh-hans.html /zh-hans/ 301
+/ko.html /ko/ 301
+/data/* /404.html 404
+/tools/* /404.html 404

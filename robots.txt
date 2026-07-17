@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Disallow: /data/
+Disallow: /tools/
 
 Sitemap: https://otaru.spady.net/sitemap.xml

@@ -1,0 +1,13 @@
+# Otaru Events Calendar
+
+https://otaru.spady.net/ is a privately operated multilingual calendar by Spady for public information about Otaru, Hokkaido, Japan.
+
+Important pages:
+- Japanese: https://otaru.spady.net/
+- English: https://otaru.spady.net/en/
+- Traditional Chinese: https://otaru.spady.net/zh-hant/
+- Simplified Chinese: https://otaru.spady.net/zh-hans/
+- Korean: https://otaru.spady.net/ko/
+- Sitemap: https://otaru.spady.net/sitemap.xml
+
+The site summarizes official public information and links to the original source for each event. It is not an official Otaru City or government website.
