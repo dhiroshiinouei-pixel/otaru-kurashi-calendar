@@ -210,19 +210,6 @@
     "endTime": "19:30"
   },
   {
-    "id": "rail-carnival",
-    "title": "2026年 レールカーニバル「潮風と線路がつなぐ夏物語」",
-    "category": "event",
-    "start": "2026-07-18",
-    "end": "2026-07-20",
-    "time": "7月18日〜20日（開催時間は公式情報をご確認ください）",
-    "place": "旧国鉄手宮線跡（小樽駅前通り〜道道小樽港稲穂線）",
-    "mapQuery": "旧国鉄手宮線 小樽駅前通り 北海道小樽市",
-    "summary": "旧国鉄手宮線路を保線用足漕ぎトロッコで往復約800m走行する体験イベントです。参加費は小学生以上500円。",
-    "source": "一般社団法人 小樽観光協会（NPO法人北海道鉄道文化保存会）",
-    "url": "https://otaru.gr.jp/summer?cond=420694#event_search"
-  },
-  {
     "id": "challenge-lab-snow-20260719",
     "title": "チャレンジラボ「試験管の中に雪をふらせよう！」",
     "category": "child",
@@ -504,19 +491,6 @@
     "endTime": "17:00"
   },
   {
-    "id": "sunfes",
-    "title": "小樽サンフェス2026",
-    "category": "event",
-    "start": "2026-08-02",
-    "end": "2026-08-02",
-    "time": "8月2日（開催時間は公式情報をご確認ください）",
-    "place": "小樽サンモール一番街",
-    "mapQuery": "小樽サンモール一番街 北海道小樽市稲穂",
-    "summary": "小樽サンモール一番街で開催予定の地域イベントです。詳細は公式情報の更新をご確認ください。",
-    "source": "一般社団法人 小樽観光協会",
-    "url": "https://otaru.gr.jp/summer?cond=m08#event_search"
-  },
-  {
     "id": "shinkansen-tour-20260804-am",
     "title": "親子で学ぼう！北海道新幹線建設現場見学会",
     "category": "child",
@@ -710,19 +684,6 @@
     "url": "https://otaru.gr.jp/tourist/otarulight-up-guide2026",
     "startTime": "18:30",
     "endTime": "19:30"
-  },
-  {
-    "id": "hokkaido-jazz-otaru-2026",
-    "title": "北海道JAZZ in 小樽JAZZ 2026",
-    "category": "event",
-    "start": "2026-08-08",
-    "end": "2026-08-11",
-    "time": "8月8日〜11日（時間は公式情報をご確認ください）",
-    "place": "小樽運河浅草橋 特設ステージ",
-    "mapQuery": "小樽運河浅草橋 北海道小樽市港町5",
-    "summary": "北海道のミュージシャンによるジャズイベントです。小樽運河浅草橋特設ステージで開催予定。",
-    "source": "一般社団法人 小樽観光協会",
-    "url": "https://otaru.gr.jp/summer?cond=m08#event_search"
   },
   {
     "id": "totsuten-braille-card-20260809",
@@ -1276,5 +1237,414 @@
     "startTime": "09:45",
     "endTime": "11:30",
     "summary": "おおむね1歳6か月までの子どもと保護者向け。自由遊び、身体計測、育児相談、栄養相談、歯科相談、ふれあい遊びなどを行います。要予約。"
+  },
+  {
+    "id": "sbg-co-creation-summit-otaru-20260817",
+    "title": "SBG 共創サミットin小樽",
+    "category": "business",
+    "start": "2026-08-17",
+    "end": "2026-08-17",
+    "time": "13:00〜16:00（本文では16:00から交流会、終了時刻は未発表）",
+    "startTime": "13:00",
+    "endTime": "16:00",
+    "place": "小樽港観光船ターミナル 多目的ホール",
+    "address": "北海道小樽市港町4-1",
+    "mapQuery": "小樽港観光船ターミナル 多目的ホール 北海道小樽市港町4-1",
+    "latitude": 43.201338,
+    "longitude": 141.003314,
+    "summary": "小樽の地方創生をテーマに、パネルディスカッションと学生・大人混合のグループワークを行う共創サミットです。Peatix上の開催時間は13:00〜16:00、本文には16:00から交流会と記載されています（交流会の終了時刻は未発表）。大人2,000円（当日現金）、学生無料。",
+    "description": "13:40〜14:30は、小樽の地方創生とこれからの在り方を探るパネルディスカッションです。登壇者は小樽市長・迫俊哉氏、京都大学名誉教授／似鳥文化財団理事・宗本順三氏、北海道大学経済学部2年生・江崎祥史氏、株式会社北日本消毒代表取締役社長・湊亨氏です（Peatix本文は『湊 亭』表記ですが、同社公式資料で『湊 亨』と確認）。14:50〜15:50は学生・大人混合のグループワーク、16:00から交流会です。参加費は大人2,000円（当日現金）、学生無料。参加特典は小樽芸術村拝観料半額チケットです。",
+    "source": "Peatix／SBG －経営者による共創の基盤－",
+    "organizer": "SBG －経営者による共創の基盤－",
+    "organizerUrl": "https://sbg-japan.com/index.html",
+    "url": "https://sbg-kyousou-otaru.peatix.com/",
+    "registrationUrl": "https://peatix.com/sales/event/5046572/tickets",
+    "reservationRequired": true,
+    "reservationStatus": "open",
+    "availability": "https://schema.org/InStock",
+    "sourceCheckedAt": "2026-07-23",
+    "updatedAt": "2026-07-23",
+    "price": {
+      "ja": "大人2,000円（当日現金）／学生無料",
+      "en": "Adults: JPY 2,000 (cash on the day); students: free",
+      "zh-Hant": "成人2,000日圓（當日現金支付）；學生免費",
+      "zh-Hans": "成人2,000日元（当天现金支付）；学生免费",
+      "ko": "성인 2,000엔(당일 현금 결제) / 학생 무료"
+    },
+    "reservation": {
+      "ja": "Peatixで申込受付中（2026年7月23日確認、締切表示は8月17日13:00）",
+      "en": "Registration open on Peatix as checked July 23, 2026; displayed deadline: August 17 at 1:00 PM",
+      "zh-Hant": "Peatix開放報名（2026年7月23日確認；頁面顯示截止時間為8月17日13:00）",
+      "zh-Hans": "Peatix开放报名（2026年7月23日确认；页面显示截止时间为8月17日13:00）",
+      "ko": "Peatix 신청 접수 중(2026년 7월 23일 확인, 표시 마감은 8월 17일 13:00)"
+    },
+    "offers": [
+      {
+        "name": {
+          "ja": "大人",
+          "en": "Adult",
+          "zh-Hant": "成人",
+          "zh-Hans": "成人",
+          "ko": "성인"
+        },
+        "price": 2000,
+        "priceCurrency": "JPY",
+        "url": "https://peatix.com/sales/event/5046572/tickets"
+      },
+      {
+        "name": {
+          "ja": "学生",
+          "en": "Student",
+          "zh-Hant": "學生",
+          "zh-Hans": "学生",
+          "ko": "학생"
+        },
+        "price": 0,
+        "priceCurrency": "JPY",
+        "url": "https://peatix.com/sales/event/5046572/tickets"
+      }
+    ],
+    "translations": {
+      "en": {
+        "name": "SBG Co-Creation Summit in Otaru",
+        "summary": "A regional co-creation summit in Otaru featuring a panel on local revitalization and a mixed student-adult workshop. Peatix lists the event as 1:00–4:00 PM JST, while the description says a networking session begins at 4:00 PM; its ending time has not been announced.",
+        "description": "Program: a panel discussion on local revitalization from 1:40 to 2:30 PM with Otaru Mayor 迫俊哉, Kyoto University Professor Emeritus 宗本順三, Hokkaido University economics student 江崎祥史, and 北日本消毒 President 湊亨; a mixed student-adult group workshop from 2:50 to 3:50 PM; and networking from 4:00 PM. Admission is JPY 2,000 for adults, payable in cash on the day, and free for students. Participants receive a half-price admission voucher for Otaru Art Base.",
+        "venueName": "Otaru Port Sightseeing Boat Terminal, Multipurpose Hall",
+        "address": "4-1 Minatomachi, Otaru, Hokkaido, Japan",
+        "audience": "Adults and students interested in local revitalization and co-creation"
+      },
+      "zh-Hant": {
+        "name": "SBG 小樽共創高峰會",
+        "summary": "以小樽地方創生為主題，包含座談會與學生、成人混合分組工作坊。Peatix標示活動時間為13:00–16:00，但本文記載交流會於16:00開始，交流會結束時間尚未公布。",
+        "description": "活動內容：13:40–14:30舉行地方創生座談會，與談人包括小樽市長迫俊哉、京都大學名譽教授宗本順三、北海道大學經濟學部學生江崎祥史，以及北日本消毒代表取締役社長湊亨；14:50–15:50進行學生與成人混合分組討論；16:00起舉行交流會。成人參加費2,000日圓（當日現金支付），學生免費；參加者可獲小樽藝術村門票半價券。",
+        "venueName": "小樽港觀光船碼頭 多功能廳",
+        "address": "日本北海道小樽市港町4-1",
+        "audience": "對地方創生與共創有興趣的成人與學生"
+      },
+      "zh-Hans": {
+        "name": "SBG 小樽共创峰会",
+        "summary": "以小樽地方创生为主题，包含座谈会及学生、成人混合小组工作坊。Peatix标示活动时间为13:00–16:00，但正文写明交流会于16:00开始，交流会结束时间尚未公布。",
+        "description": "活动内容：13:40–14:30举行地方创生座谈会，嘉宾包括小樽市长迫俊哉、京都大学名誉教授宗本顺三、北海道大学经济学部学生江崎祥史，以及北日本消毒代表取缔役社长湊亨；14:50–15:50进行学生与成人混合小组讨论；16:00起举行交流会。成人参加费2,000日元（当天现金支付），学生免费；参加者可获小樽艺术村门票半价券。",
+        "venueName": "小樽港观光船码头 多功能厅",
+        "address": "日本北海道小樽市港町4-1",
+        "audience": "对地方创生与共创感兴趣的成人与学生"
+      },
+      "ko": {
+        "name": "SBG 오타루 공동창조 서밋",
+        "summary": "오타루 지역 활성화를 주제로 한 패널 토론과 학생·성인 혼합 그룹 워크숍입니다. Peatix에는 13:00~16:00로 표시되어 있으나 본문에는 16:00부터 교류회가 시작된다고 적혀 있으며, 교류회 종료 시각은 발표되지 않았습니다.",
+        "description": "프로그램은 13:40~14:30 지역 활성화 패널 토론(오타루시장 迫俊哉, 교토대 명예교수 宗本順三, 홋카이도대 경제학부 학생 江崎祥史, 기타니혼쇼도쿠 대표이사 사장 湊亨), 14:50~15:50 학생·성인 혼합 그룹 워크숍, 16:00부터 교류회로 구성됩니다. 참가비는 성인 2,000엔(당일 현금), 학생 무료이며 참가자에게 오타루 예술촌 관람료 반값 티켓이 제공됩니다.",
+        "venueName": "오타루항 관광선 터미널 다목적홀",
+        "address": "일본 홋카이도 오타루시 미나토마치 4-1",
+        "audience": "지역 활성화와 공동창조에 관심 있는 성인 및 학생"
+      }
+    }
+  },
+  {
+    "id": "akindo-lab-20260821",
+    "title": "AKINDO Lab by Spady",
+    "category": "business",
+    "start": "2026-08-21",
+    "end": "2026-08-21",
+    "time": "18:00開場／18:30開始（終了時刻未発表）",
+    "doorsOpenTime": "18:00",
+    "startTime": "18:30",
+    "place": "会場は公式ページでご確認ください",
+    "address": "",
+    "mapQuery": "",
+    "summary": "小樽を中心とした地域事業者向けのデジタル集客勉強会です。Instagram、LINE公式アカウント、Googleビジネスプロフィール、Meta広告、AI、ホームページ・予約導線などを扱います。8月21日回は18:00開場、18:30開始。会場、終了時刻、料金、受付状況は公式ページでの発表をご確認ください。",
+    "source": "Spady 公式ページ",
+    "organizer": "Spady",
+    "organizerUrl": "https://spady.net/",
+    "url": "https://spady.net/akindo/",
+    "sourceCheckedAt": "2026-07-23",
+    "updatedAt": "2026-07-23",
+    "price": {
+      "ja": "公式ページで未発表",
+      "en": "Not yet announced on the official page",
+      "zh-Hant": "官方頁面尚未公布",
+      "zh-Hans": "官方页面尚未公布",
+      "ko": "공식 페이지에 아직 발표되지 않음"
+    },
+    "reservation": {
+      "ja": "受付状況は公式ページで未発表",
+      "en": "Registration status has not yet been announced on the official page",
+      "zh-Hant": "官方頁面尚未公布報名狀態",
+      "zh-Hans": "官方页面尚未公布报名状态",
+      "ko": "공식 페이지에 신청 상태가 아직 발표되지 않음"
+    },
+    "translations": {
+      "en": {
+        "name": "AKINDO Lab by Spady",
+        "summary": "A digital marketing study session for local businesses in and around Otaru, covering Instagram, LINE Official Account, Google Business Profile, Meta ads, AI, websites and booking flows. Doors open at 6:00 PM and the session starts at 6:30 PM on August 21. The venue, ending time, fee and registration status have not yet been announced on the official page.",
+        "venueName": "Please check the official page for the venue",
+        "address": "",
+        "audience": "Local business owners, managers and entrepreneurs in and around Otaru"
+      },
+      "zh-Hant": {
+        "name": "AKINDO Lab by Spady",
+        "summary": "面向小樽及周邊地區事業者的數位集客學習會，主題包含Instagram、LINE官方帳號、Google商家檔案、Meta廣告、AI、網站與預約導線。8月21日18:00開場、18:30開始；會場、結束時間、費用與報名狀態尚未在官方頁面公布。",
+        "venueName": "會場請確認官方頁面",
+        "address": "",
+        "audience": "小樽及周邊地區的事業者、經營者與創業者"
+      },
+      "zh-Hans": {
+        "name": "AKINDO Lab by Spady",
+        "summary": "面向小樽及周边地区经营者的数字集客学习会，主题包括Instagram、LINE官方账号、Google商家资料、Meta广告、AI、网站及预约动线。8月21日18:00入场、18:30开始；会场、结束时间、费用及报名状态尚未在官方页面公布。",
+        "venueName": "会场请确认官方页面",
+        "address": "",
+        "audience": "小樽及周边地区的经营者、管理者与创业者"
+      },
+      "ko": {
+        "name": "AKINDO Lab by Spady",
+        "summary": "오타루와 인근 지역 사업자를 위한 디지털 집객 스터디 모임으로 Instagram, LINE 공식 계정, Google 비즈니스 프로필, Meta 광고, AI, 웹사이트와 예약 동선을 다룹니다. 8월 21일 18:00 입장, 18:30 시작이며 장소, 종료 시각, 참가비와 신청 상태는 공식 페이지에 아직 발표되지 않았습니다.",
+        "venueName": "장소는 공식 페이지에서 확인해 주세요",
+        "address": "",
+        "audience": "오타루와 인근 지역의 사업자, 경영자 및 창업 예정자"
+      }
+    }
+  },
+  {
+    "id": "startup-followup-seminar-20260819",
+    "title": "創業フォローアップセミナー 第1回「事業計画と現実のギャップへの対応法」",
+    "category": "business",
+    "start": "2026-08-19",
+    "end": "2026-08-19",
+    "time": "18:00〜20:30",
+    "startTime": "18:00",
+    "endTime": "20:30",
+    "place": "ウイングベイ小樽 1番街4階 特設会場",
+    "address": "北海道小樽市築港11-1",
+    "mapQuery": "ウイングベイ小樽1番街4階 北海道小樽市築港11-1",
+    "summary": "創業後に生じやすい計画と現実のズレを整理し、売上・資金・人材を中心に、事業を安定して継続するための経営判断基準を学びます。定員25名、参加無料です。",
+    "source": "小樽ジョブナビ／小樽地域雇用創造協議会",
+    "organizer": "小樽地域雇用創造協議会",
+    "url": "https://otaru-jobnavi.jp/%e4%bb%a4%e5%92%8c%ef%bc%98%e5%b9%b4%e5%ba%a6%e3%80%80%ef%bc%98%e6%9c%88%ef%bc%91%ef%bc%99%e6%97%a5%ef%bc%88%e6%b0%b4%ef%bc%89%ef%bd%9e%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81%e5%89%b5%e6%a5%ad%e3%83%95/",
+    "audience": "小樽市内の事業者・小樽で創業予定の方",
+    "price": "無料",
+    "reservation": "要申込（2026年8月16日締切、定員25名、定員到達時終了）",
+    "reservationRequired": true,
+    "sourceCheckedAt": "2026-07-30",
+    "updatedAt": "2026-07-30",
+    "translations": {
+      "en": {
+        "name": "Startup Follow-up Seminar 1: Bridging the Gap Between Plans and Reality",
+        "summary": "A free seminar for Otaru business owners and prospective founders. Learn how to address gaps between a business plan and actual performance, with a focus on sales, funding and staffing. Capacity: 25; registration closes August 16.",
+        "venueName": "Wing Bay Otaru, 1-Bangai Area, 4th Floor Special Venue",
+        "address": "11-1 Chikko, Otaru, Hokkaido, Japan",
+        "audience": "Business operators in Otaru and people planning to start a business in Otaru",
+        "price": "Free",
+        "reservation": "Advance registration required (deadline: August 16, 2026; capacity: 25; closes when full)"
+      },
+      "zh-Hant": {
+        "name": "創業後續講座 第1回：處理事業計畫與現實落差",
+        "summary": "面向小樽市內事業者與預定在小樽創業者的免費講座。以營收、資金與人力為重點，學習處理事業計畫和實際狀況之間的落差。名額25人，8月16日截止報名。",
+        "venueName": "Wing Bay Otaru 1番街4樓特設會場",
+        "address": "日本北海道小樽市築港11-1",
+        "audience": "小樽市內事業者及計畫在小樽創業者",
+        "price": "免費",
+        "reservation": "需事先報名（截止日期：2026年8月16日；名額25人，額滿截止）"
+      },
+      "zh-Hans": {
+        "name": "创业后续讲座 第1回：应对经营计划与现实差距",
+        "summary": "面向小樽市内经营者及计划在小樽创业者的免费讲座。以销售、资金及人力为重点，学习应对经营计划和实际情况之间的差距。限25人，8月16日截止报名。",
+        "venueName": "Wing Bay Otaru 1番街4楼特设会场",
+        "address": "日本北海道小樽市筑港11-1",
+        "audience": "小樽市内经营者及计划在小樽创业者",
+        "price": "免费",
+        "reservation": "需提前报名（截止日期：2026年8月16日；限25人，额满截止）"
+      },
+      "ko": {
+        "name": "창업 후속 세미나 1회: 사업 계획과 현실의 차이 대응",
+        "summary": "오타루 시내 사업자와 오타루 창업 예정자를 위한 무료 세미나입니다. 매출·자금·인력을 중심으로 사업 계획과 실제 상황의 차이에 대응하는 방법을 배웁니다. 정원 25명, 신청 마감은 8월 16일입니다.",
+        "venueName": "윙베이 오타루 1번가 4층 특설 행사장",
+        "address": "일본 홋카이도 오타루시 짓코 11-1",
+        "audience": "오타루 시내 사업자 및 오타루에서 창업을 준비하는 사람",
+        "price": "무료",
+        "reservation": "사전 신청 필수(마감: 2026년 8월 16일, 정원 25명, 정원 도달 시 마감)"
+      }
+    }
+  },
+  {
+    "id": "startup-followup-seminar-20260826",
+    "title": "創業フォローアップセミナー 第2回「税・融資・補助金を徹底ポイントガイド」",
+    "category": "business",
+    "start": "2026-08-26",
+    "end": "2026-08-26",
+    "time": "18:00〜20:30",
+    "startTime": "18:00",
+    "endTime": "20:30",
+    "place": "ウイングベイ小樽 1番街4階 特設会場",
+    "address": "北海道小樽市築港11-1",
+    "mapQuery": "ウイングベイ小樽1番街4階 北海道小樽市築港11-1",
+    "summary": "創業者が知っておきたい税金、融資、補助金などのお金の基本と資金の流れを学び、安心して事業を運営するための知識を身につけます。定員25名、参加無料です。",
+    "source": "小樽ジョブナビ／小樽地域雇用創造協議会",
+    "organizer": "小樽地域雇用創造協議会",
+    "url": "https://otaru-jobnavi.jp/%e4%bb%a4%e5%92%8c%ef%bc%98%e5%b9%b4%e5%ba%a6%e3%80%80%ef%bc%98%e6%9c%88%ef%bc%91%ef%bc%99%e6%97%a5%ef%bc%88%e6%b0%b4%ef%bc%89%ef%bd%9e%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81%e5%89%b5%e6%a5%ad%e3%83%95/",
+    "audience": "小樽市内の事業者・小樽で創業予定の方",
+    "price": "無料",
+    "reservation": "要申込（2026年8月23日締切、定員25名、定員到達時終了）",
+    "reservationRequired": true,
+    "sourceCheckedAt": "2026-07-30",
+    "updatedAt": "2026-07-30",
+    "translations": {
+      "en": {
+        "name": "Startup Follow-up Seminar 2: Taxes, Loans and Subsidies",
+        "summary": "A free seminar on the financial basics founders need to know, including taxes, loans, subsidies and cash flow. Open to Otaru business owners and prospective founders. Capacity: 25; registration closes August 23.",
+        "venueName": "Wing Bay Otaru, 1-Bangai Area, 4th Floor Special Venue",
+        "address": "11-1 Chikko, Otaru, Hokkaido, Japan",
+        "audience": "Business operators in Otaru and people planning to start a business in Otaru",
+        "price": "Free",
+        "reservation": "Advance registration required (deadline: August 23, 2026; capacity: 25; closes when full)"
+      },
+      "zh-Hant": {
+        "name": "創業後續講座 第2回：稅務、融資與補助金",
+        "summary": "學習創業者應了解的稅務、融資、補助金與資金流等基礎知識。面向小樽市內事業者與預定在小樽創業者，免費參加。名額25人，8月23日截止報名。",
+        "venueName": "Wing Bay Otaru 1番街4樓特設會場",
+        "address": "日本北海道小樽市築港11-1",
+        "audience": "小樽市內事業者及計畫在小樽創業者",
+        "price": "免費",
+        "reservation": "需事先報名（截止日期：2026年8月23日；名額25人，額滿截止）"
+      },
+      "zh-Hans": {
+        "name": "创业后续讲座 第2回：税务、融资与补助金",
+        "summary": "学习创业者需要了解的税务、融资、补助金及资金流等基础知识。面向小樽市内经营者及计划在小樽创业者，免费参加。限25人，8月23日截止报名。",
+        "venueName": "Wing Bay Otaru 1番街4楼特设会场",
+        "address": "日本北海道小樽市筑港11-1",
+        "audience": "小樽市内经营者及计划在小樽创业者",
+        "price": "免费",
+        "reservation": "需提前报名（截止日期：2026年8月23日；限25人，额满截止）"
+      },
+      "ko": {
+        "name": "창업 후속 세미나 2회: 세금·융자·보조금",
+        "summary": "창업자가 알아야 할 세금, 융자, 보조금과 자금 흐름의 기초를 배우는 무료 세미나입니다. 오타루 시내 사업자와 창업 예정자 대상이며 정원 25명, 신청 마감은 8월 23일입니다.",
+        "venueName": "윙베이 오타루 1번가 4층 특설 행사장",
+        "address": "일본 홋카이도 오타루시 짓코 11-1",
+        "audience": "오타루 시내 사업자 및 오타루에서 창업을 준비하는 사람",
+        "price": "무료",
+        "reservation": "사전 신청 필수(마감: 2026년 8월 23일, 정원 25명, 정원 도달 시 마감)"
+      }
+    }
+  },
+  {
+    "id": "startup-followup-seminar-20260902",
+    "title": "創業フォローアップセミナー 第3回「社会保険・法人化・労務管理について」",
+    "category": "business",
+    "start": "2026-09-02",
+    "end": "2026-09-02",
+    "time": "18:00〜20:30",
+    "startTime": "18:00",
+    "endTime": "20:30",
+    "place": "ウイングベイ小樽 1番街4階 特設会場",
+    "address": "北海道小樽市築港11-1",
+    "mapQuery": "ウイングベイ小樽1番街4階 北海道小樽市築港11-1",
+    "summary": "個人事業と法人の違い、法人化の考え方、社会保険、労務管理など、将来の雇用も見据えた経営の土台づくりを学びます。定員25名、参加無料です。",
+    "source": "小樽ジョブナビ／小樽地域雇用創造協議会",
+    "organizer": "小樽地域雇用創造協議会",
+    "url": "https://otaru-jobnavi.jp/%e4%bb%a4%e5%92%8c%ef%bc%98%e5%b9%b4%e5%ba%a6%e3%80%80%ef%bc%98%e6%9c%88%ef%bc%91%ef%bc%99%e6%97%a5%ef%bc%88%e6%b0%b4%ef%bc%89%ef%bd%9e%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81%e5%89%b5%e6%a5%ad%e3%83%95/",
+    "audience": "小樽市内の事業者・小樽で創業予定の方",
+    "price": "無料",
+    "reservation": "要申込（2026年8月30日締切、定員25名、定員到達時終了）",
+    "reservationRequired": true,
+    "sourceCheckedAt": "2026-07-30",
+    "updatedAt": "2026-07-30",
+    "translations": {
+      "en": {
+        "name": "Startup Follow-up Seminar 3: Social Insurance, Incorporation and Labor Management",
+        "summary": "A free seminar on sole proprietorship versus incorporation, social insurance and labor management, including preparation for future hiring. Open to Otaru business owners and prospective founders. Capacity: 25; registration closes August 30.",
+        "venueName": "Wing Bay Otaru, 1-Bangai Area, 4th Floor Special Venue",
+        "address": "11-1 Chikko, Otaru, Hokkaido, Japan",
+        "audience": "Business operators in Otaru and people planning to start a business in Otaru",
+        "price": "Free",
+        "reservation": "Advance registration required (deadline: August 30, 2026; capacity: 25; closes when full)"
+      },
+      "zh-Hant": {
+        "name": "創業後續講座 第3回：社會保險、法人化與勞務管理",
+        "summary": "學習個人事業與法人之差異、法人化、社會保險及勞務管理，為未來僱用人才建立經營基礎。免費參加，名額25人，8月30日截止報名。",
+        "venueName": "Wing Bay Otaru 1番街4樓特設會場",
+        "address": "日本北海道小樽市築港11-1",
+        "audience": "小樽市內事業者及計畫在小樽創業者",
+        "price": "免費",
+        "reservation": "需事先報名（截止日期：2026年8月30日；名額25人，額滿截止）"
+      },
+      "zh-Hans": {
+        "name": "创业后续讲座 第3回：社会保险、法人化与劳务管理",
+        "summary": "学习个体经营与法人经营的区别、法人化、社会保险及劳务管理，为今后雇用员工建立经营基础。免费参加，限25人，8月30日截止报名。",
+        "venueName": "Wing Bay Otaru 1番街4楼特设会场",
+        "address": "日本北海道小樽市筑港11-1",
+        "audience": "小樽市内经营者及计划在小樽创业者",
+        "price": "免费",
+        "reservation": "需提前报名（截止日期：2026年8月30日；限25人，额满截止）"
+      },
+      "ko": {
+        "name": "창업 후속 세미나 3회: 사회보험·법인화·노무관리",
+        "summary": "개인사업과 법인의 차이, 법인화, 사회보험과 노무관리를 배우고 향후 채용을 위한 경영 기반을 준비하는 무료 세미나입니다. 정원 25명, 신청 마감은 8월 30일입니다.",
+        "venueName": "윙베이 오타루 1번가 4층 특설 행사장",
+        "address": "일본 홋카이도 오타루시 짓코 11-1",
+        "audience": "오타루 시내 사업자 및 오타루에서 창업을 준비하는 사람",
+        "price": "무료",
+        "reservation": "사전 신청 필수(마감: 2026년 8월 30일, 정원 25명, 정원 도달 시 마감)"
+      }
+    }
+  },
+  {
+    "id": "startup-followup-seminar-20260909",
+    "title": "創業フォローアップセミナー 第4回「AI・最新技術で変わるビジネスの常識」",
+    "category": "business",
+    "start": "2026-09-09",
+    "end": "2026-09-09",
+    "time": "18:00〜20:30",
+    "startTime": "18:00",
+    "endTime": "20:30",
+    "place": "ウイングベイ小樽 1番街4階 特設会場",
+    "address": "北海道小樽市築港11-1",
+    "mapQuery": "ウイングベイ小樽1番街4階 北海道小樽市築港11-1",
+    "summary": "ノーコードツールやAIエージェントの業務活用、AI検索への最適化、SNS活用など、情報発信と業務効率化の新しい潮流を実践的に学びます。定員25名、参加無料です。",
+    "source": "小樽ジョブナビ／小樽地域雇用創造協議会",
+    "organizer": "小樽地域雇用創造協議会",
+    "url": "https://otaru-jobnavi.jp/%e4%bb%a4%e5%92%8c%ef%bc%98%e5%b9%b4%e5%ba%a6%e3%80%80%ef%bc%98%e6%9c%88%ef%bc%91%ef%bc%99%e6%97%a5%ef%bc%88%e6%b0%b4%ef%bc%89%ef%bd%9e%e9%96%8b%e5%82%ac%ef%bc%81%ef%bc%81%e5%89%b5%e6%a5%ad%e3%83%95/",
+    "audience": "小樽市内の事業者・小樽で創業予定の方",
+    "price": "無料",
+    "reservation": "要申込（2026年9月6日締切、定員25名、定員到達時終了）",
+    "reservationRequired": true,
+    "sourceCheckedAt": "2026-07-30",
+    "updatedAt": "2026-07-30",
+    "translations": {
+      "en": {
+        "name": "Startup Follow-up Seminar 4: AI and Emerging Technology for Business",
+        "summary": "A free practical seminar on no-code tools, AI agents, optimization for AI search and social media for better communication and efficiency. Open to Otaru business owners and prospective founders. Capacity: 25; registration closes September 6.",
+        "venueName": "Wing Bay Otaru, 1-Bangai Area, 4th Floor Special Venue",
+        "address": "11-1 Chikko, Otaru, Hokkaido, Japan",
+        "audience": "Business operators in Otaru and people planning to start a business in Otaru",
+        "price": "Free",
+        "reservation": "Advance registration required (deadline: September 6, 2026; capacity: 25; closes when full)"
+      },
+      "zh-Hant": {
+        "name": "創業後續講座 第4回：AI與最新技術帶來的商業變革",
+        "summary": "實務學習無程式碼工具、AI代理、AI搜尋最佳化及社群媒體運用，以提升資訊傳播與工作效率。免費參加，名額25人，9月6日截止報名。",
+        "venueName": "Wing Bay Otaru 1番街4樓特設會場",
+        "address": "日本北海道小樽市築港11-1",
+        "audience": "小樽市內事業者及計畫在小樽創業者",
+        "price": "免費",
+        "reservation": "需事先報名（截止日期：2026年9月6日；名額25人，額滿截止）"
+      },
+      "zh-Hans": {
+        "name": "创业后续讲座 第4回：AI与最新技术带来的商业变革",
+        "summary": "通过实践学习无代码工具、AI智能体、AI搜索优化及社交媒体应用，提升信息传播与工作效率。免费参加，限25人，9月6日截止报名。",
+        "venueName": "Wing Bay Otaru 1番街4楼特设会场",
+        "address": "日本北海道小樽市筑港11-1",
+        "audience": "小樽市内经营者及计划在小樽创业者",
+        "price": "免费",
+        "reservation": "需提前报名（截止日期：2026年9月6日；限25人，额满截止）"
+      },
+      "ko": {
+        "name": "창업 후속 세미나 4회: AI와 최신 기술로 달라지는 비즈니스",
+        "summary": "노코드 도구, AI 에이전트, AI 검색 최적화와 SNS 활용을 통해 정보 발신과 업무 효율을 높이는 방법을 실무적으로 배우는 무료 세미나입니다. 정원 25명, 신청 마감은 9월 6일입니다.",
+        "venueName": "윙베이 오타루 1번가 4층 특설 행사장",
+        "address": "일본 홋카이도 오타루시 짓코 11-1",
+        "audience": "오타루 시내 사업자 및 오타루에서 창업을 준비하는 사람",
+        "price": "무료",
+        "reservation": "사전 신청 필수(마감: 2026년 9월 6일, 정원 25명, 정원 도달 시 마감)"
+      }
+    }
   }
 ]

@@ -5,14 +5,24 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const origin = 'https://otaru.spady.net';
-const today = '2026-07-17';
-const defaultMonth = { year: 2026, month: 6 };
-const buildDate = '2026-07-17';
-const cssVersion = '20260717-i18n';
+const today = new Intl.DateTimeFormat('sv-SE', {
+  timeZone: 'Asia/Tokyo',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+}).format(new Date());
+const [defaultYear, defaultMonthNumber] = today.split('-').map(Number);
+const defaultMonth = { year: defaultYear, month: defaultMonthNumber - 1 };
+const buildDate = today;
+const cssVersion = `${buildDate.replaceAll('-', '')}-calendar`;
 const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
-const rawEvents = readJson('data/events.json');
+const rawEvents = [
+  ...readJson('data/events.json'),
+  ...readJson('data/events-official-municipal-20260723.json'),
+  ...readJson('data/events-official-tourism-20260723.json'),
+];
 const rawOngoing = readJson('data/ongoing.json');
 const garbageRegions = readJson('data/garbage-regions.json');
 const garbagePatterns = readJson('data/garbage-patterns.json');
@@ -115,6 +125,7 @@ const copy = {
     monthlyLead: '単発イベント、継続的に使える行政・生活情報をまとめています。',
     count: (n) => n ? `${n}件の情報を表示中` : '該当する情報はありません',
     official: '公式ページ ↗',
+    registrationAction: '申込ページ ↗',
     sourceLabel: '情報元',
     checkedLabel: '情報確認日',
     updatedLabel: '最終更新日',
@@ -127,7 +138,7 @@ const copy = {
     dayInfo: 'この日の情報',
     items: (n) => `件数：${n}件`,
     mapEmpty: 'この情報は会場が未確定、または複数会場です。公式情報をご確認ください。',
-    noEndTime: '終了時間：公式情報に記載なし（登録画面では仮に1時間の枠で表示）',
+    noEndTime: '終了時間：公式情報に記載なし（登録画面では編集用に仮の1時間枠を設定しています）',
     garbageEyebrow: 'PUBLIC INFORMATION',
     garbageTitle: 'ごみ収集日の検索',
     garbageText: '地区名と日付を入力すると、2026年版の小樽市ごみ収集カレンダーをもとに収集予定を確認できます。',
@@ -206,6 +217,7 @@ const copy = {
     monthlyLead: 'Includes one-time events and public information that remains useful during the month.',
     count: (n) => n ? `${n} items shown` : 'No matching information found',
     official: 'Official page ↗',
+    registrationAction: 'Registration ↗',
     sourceLabel: 'Source',
     checkedLabel: 'Source checked',
     updatedLabel: 'Last updated',
@@ -218,7 +230,7 @@ const copy = {
     dayInfo: 'Information for this date',
     items: (n) => `${n} item(s)`,
     mapEmpty: 'The venue is not fixed or the event uses multiple venues. Please check the official information.',
-    noEndTime: 'End time is not listed in the official information. Google Calendar opens with a temporary one-hour slot.',
+    noEndTime: 'The official information does not list an end time. A one-hour placeholder is used for editing in Google Calendar.',
     garbageEyebrow: 'PUBLIC INFORMATION',
     garbageTitle: 'Waste collection lookup',
     garbageText: 'Enter an Otaru district name and a date to check the 2026 municipal waste collection schedule.',
@@ -297,6 +309,7 @@ const copy = {
     monthlyLead: '整理單次活動與當月仍可使用的公共生活資訊。',
     count: (n) => n ? `顯示 ${n} 筆資訊` : '沒有符合條件的資訊',
     official: '官方頁面 ↗',
+    registrationAction: '報名頁面 ↗',
     sourceLabel: '資訊來源',
     checkedLabel: '確認日期',
     updatedLabel: '最後更新',
@@ -309,7 +322,7 @@ const copy = {
     dayInfo: '當日資訊',
     items: (n) => `共 ${n} 筆`,
     mapEmpty: '會場尚未確定或有多個會場，請確認官方資訊。',
-    noEndTime: '官方資訊未列出結束時間。Google 日曆會暫以一小時顯示。',
+    noEndTime: '官方資訊未列出結束時間；Google 日曆登錄畫面暫設一小時，請依需要修改。',
     garbageEyebrow: '生活資訊',
     garbageTitle: '垃圾收集日查詢',
     garbageText: '輸入小樽地區名稱與日期，即可依據2026年官方垃圾收集日曆查詢。',
@@ -388,6 +401,7 @@ const copy = {
     monthlyLead: '整理单次活动与当月仍可使用的公共生活信息。',
     count: (n) => n ? `显示 ${n} 条信息` : '没有符合条件的信息',
     official: '官方页面 ↗',
+    registrationAction: '报名页面 ↗',
     sourceLabel: '信息来源',
     checkedLabel: '确认日期',
     updatedLabel: '最后更新',
@@ -400,7 +414,7 @@ const copy = {
     dayInfo: '当天信息',
     items: (n) => `共 ${n} 条`,
     mapEmpty: '会场尚未确定或有多个会场，请确认官方信息。',
-    noEndTime: '官方信息未列出结束时间。Google 日历会暂以一小时显示。',
+    noEndTime: '官方信息未列出结束时间；Google 日历添加页面暂设一小时，请按需修改。',
     garbageEyebrow: '生活信息',
     garbageTitle: '垃圾收集日查询',
     garbageText: '输入小樽地区名称与日期，即可依据2026年官方垃圾收集日历查询。',
@@ -479,6 +493,7 @@ const copy = {
     monthlyLead: '단발성 행사와 해당 월에 이용할 수 있는 공공·생활 정보를 정리했습니다.',
     count: (n) => n ? `${n}건 표시 중` : '조건에 맞는 정보가 없습니다',
     official: '공식 페이지 ↗',
+    registrationAction: '신청 페이지 ↗',
     sourceLabel: '정보 출처',
     checkedLabel: '확인일',
     updatedLabel: '최종 업데이트',
@@ -491,7 +506,7 @@ const copy = {
     dayInfo: '이 날짜의 정보',
     items: (n) => `${n}건`,
     mapEmpty: '장소가 확정되지 않았거나 여러 장소에서 열립니다. 공식 정보를 확인해 주세요.',
-    noEndTime: '공식 정보에 종료 시간이 없습니다. Google 캘린더는 임시로 1시간 일정으로 열립니다.',
+    noEndTime: '공식 정보에 종료 시간이 없습니다. Google 캘린더 등록 화면에는 편집용 1시간이 임시 설정됩니다.',
     garbageEyebrow: '생활 정보',
     garbageTitle: '쓰레기 수거일 조회',
     garbageText: '오타루의 지역명과 날짜를 입력하면 2026년 공식 쓰레기 수거 캘린더를 기준으로 확인할 수 있습니다.',
@@ -547,10 +562,10 @@ const copy = {
 
 const eventTemplates = {
   akindo: {
-    en: ['AKINDO Lab by Spady', 'AKINDO Lab by Spady is a digital marketing study session for local businesses in Otaru. It covers Instagram, LINE Official Account, Google Business Profile, Meta ads, AI, websites and booking flows. The session is full.'],
-    'zh-Hant': ['AKINDO Lab by Spady', 'AKINDO Lab by Spady 是小樽在地事業者的數位集客學習會，主題包含 Instagram、LINE官方帳號、Google商家檔案、Meta廣告、AI、網站與預約導線。本場已額滿。'],
-    'zh-Hans': ['AKINDO Lab by Spady', 'AKINDO Lab by Spady 是面向小樽当地经营者的数字集客学习会，主题包括 Instagram、LINE官方账号、Google商家资料、Meta广告、AI、网站与预约动线。本场已满。'],
-    ko: ['AKINDO Lab by Spady', 'AKINDO Lab by Spady는 오타루 지역 사업자를 위한 디지털 집객 스터디 모임입니다. Instagram, LINE 공식 계정, Google 비즈니스 프로필, Meta 광고, AI, 웹사이트와 예약 동선을 다룹니다. 현재 만석입니다.'],
+    en: ['AKINDO Lab by Spady', 'AKINDO Lab by Spady is a digital marketing study session for local businesses in Otaru. It covers Instagram, LINE Official Account, Google Business Profile, Meta ads, AI, websites and booking flows.'],
+    'zh-Hant': ['AKINDO Lab by Spady', 'AKINDO Lab by Spady 是小樽在地事業者的數位集客學習會，主題包含 Instagram、LINE官方帳號、Google商家檔案、Meta廣告、AI、網站與預約導線。'],
+    'zh-Hans': ['AKINDO Lab by Spady', 'AKINDO Lab by Spady 是面向小樽当地经营者的数字集客学习会，主题包括 Instagram、LINE官方账号、Google商家资料、Meta广告、AI、网站与预约动线。'],
+    ko: ['AKINDO Lab by Spady', 'AKINDO Lab by Spady는 오타루 지역 사업자를 위한 디지털 집객 스터디 모임입니다. Instagram, LINE 공식 계정, Google 비즈니스 프로필, Meta 광고, AI, 웹사이트와 예약 동선을 다룹니다.'],
   },
   lightup: {
     en: ['Otaru Light-Up Walking Guide Tour', 'A free evening walking tour in Otaru from magic hour to the time gas lamps and historic buildings are lit. No reservation is required.'],
@@ -609,7 +624,7 @@ function ensureDir(dir) {
 function writeFile(rel, content) {
   const full = path.join(root, rel);
   fs.mkdirSync(path.dirname(full), { recursive: true });
-  fs.writeFileSync(full, content, 'utf8');
+  fs.writeFileSync(full, content.replace(/[ \t]+$/gm, ''), 'utf8');
 }
 
 function esc(value = '') {
@@ -710,11 +725,25 @@ function genericSummary(event, lang) {
 }
 
 function translateEvent(event, lang) {
+  const localized = event.translations?.[lang];
+  if (localized) {
+    return {
+      name: localized.name || event.title,
+      summary: localized.summary || event.summary,
+      description: localized.description || localized.summary || event.summary,
+      venueName: localized.venueName || event.place,
+      address: localized.address ?? addressFor(event),
+      audience: localized.audience || audienceFor(event, lang),
+      price: localized.price || priceFor(event, lang),
+      reservation: localized.reservation || reservationFor(event, lang),
+      statusLabel: statusLabelFor(event, lang),
+    };
+  }
   if (lang === 'ja') {
     return {
       name: event.title,
       summary: event.summary,
-      description: event.summary,
+      description: event.description || event.summary,
       venueName: event.place,
       address: addressFor(event),
       audience: audienceFor(event, lang),
@@ -758,12 +787,15 @@ function venueFor(event, lang) {
 }
 
 function addressFor(event) {
-  const query = event.mapQuery || event.place || '';
+  if (event.address !== undefined) return event.address;
+  const query = event.mapQuery !== undefined ? event.mapQuery : (event.place || '');
   const idx = query.indexOf('北海道');
   return idx >= 0 ? query.slice(idx) : query;
 }
 
 function audienceFor(event, lang) {
+  if (event.audience && typeof event.audience === 'object') return event.audience[lang] || event.audience.ja || copy[lang].targetGeneric;
+  if (typeof event.audience === 'string') return event.audience;
   const t = copy[lang];
   if (event.category === 'child') {
     if (lang === 'ja') return '子ども・親子・保護者';
@@ -797,20 +829,32 @@ function audienceFor(event, lang) {
 }
 
 function priceFor(event, lang) {
+  if (event.price && typeof event.price === 'object') return event.price[lang] || event.price.ja || copy[lang].priceUnknown;
+  if (typeof event.price === 'string') return event.price;
   const summary = `${event.summary} ${event.time}`;
   if (summary.includes('無料') || summary.includes('参加無料')) return copy[lang].free;
   return copy[lang].priceUnknown;
 }
 
 function reservationState(event) {
-  const text = `${event.title} ${event.summary} ${event.time}`;
+  if (event.reservationStatus === 'soldOut' || event.reservationStatus === 'closed') return 'soldOut';
+  if (event.reservationStatus === 'open' || event.reservationStatus === 'required') return 'required';
+  if (event.reservationStatus === 'notRequired') return 'notRequired';
+  const reservationText = typeof event.reservation === 'object'
+    ? Object.values(event.reservation).join(' ')
+    : (event.reservation || '');
+  const text = `${event.title} ${event.summary} ${event.time} ${event.reservationRequired || ''} ${reservationText}`;
   if (text.includes('満席') || text.includes('受付終了')) return 'soldOut';
   if (text.includes('申込不要') || text.includes('予約不要')) return 'notRequired';
-  if (text.includes('要予約') || text.includes('事前申込') || text.includes('申込締切') || text.includes('先着')) return 'required';
+  if (event.reservationRequired === true || text.includes('要予約') || text.includes('要申込') || text.includes('事前申込') || text.includes('申込締切') || text.includes('申込受付中') || text.includes('先着')) return 'required';
+  if (event.reservationRequired === false) return 'notRequired';
   return 'unknown';
 }
 
 function reservationFor(event, lang) {
+  if (event.reservation && typeof event.reservation === 'object') return event.reservation[lang] || event.reservation.ja || copy[lang].reservationUnknown;
+  if (typeof event.reservation === 'string') return event.reservation;
+  if (typeof event.reservationRequired === 'string' && lang === 'ja') return event.reservationRequired;
   const state = reservationState(event);
   if (state === 'soldOut') return copy[lang].soldOut;
   if (state === 'required') return copy[lang].reservationRequired;
@@ -819,14 +863,17 @@ function reservationFor(event, lang) {
 }
 
 function statusFor(event) {
+  if (event.eventStatus && ['EventScheduled', 'EventCompleted', 'EventCancelled', 'EventPostponed'].includes(event.eventStatus)) {
+    return event.eventStatus;
+  }
   const text = `${event.title} ${event.summary}`;
-  if (text.includes('中止')) return 'EventCancelled';
+  if (/(開催を中止|開催中止|中止となりました|中止になりました|中止します|中止が決定)/.test(text)) return 'EventCancelled';
   if (event.end < today) return 'EventCompleted';
   return 'EventScheduled';
 }
 
 function statusLabelFor(event, lang) {
-  const status = statusFor(event);
+  const status = event.eventStatus || statusFor(event);
   if (status === 'EventCancelled') return copy[lang].cancelled;
   if (status === 'EventCompleted') return copy[lang].ended;
   if (reservationState(event) === 'soldOut') return copy[lang].soldOut;
@@ -841,28 +888,37 @@ function normalizeEvent(raw) {
     slug,
     name: raw.title,
     summary: raw.summary,
-    description: raw.summary,
+    description: raw.description || raw.summary,
     startDate: raw.start,
     endDate: raw.end || raw.start,
+    excludedDates: raw.excludedDates || [],
     timezone: 'Asia/Tokyo',
     startTime: raw.startTime || '',
     endTime: raw.endTime || '',
+    doorsOpenTime: raw.doorsOpenTime || '',
     time: raw.time || '',
     venueName: raw.place || '',
     address: addressFor(raw),
-    latitude: null,
-    longitude: null,
-    mapQuery: raw.mapQuery || raw.place || '',
+    latitude: raw.latitude ?? null,
+    longitude: raw.longitude ?? null,
+    mapQuery: raw.mapQuery !== undefined ? raw.mapQuery : (raw.place || ''),
     category: raw.category,
     audience: audienceFor(raw, 'ja'),
     price: priceFor(raw, 'ja'),
-    reservationRequired: reservationState(raw) === 'required' ? true : reservationState(raw) === 'notRequired' ? false : null,
-    organizerName: raw.source || '',
+    reservationRequired: typeof raw.reservationRequired === 'boolean'
+      ? raw.reservationRequired
+      : (reservationState(raw) === 'required' ? true : reservationState(raw) === 'notRequired' ? false : null),
+    reservationStatus: raw.reservationStatus || '',
+    availability: raw.availability || '',
+    organizerName: raw.organizer || raw.source || '',
+    organizerUrl: raw.organizerUrl || raw.url || '',
     officialSourceName: raw.source || '',
     officialSourceUrl: raw.url || '',
+    registrationUrl: raw.registrationUrl || '',
+    offers: raw.offers || null,
     sourceCheckedAt: raw.sourceCheckedAt || '2026-07-13',
     updatedAt: raw.updatedAt || buildDate,
-    eventStatus: statusFor(raw),
+    eventStatus: raw.eventStatus || statusFor(raw),
     translations,
   };
 }
@@ -901,16 +957,23 @@ function formatTimeRange(event, lang) {
   const start = event.startTime;
   const end = event.endTime;
   if (!start) return event.time || '';
+  const crossesDate = Boolean(end && event.endDate !== event.startDate);
   if (lang === 'en') {
-    const [sh, sm] = start.split(':').map(Number);
-    const [eh, em] = (end || '').split(':').map(Number);
     const startDate = new Date(`${event.startDate}T${start}:00+09:00`);
     const endDate = end ? new Date(`${event.endDate}T${end}:00+09:00`) : null;
+    const doorsDate = event.doorsOpenTime ? new Date(`${event.startDate}T${event.doorsOpenTime}:00+09:00`) : null;
     const tf = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Tokyo' });
-    return endDate ? `${tf.format(startDate)}–${tf.format(endDate)} JST` : `${tf.format(startDate)} JST`;
+    const main = endDate ? `${tf.format(startDate)}–${tf.format(endDate)}${crossesDate ? ' next day' : ''} JST` : `${tf.format(startDate)} JST`;
+    return doorsDate ? `Doors ${tf.format(doorsDate)} / ${endDate ? main : `Starts ${main}`}` : main;
   }
   const sep = lang === 'ko' ? '~' : '–';
-  return end ? `${start}${sep}${end}` : start;
+  const nextDay = crossesDate ? (lang === 'ja' ? '翌日' : lang === 'ko' ? '다음 날 ' : lang === 'zh-Hant' ? '翌日' : '次日') : '';
+  const main = end ? `${start}${sep}${nextDay}${end}` : start;
+  if (!event.doorsOpenTime) return main;
+  if (lang === 'ja') return `${event.doorsOpenTime}開場／${main}${end ? '' : '開始'}`;
+  if (lang === 'ko') return `${event.doorsOpenTime} 입장 / ${main}${end ? '' : ' 시작'}`;
+  if (lang === 'zh-Hant') return `${event.doorsOpenTime}開場／${main}${end ? '' : '開始'}`;
+  return `${event.doorsOpenTime}入场／${main}${end ? '' : '开始'}`;
 }
 
 function formatEventDateTime(event, lang) {
@@ -1023,6 +1086,7 @@ function collectionJsonLd(lang) {
   const cfg = langConfig[lang];
   const itemEvents = events
     .filter((event) => event.endDate >= today)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate))
     .slice(0, 30)
     .map((event, i) => ({
       '@type': 'ListItem',
@@ -1053,8 +1117,24 @@ function collectionJsonLd(lang) {
 
 function eventJsonLd(event, lang) {
   const text = eventText(event, lang);
-  const start = event.startTime ? `${event.startDate}T${event.startTime}:00+09:00` : `${event.startDate}T00:00:00+09:00`;
-  const end = event.endTime ? `${event.endDate}T${event.endTime}:00+09:00` : `${event.endDate}T23:59:59+09:00`;
+  const start = event.startTime ? `${event.startDate}T${event.startTime}:00+09:00` : event.startDate;
+  const end = event.endTime ? `${event.endDate}T${event.endTime}:00+09:00` : (!event.startTime && event.endDate ? event.endDate : null);
+  const availability = event.availability || (reservationState(event) === 'soldOut' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock');
+  const offers = event.offers
+    ? event.offers.map((offer) => ({
+        '@type': 'Offer',
+        name: typeof offer.name === 'object' ? (offer.name[lang] || offer.name.ja) : offer.name,
+        price: String(offer.price),
+        priceCurrency: offer.priceCurrency || 'JPY',
+        availability,
+        url: offer.url || event.registrationUrl || event.officialSourceUrl,
+      }))
+    : text.price === copy[lang].free
+      ? { '@type': 'Offer', price: '0', priceCurrency: 'JPY', availability, url: event.registrationUrl || event.officialSourceUrl }
+      : null;
+  const location = event.mapQuery || text.address
+    ? { '@type': 'Place', name: text.venueName, address: text.address }
+    : null;
   return [
     ...commonJsonLd(lang, pageUrl(lang, 'event', event.slug), text.name, text.summary, [
       { name: langConfig[lang].siteName, url: pageUrl(lang) },
@@ -1066,28 +1146,19 @@ function eventJsonLd(event, lang) {
       name: text.name,
       description: text.summary,
       startDate: start,
-      endDate: end,
+      ...(end ? { endDate: end } : {}),
+      ...(event.doorsOpenTime ? { doorTime: `${event.startDate}T${event.doorsOpenTime}:00+09:00` } : {}),
       eventStatus: `https://schema.org/${event.eventStatus}`,
       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-      location: {
-        '@type': 'Place',
-        name: text.venueName,
-        address: text.address,
-      },
+      ...(location ? { location } : {}),
       organizer: {
         '@type': 'Organization',
         name: event.organizerName,
-        url: event.officialSourceUrl,
+        url: event.organizerUrl,
       },
       url: pageUrl(lang, 'event', event.slug),
       image: [ogImage],
-      offers: {
-        '@type': 'Offer',
-        price: text.price === copy[lang].free ? '0' : '',
-        priceCurrency: 'JPY',
-        availability: reservationState(event) === 'soldOut' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
-        url: event.officialSourceUrl,
-      },
+      ...(offers ? { offers } : {}),
       inLanguage: langConfig[lang].htmlLang,
     },
   ];
@@ -1107,7 +1178,7 @@ function monthEvents(year, month, filter = 'all') {
 
 function eventsForDate(date, monthEventList) {
   const iso = localISODate(date);
-  return monthEventList.filter((event) => event.startDate <= iso && event.endDate >= iso);
+  return monthEventList.filter((event) => event.startDate <= iso && event.endDate >= iso && !event.excludedDates.includes(iso));
 }
 
 function localISODate(date) {
@@ -1176,6 +1247,7 @@ function renderEventCards(eventList, lang) {
       <div class="event-links">
         <a href="${attr(pageUrl(lang, 'event', event.slug))}">${esc(copy[lang].detailsArrow)}</a>
         <a href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(copy[lang].calendarAdd)}</a>
+        ${event.registrationUrl ? `<a href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(copy[lang].registrationAction)}</a>` : ''}
         <a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(copy[lang].official)}</a>
       </div>
     </article>`;
@@ -1199,6 +1271,8 @@ function googleCalendarUrl(event, lang) {
     if (event.endTime) {
       dates = `${start}/${toGoogleDateTime(event.endDate, event.endTime)}`;
     } else {
+      // Google Calendar requires an end value. Use an explicit one-hour editing
+      // placeholder and disclose it in the generated event description.
       dates = `${start}/${addMinutesToGoogleDateTime(event.startDate, event.startTime, 60)}`;
       note = `\n${copy[lang].noEndTime}`;
     }
@@ -1211,9 +1285,9 @@ function googleCalendarUrl(event, lang) {
     text: text.name,
     dates,
     details: `${text.summary}${note}\n\n${copy[lang].sourceLabel}: ${event.officialSourceName}\n${event.officialSourceUrl}`,
-    location: text.venueName || '',
     ctz: 'Asia/Tokyo',
   });
+  if (event.mapQuery || text.address) params.set('location', text.venueName);
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
@@ -1285,6 +1359,7 @@ function renderIndexPage(lang) {
       statusLabel: eventText(event, lang).statusLabel,
       detailUrl: pageUrl(lang, 'event', event.slug),
       calendarUrl: googleCalendarUrl(event, lang),
+      timeDisplay: formatTimeRange(event, lang),
       url: event.officialSourceUrl,
       source: event.officialSourceName,
       start: event.startDate,
@@ -1500,7 +1575,7 @@ ${renderHeader(lang, 'event', event.slug)}
       <dl class="fact-list">
         <div><dt>${esc(t.dateTime)}</dt><dd>${esc(formatEventDateTime(event, lang))}</dd></div>
         <div><dt>${esc(t.venue)}</dt><dd>${esc(text.venueName)}</dd></div>
-        <div><dt>${esc(t.address)}</dt><dd>${esc(text.address)}</dd></div>
+        ${text.address ? `<div><dt>${esc(t.address)}</dt><dd>${esc(text.address)}</dd></div>` : ''}
         <div><dt>${esc(t.audience)}</dt><dd>${esc(text.audience)}</dd></div>
         <div><dt>${esc(t.price)}</dt><dd>${esc(text.price)}</dd></div>
         <div><dt>${esc(t.reservation)}</dt><dd>${esc(text.reservation)}</dd></div>
@@ -1516,8 +1591,9 @@ ${renderHeader(lang, 'event', event.slug)}
     </section>
     <div class="modal-actions detail-actions">
       <a class="btn" href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(t.official)}</a>
+      ${event.registrationUrl ? `<a class="btn" href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(t.registrationAction)}</a>` : ''}
       <a class="btn calendar-btn" href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(t.calendarAdd)}</a>
-      <a class="btn map-external-btn" href="https://www.google.com/maps/search/?api=1&query=${attr(encodeURIComponent(event.mapQuery || text.venueName))}" target="_blank" rel="noopener">${esc(t.mapOpen)}</a>
+      ${event.mapQuery ? `<a class="btn map-external-btn" href="https://www.google.com/maps/search/?api=1&query=${attr(encodeURIComponent(event.mapQuery))}" target="_blank" rel="noopener">${esc(t.mapOpen)}</a>` : `<span class="map-empty">${esc(t.mapEmpty)}</span>`}
       <a class="btn ghost-btn" href="${attr(pageUrl(lang))}#calendar">${esc(t.backHome)}</a>
     </div>
     <section class="detail-section">
@@ -1635,8 +1711,9 @@ const garbagePatterns = data.garbagePatterns;
 const categoryLabels = data.categoryLabels;
 const weekdayLabels = data.weekdayLabels;
 const T = data.text;
-let year = data.defaultYear;
-let month = data.defaultMonth;
+const [initialYear, initialMonth] = japanISODate().split('-').map(Number);
+let year = initialYear;
+let month = initialMonth - 1;
 let activeFilter = 'all';
 let currentEventId = '';
 const params = new URLSearchParams(location.search);
@@ -1651,6 +1728,11 @@ function escHtml(value){
 }
 function parseDate(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
 function localISODate(date){ return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0'); }
+function japanISODate(){
+  return new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(new Date());
+}
 function labelDate(date){
   const y=date.getFullYear(), m=date.getMonth()+1, d=date.getDate(), w=weekdayLabels[date.getDay()];
   if(data.lang==='ja') return m+'/'+d+'('+w+')';
@@ -1675,15 +1757,15 @@ function monthTitle(){
 function dateInRange(date,start,end){ return date >= parseDate(start) && date <= parseDate(end); }
 function monthEvents(){
   return events.filter(e => {
-    if(e.end < localISODate(new Date())) return false;
+    if(e.end < japanISODate()) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     const s = parseDate(e.start), en = parseDate(e.end);
     const ms = new Date(year, month, 1), me = new Date(year, month+1, 0, 23,59,59);
     return en >= ms && s <= me;
   });
 }
-function eventsForDate(date){ return monthEvents().filter(e => dateInRange(date,e.start,e.end)); }
-function timeRange(e){ return e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || ''); }
+function eventsForDate(date){ const iso=localISODate(date); return monthEvents().filter(e => dateInRange(date,e.start,e.end) && !(e.excludedDates || []).includes(iso)); }
+function timeRange(e){ return e.timeDisplay || (e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || '')); }
 function renderCalendar(){
   const title = document.getElementById('monthTitle');
   if(title) title.textContent = monthTitle();
@@ -1701,8 +1783,7 @@ function renderCalendar(){
     else if(i>=startDay+days){ d=i-(startDay+days)+1; cellDate=new Date(year,month+1,d); muted=true; }
     else { d=i-startDay+1; cellDate=new Date(year,month,d); }
     const iso = localISODate(cellDate);
-    const now = new Date();
-    const isToday = iso === localISODate(now);
+    const isToday = iso === japanISODate();
     const evs = eventsForDate(cellDate);
     const cell = document.createElement('div');
     cell.className = 'day' + (muted ? ' muted' : '') + (isToday ? ' today' : '');
@@ -1728,7 +1809,7 @@ function renderList(){
   list.innerHTML = evs.map(e => {
     const d = parseDate(e.start);
     const officialName = data.lang !== 'ja' ? '<p class="official-name">'+escHtml(T.officialName)+'：'+escHtml(e.name)+'</p>' : '';
-    return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><strong>'+d.getDate()+'</strong><small>'+fullDate(d)+'</small></div></div><div><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3>'+officialName+'<p><strong>'+escHtml(T.dateTime)+'：</strong>'+escHtml(fullDate(d)+' '+timeRange(e))+'</p><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+e.detailUrl+'">'+escHtml(T.detailsArrow)+'</a><a href="'+e.calendarUrl+'" target="_blank" rel="noopener">'+escHtml(T.calendarAdd)+'</a><a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a></div></article>';
+    return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><strong>'+d.getDate()+'</strong><small>'+fullDate(d)+'</small></div></div><div><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3>'+officialName+'<p><strong>'+escHtml(T.dateTime)+'：</strong>'+escHtml(fullDate(d)+' '+timeRange(e))+'</p><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+e.detailUrl+'">'+escHtml(T.detailsArrow)+'</a><a href="'+e.calendarUrl+'" target="_blank" rel="noopener">'+escHtml(T.calendarAdd)+'</a>'+(e.registrationUrl ? '<a href="'+e.registrationUrl+'" target="_blank" rel="noopener">'+escHtml(T.registrationAction)+'</a>' : '')+'<a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a></div></article>';
   }).join('');
 }
 function renderOngoing(){
@@ -1792,7 +1873,7 @@ function renderMap(query,title){
 }
 window.closeModal = function(){ document.getElementById('modal').classList.remove('show'); currentEventId=''; updateLanguageLinks(); };
 window.changeMonth = function(delta){ month += delta; if(month<0){month=11;year--;} if(month>11){month=0;year++;} renderCalendar(); };
-window.goToday = function(){ const now = new Date(); year=now.getFullYear(); month=now.getMonth(); renderCalendar(); };
+window.goToday = function(){ const [y,m] = japanISODate().split('-').map(Number); year=y; month=m-1; renderCalendar(); };
 function syncCategoryPresentation(){
   const civicArchive = document.getElementById('civicArchive');
   if(civicArchive) civicArchive.hidden = activeFilter !== 'civic';
@@ -1858,7 +1939,7 @@ function setupGarbageLookup(){
   if(!list) return;
   list.innerHTML = garbageRegions.map(r => '<option value="'+escHtml(r.label)+'">No.'+r.group+'</option>').join('');
   const dateInput = document.getElementById('garbageDate');
-  dateInput.value = localISODate(new Date());
+  dateInput.value = japanISODate();
   document.getElementById('garbageSearchBtn').addEventListener('click', renderGarbageResult);
   document.getElementById('garbageRegion').addEventListener('change', renderGarbageResult);
   dateInput.addEventListener('change', renderGarbageResult);
@@ -1958,6 +2039,15 @@ function renderRedirects() {
 }
 
 function build() {
+  // Event detail pages are generated artifacts. Clear only these directories so
+  // removed or renamed events cannot remain reachable after a rebuild.
+  for (const lang of langOrder) {
+    const eventDir = langConfig[lang].path
+      ? path.join(root, langConfig[lang].path, 'events')
+      : path.join(root, 'events');
+    fs.rmSync(eventDir, { recursive: true, force: true });
+  }
+
   for (const lang of langOrder) {
     writeFile(outputPath(lang, 'index'), renderIndexPage(lang));
     writeFile(outputPath(lang, 'privacy'), renderPrivacyPage(lang));
