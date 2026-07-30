@@ -953,11 +953,20 @@ function fmtDate(dateString, lang, includeWeekday = true) {
   return includeWeekday ? `${y}年${m}月${d}日（星期${w}）` : `${y}年${m}月${d}日`;
 }
 
+function dateSpanDays(event) {
+  const start = new Date(`${event.startDate}T12:00:00+09:00`);
+  const end = new Date(`${event.endDate}T12:00:00+09:00`);
+  return Math.max(0, Math.round((end - start) / 86_400_000));
+}
+
 function formatTimeRange(event, lang) {
   const start = event.startTime;
   const end = event.endTime;
   if (!start) return event.time || '';
-  const crossesDate = Boolean(end && event.endDate !== event.startDate);
+  // A one-day difference is an overnight event. Longer ranges are exhibition
+  // or programme periods whose start/end times describe opening hours, not a
+  // continuous event running until the final day.
+  const crossesDate = Boolean(end && dateSpanDays(event) === 1);
   if (lang === 'en') {
     const startDate = new Date(`${event.startDate}T${start}:00+09:00`);
     const endDate = end ? new Date(`${event.endDate}T${end}:00+09:00`) : null;
@@ -977,8 +986,21 @@ function formatTimeRange(event, lang) {
 }
 
 function formatEventDateTime(event, lang) {
-  const date = fmtDate(event.startDate, lang, true);
+  const spanDays = dateSpanDays(event);
   const time = formatTimeRange(event, lang);
+  if (spanDays > 1) {
+    const startDate = fmtDate(event.startDate, lang, true);
+    const endDate = fmtDate(event.endDate, lang, true);
+    const separator = lang === 'en' ? '–' : lang === 'ko' ? '~' : lang === 'ja' ? '〜' : '至';
+    const range = `${startDate}${separator}${endDate}`;
+    if (!time) return range;
+    if (lang === 'ja') return `${range}（開催日の時間：${time}）`;
+    if (lang === 'en') return `${range} (hours on open days: ${time})`;
+    if (lang === 'ko') return `${range} (개최일 운영 시간: ${time})`;
+    if (lang === 'zh-Hant') return `${range}（開放日時間：${time}）`;
+    return `${range}（开放日时间：${time}）`;
+  }
+  const date = fmtDate(event.startDate, lang, true);
   return time ? `${date} ${time}` : date;
 }
 
@@ -1266,7 +1288,20 @@ function renderOngoingCards(lang) {
 function googleCalendarUrl(event, lang) {
   let dates;
   let note = '';
-  if (event.startTime) {
+  if (dateSpanDays(event) > 1) {
+    // Represent long-running exhibitions and programmes as an inclusive
+    // all-day range. A timed range would incorrectly block the calendar
+    // continuously from the first morning until the final evening.
+    dates = `${toGoogleDate(event.startDate)}/${toGoogleDate(event.endDate, 1)}`;
+    if (event.startTime) {
+      const hours = formatTimeRange(event, lang);
+      if (lang === 'ja') note = `\n開催日の時間：${hours}（休館日・休催日は公式情報をご確認ください）`;
+      else if (lang === 'en') note = `\nHours on open days: ${hours}. Check the official source for closed dates.`;
+      else if (lang === 'ko') note = `\n개최일 운영 시간: ${hours}. 휴관일·휴최일은 공식 정보를 확인해 주세요.`;
+      else if (lang === 'zh-Hant') note = `\n開放日時間：${hours}。休館日或休辦日請確認官方資訊。`;
+      else note = `\n开放日时间：${hours}。闭馆日或停办日请查看官方信息。`;
+    }
+  } else if (event.startTime) {
     const start = toGoogleDateTime(event.startDate, event.startTime);
     if (event.endTime) {
       dates = `${start}/${toGoogleDateTime(event.endDate, event.endTime)}`;

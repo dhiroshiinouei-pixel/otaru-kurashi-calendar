@@ -16,6 +16,16 @@ const assert = (condition, message) => { if (!condition) errors.push(message); }
 const ids = new Set();
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
+const dateSpanDays = (event) => {
+  const start = new Date(`${event.start}T12:00:00+09:00`);
+  const end = new Date(`${event.end}T12:00:00+09:00`);
+  return Math.max(0, Math.round((end - start) / 86_400_000));
+};
+const googleDate = (dateString, addDays = 0) => {
+  const date = new Date(`${dateString}T12:00:00+09:00`);
+  date.setDate(date.getDate() + addDays);
+  return `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+};
 
 for (const event of events) {
   assert(event.id && !ids.has(event.id), `Duplicate or missing event ID: ${event.id || '(missing)'}`);
@@ -45,6 +55,11 @@ for (const event of events) {
     const rel = `${language ? `${language}/` : ''}events/${slug}/index.html`;
     const full = path.join(root, rel);
     assert(fs.existsSync(full), `${event.id}: missing generated page ${rel}`);
+    if (fs.existsSync(full) && dateSpanDays(event) > 1) {
+      const html = fs.readFileSync(full, 'utf8');
+      const expectedDates = `dates=${googleDate(event.start)}%2F${googleDate(event.end, 1)}`;
+      assert(html.includes(expectedDates), `${event.id}: multi-day calendar link must use an inclusive all-day range in ${rel}`);
+    }
     const url = `https://otaru.spady.net/${language ? `${language}/` : ''}events/${slug}/`;
     assert(sitemap.includes(`<loc>${url}</loc>`), `${event.id}: missing sitemap URL ${url}`);
   }
