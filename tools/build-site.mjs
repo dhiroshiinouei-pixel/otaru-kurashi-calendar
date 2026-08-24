@@ -116,6 +116,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'カレンダー上の日付を押すと、その日の予定をまとめて確認できます。',
+    multiDayToggle: '期間イベントを毎日表示',
+    multiDayHint: '企画展など3日以上の期間イベントは、見やすさのため初日だけ表示しています。',
     prev: '前月',
     next: '次月',
     today: '今日',
@@ -208,6 +210,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'Select a date to see events and local information for that day.',
+    multiDayToggle: 'Show multi-day events on every date',
+    multiDayHint: 'To keep the calendar readable, events lasting three days or more appear only on their first day.',
     prev: 'Previous month',
     next: 'Next month',
     today: 'Today',
@@ -300,6 +304,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '點選日曆日期即可查看當天的活動與生活資訊。',
+    multiDayToggle: '每天顯示期間活動',
+    multiDayHint: '為方便閱讀，展覽等持續3天以上的活動預設僅顯示於首日。',
     prev: '上個月',
     next: '下個月',
     today: '今天',
@@ -392,6 +398,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '点击日历日期即可查看当天的活动与生活信息。',
+    multiDayToggle: '每天显示期间活动',
+    multiDayHint: '为便于阅读，展览等持续3天以上的活动默认仅显示在首日。',
     prev: '上个月',
     next: '下个月',
     today: '今天',
@@ -484,6 +492,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '날짜를 선택하면 해당일의 행사와 생활 정보를 확인할 수 있습니다.',
+    multiDayToggle: '기간 행사를 날짜마다 표시',
+    multiDayHint: '읽기 쉽도록 3일 이상 이어지는 전시·행사는 기본적으로 첫날에만 표시합니다.',
     prev: '이전 달',
     next: '다음 달',
     today: '오늘',
@@ -795,7 +805,7 @@ function addressFor(event) {
 
 function audienceFor(event, lang) {
   if (event.audience && typeof event.audience === 'object') return event.audience[lang] || event.audience.ja || copy[lang].targetGeneric;
-  if (typeof event.audience === 'string') return event.audience;
+  if (typeof event.audience === 'string' && lang === 'ja') return event.audience;
   const t = copy[lang];
   if (event.category === 'child') {
     if (lang === 'ja') return '子ども・親子・保護者';
@@ -830,7 +840,8 @@ function audienceFor(event, lang) {
 
 function priceFor(event, lang) {
   if (event.price && typeof event.price === 'object') return event.price[lang] || event.price.ja || copy[lang].priceUnknown;
-  if (typeof event.price === 'string') return event.price;
+  if (typeof event.price === 'string' && lang === 'ja') return event.price;
+  if (typeof event.price === 'string' && /^(参加)?無料(?:$|[（(])/.test(event.price)) return copy[lang].free;
   const summary = `${event.summary} ${event.time}`;
   if (summary.includes('無料') || summary.includes('参加無料')) return copy[lang].free;
   return copy[lang].priceUnknown;
@@ -853,7 +864,7 @@ function reservationState(event) {
 
 function reservationFor(event, lang) {
   if (event.reservation && typeof event.reservation === 'object') return event.reservation[lang] || event.reservation.ja || copy[lang].reservationUnknown;
-  if (typeof event.reservation === 'string') return event.reservation;
+  if (typeof event.reservation === 'string' && lang === 'ja') return event.reservation;
   if (typeof event.reservationRequired === 'string' && lang === 'ja') return event.reservationRequired;
   const state = reservationState(event);
   if (state === 'soldOut') return copy[lang].soldOut;
@@ -1198,9 +1209,13 @@ function monthEvents(year, month, filter = 'all') {
   });
 }
 
-function eventsForDate(date, monthEventList) {
+function eventsForDate(date, monthEventList, showLongRunningDaily = false) {
   const iso = localISODate(date);
-  return monthEventList.filter((event) => event.startDate <= iso && event.endDate >= iso && !event.excludedDates.includes(iso));
+  return monthEventList.filter((event) => {
+    if (event.startDate > iso || event.endDate < iso || event.excludedDates.includes(iso)) return false;
+    const longRunning = dateSpanDays(event) >= 2;
+    return showLongRunningDaily || !longRunning || event.startDate === iso;
+  });
 }
 
 function localISODate(date) {
@@ -1462,6 +1477,10 @@ ${renderHeader(lang)}
         </div>
         <div class="calendar-filter-row filter-wrap">
           ${['all', 'child', 'job', 'event', 'business', 'civic'].map((key) => `<button class="filter ${key === 'all' ? 'active' : ''}" data-filter="${key}">${key !== 'all' ? `<span class="dot ${key}"></span>` : ''}${esc(t.filters[key])}</button>`).join('')}
+        </div>
+        <div class="calendar-density-control">
+          <button type="button" id="multiDayToggle" class="density-toggle" aria-pressed="false">${esc(t.multiDayToggle)}</button>
+          <span>${esc(t.multiDayHint)}</span>
         </div>
         <div class="calendar-grid-shell">
           <div class="calendar-board">
@@ -1750,6 +1769,7 @@ const [initialYear, initialMonth] = japanISODate().split('-').map(Number);
 let year = initialYear;
 let month = initialMonth - 1;
 let activeFilter = 'all';
+let showLongRunningDaily = false;
 let currentEventId = '';
 const params = new URLSearchParams(location.search);
 if (/^\\\\d{4}-\\\\d{2}$/.test(params.get('month') || '')) {
@@ -1799,7 +1819,15 @@ function monthEvents(){
     return en >= ms && s <= me;
   });
 }
-function eventsForDate(date){ const iso=localISODate(date); return monthEvents().filter(e => dateInRange(date,e.start,e.end) && !(e.excludedDates || []).includes(iso)); }
+function eventSpanDays(e){ return Math.max(0, Math.round((parseDate(e.end)-parseDate(e.start))/86400000)); }
+function eventsForDate(date){
+  const iso=localISODate(date);
+  return monthEvents().filter(e => {
+    if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
+    const longRunning = eventSpanDays(e) >= 2;
+    return showLongRunningDaily || !longRunning || e.start === iso;
+  });
+}
 function timeRange(e){ return e.timeDisplay || (e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || '')); }
 function renderCalendar(){
   const title = document.getElementById('monthTitle');
@@ -1923,6 +1951,15 @@ document.querySelectorAll('.filter[data-filter]').forEach(btn => btn.addEventLis
   renderOngoing();
   syncCategoryPresentation();
 }));
+const multiDayToggle = document.getElementById('multiDayToggle');
+if(multiDayToggle){
+  multiDayToggle.addEventListener('click', () => {
+    showLongRunningDaily = !showLongRunningDaily;
+    multiDayToggle.setAttribute('aria-pressed', String(showLongRunningDaily));
+    multiDayToggle.classList.toggle('active', showLongRunningDaily);
+    renderCalendar();
+  });
+}
 function dateDiffDays(a,b){ return Math.round((new Date(a+'T12:00:00') - new Date(b+'T12:00:00'))/86400000); }
 function garbageFor(group,dateString){
   const pattern = garbagePatterns[group]; if(!pattern) return [];
