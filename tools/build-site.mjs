@@ -116,8 +116,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'カレンダー上の日付を押すと、その日の予定をまとめて確認できます。',
-    multiDayToggle: '期間イベントを毎日表示',
-    multiDayHint: '企画展など3日以上の期間イベントは、見やすさのため初日だけ表示しています。',
+    multiDayToggle: '3〜13日のイベントを毎日表示',
+    multiDayHint: '2週間以上続くイベントは対象外で、下の「期間開催中のイベント」にまとめています。',
     prev: '前月',
     next: '次月',
     today: '今日',
@@ -125,6 +125,8 @@ const copy = {
     weekdays: ['日', '月', '火', '水', '木', '金', '土'],
     monthlyTitle: '表示月の主な情報',
     monthlyLead: '単発イベント、継続的に使える行政・生活情報をまとめています。',
+    periodTitle: '期間開催中のイベント',
+    periodLead: '2週間以上続く展示・企画は、カレンダーに毎日繰り返さずこちらにまとめています。',
     count: (n) => n ? `${n}件の情報を表示中` : '該当する情報はありません',
     official: '公式ページ ↗',
     registrationAction: '申込ページ ↗',
@@ -210,8 +212,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'Select a date to see events and local information for that day.',
-    multiDayToggle: 'Show multi-day events on every date',
-    multiDayHint: 'To keep the calendar readable, events lasting three days or more appear only on their first day.',
+    multiDayToggle: 'Show 3–13 day events daily',
+    multiDayHint: 'Events lasting two weeks or longer stay in the Long-running events section below.',
     prev: 'Previous month',
     next: 'Next month',
     today: 'Today',
@@ -219,6 +221,8 @@ const copy = {
     weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     monthlyTitle: 'Main information for the selected month',
     monthlyLead: 'Includes one-time events and public information that remains useful during the month.',
+    periodTitle: 'Long-running events',
+    periodLead: 'Exhibitions and programs lasting two weeks or longer are listed here instead of repeating on every calendar date.',
     count: (n) => n ? `${n} items shown` : 'No matching information found',
     official: 'Official page ↗',
     registrationAction: 'Registration ↗',
@@ -304,8 +308,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '點選日曆日期即可查看當天的活動與生活資訊。',
-    multiDayToggle: '每天顯示期間活動',
-    multiDayHint: '為方便閱讀，展覽等持續3天以上的活動預設僅顯示於首日。',
+    multiDayToggle: '每日顯示3至13天的活動',
+    multiDayHint: '持續兩週以上的活動不重複顯示，集中於下方「期間活動」。',
     prev: '上個月',
     next: '下個月',
     today: '今天',
@@ -313,6 +317,8 @@ const copy = {
     weekdays: ['日', '一', '二', '三', '四', '五', '六'],
     monthlyTitle: '顯示月份的主要資訊',
     monthlyLead: '整理單次活動與當月仍可使用的公共生活資訊。',
+    periodTitle: '期間活動',
+    periodLead: '持續兩週以上的展覽與企劃集中列於此處，不在日曆每天重複顯示。',
     count: (n) => n ? `顯示 ${n} 筆資訊` : '沒有符合條件的資訊',
     official: '官方頁面 ↗',
     registrationAction: '報名頁面 ↗',
@@ -398,8 +404,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '点击日历日期即可查看当天的活动与生活信息。',
-    multiDayToggle: '每天显示期间活动',
-    multiDayHint: '为便于阅读，展览等持续3天以上的活动默认仅显示在首日。',
+    multiDayToggle: '每天显示3至13天的活动',
+    multiDayHint: '持续两周以上的活动不会重复显示，集中在下方“长期活动”。',
     prev: '上个月',
     next: '下个月',
     today: '今天',
@@ -407,6 +413,8 @@ const copy = {
     weekdays: ['日', '一', '二', '三', '四', '五', '六'],
     monthlyTitle: '显示月份的主要信息',
     monthlyLead: '整理单次活动与当月仍可使用的公共生活信息。',
+    periodTitle: '长期活动',
+    periodLead: '持续两周以上的展览和项目集中列于此处，不在日历每天重复显示。',
     count: (n) => n ? `显示 ${n} 条信息` : '没有符合条件的信息',
     official: '官方页面 ↗',
     registrationAction: '报名页面 ↗',
@@ -492,8 +500,8 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '날짜를 선택하면 해당일의 행사와 생활 정보를 확인할 수 있습니다.',
-    multiDayToggle: '기간 행사를 날짜마다 표시',
-    multiDayHint: '읽기 쉽도록 3일 이상 이어지는 전시·행사는 기본적으로 첫날에만 표시합니다.',
+    multiDayToggle: '3~13일 행사를 날짜마다 표시',
+    multiDayHint: '2주 이상 이어지는 행사는 반복하지 않고 아래 기간 행사 영역에 모아 표시합니다.',
     prev: '이전 달',
     next: '다음 달',
     today: '오늘',
@@ -501,6 +509,8 @@ const copy = {
     weekdays: ['일', '월', '화', '수', '목', '금', '토'],
     monthlyTitle: '선택한 달의 주요 정보',
     monthlyLead: '단발성 행사와 해당 월에 이용할 수 있는 공공·생활 정보를 정리했습니다.',
+    periodTitle: '기간 행사',
+    periodLead: '2주 이상 이어지는 전시와 프로그램은 달력에 매일 반복하지 않고 이곳에 모아 표시합니다.',
     count: (n) => n ? `${n}건 표시 중` : '조건에 맞는 정보가 없습니다',
     official: '공식 페이지 ↗',
     registrationAction: '신청 페이지 ↗',
@@ -971,6 +981,10 @@ function dateSpanDays(event) {
   return Math.max(0, Math.round((end - start) / 86_400_000));
 }
 
+function isExtendedEvent(event) {
+  return dateSpanDays(event) >= 13;
+}
+
 function formatTimeRange(event, lang) {
   const start = event.startTime;
   const end = event.endTime;
@@ -1214,6 +1228,7 @@ function eventsForDate(date, monthEventList, showLongRunningDaily = false) {
   const iso = localISODate(date);
   return monthEventList.filter((event) => {
     if (event.startDate > iso || event.endDate < iso || event.excludedDates.includes(iso)) return false;
+    if (isExtendedEvent(event)) return event.startDate === iso;
     const longRunning = dateSpanDays(event) >= 2;
     return showLongRunningDaily || event.showEveryDay || !longRunning || event.startDate === iso;
   });
@@ -1288,6 +1303,18 @@ function renderEventCards(eventList, lang) {
         ${event.registrationUrl ? `<a href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(copy[lang].registrationAction)}</a>` : ''}
         <a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(copy[lang].official)}</a>
       </div>
+    </article>`;
+  }).join('\n');
+}
+
+function renderPeriodCards(eventList, lang) {
+  return eventList.sort((a, b) => a.endDate.localeCompare(b.endDate)).map((event) => {
+    const text = eventText(event, lang);
+    return `<article class="period-event-card category-${attr(event.category)}">
+      <div class="meta"><span class="tag">${esc(copy[lang].filters[event.category])}</span><span class="tag">${esc(text.statusLabel)}</span></div>
+      <h3><a href="${attr(pageUrl(lang, 'event', event.slug))}">${esc(text.name)}</a></h3>
+      <p class="period-event-dates">${esc(fmtDate(event.startDate, lang, false))} — ${esc(fmtDate(event.endDate, lang, false))}</p>
+      <p>${esc(text.venueName)}</p>
     </article>`;
   }).join('\n');
 }
@@ -1396,6 +1423,8 @@ function renderIndexPage(lang) {
   const t = copy[lang];
   const canonical = pageUrl(lang);
   const currentMonthEvents = monthEvents(defaultMonth.year, defaultMonth.month);
+  const currentPeriodEvents = currentMonthEvents.filter(isExtendedEvent);
+  const currentDatedEvents = currentMonthEvents.filter((event) => !isExtendedEvent(event));
   const data = {
     lang,
     today,
@@ -1495,7 +1524,11 @@ ${renderHeader(lang)}
           <h2>${esc(t.monthlyTitle)}</h2>
           <p class="lead">${esc(t.monthlyLead)}</p>
           <p id="listNote" class="note">${esc(t.count(currentMonthEvents.length))}</p>
-          <div class="event-list" id="eventList">${renderEventCards(currentMonthEvents, lang)}</div>
+          <section class="period-events" id="periodEvents"${currentPeriodEvents.length ? '' : ' hidden'}>
+            <div class="period-events-heading"><h3>${esc(t.periodTitle)}</h3><p>${esc(t.periodLead)}</p></div>
+            <div class="period-event-list" id="periodEventList">${renderPeriodCards(currentPeriodEvents, lang)}</div>
+          </section>
+          <div class="event-list" id="eventList">${renderEventCards(currentDatedEvents, lang)}</div>
           <div class="event-list ongoing-list" id="ongoingList">${renderOngoingCards(lang)}</div>
         </section>
       </div>
@@ -1773,7 +1806,7 @@ let activeFilter = 'all';
 let showLongRunningDaily = false;
 let currentEventId = '';
 const params = new URLSearchParams(location.search);
-if (/^\\\\d{4}-\\\\d{2}$/.test(params.get('month') || '')) {
+if (/^\\d{4}-\\d{2}$/.test(params.get('month') || '')) {
   const [y,m] = params.get('month').split('-').map(Number);
   year = y; month = m - 1;
 }
@@ -1825,6 +1858,7 @@ function eventsForDate(date){
   const iso=localISODate(date);
   return monthEvents().filter(e => {
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
+    if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;
     return showLongRunningDaily || e.showEveryDay || !longRunning || e.start === iso;
   });
@@ -1868,8 +1902,14 @@ function renderCalendar(){
 function renderList(){
   const list = document.getElementById('eventList');
   if(!list) return;
-  const evs = monthEvents().sort((a,b)=>a.start.localeCompare(b.start));
-  document.getElementById('listNote').textContent = evs.length ? (data.lang==='en' ? evs.length+' items shown' : data.lang==='ko' ? evs.length+'건 표시 중' : data.lang==='ja' ? evs.length+'件の情報を表示中' : '顯示 '+evs.length+' 筆資訊') : T.countZero;
+  const allMonthEvents = monthEvents().sort((a,b)=>a.start.localeCompare(b.start));
+  const periodEvs = allMonthEvents.filter(e => eventSpanDays(e) >= 13);
+  const evs = allMonthEvents.filter(e => eventSpanDays(e) < 13);
+  document.getElementById('listNote').textContent = allMonthEvents.length ? (data.lang==='en' ? allMonthEvents.length+' items shown' : data.lang==='ko' ? allMonthEvents.length+'건 표시 중' : data.lang==='ja' ? allMonthEvents.length+'件の情報を表示中' : '顯示 '+allMonthEvents.length+' 筆資訊') : T.countZero;
+  const periodSection = document.getElementById('periodEvents');
+  const periodList = document.getElementById('periodEventList');
+  if(periodSection) periodSection.hidden = periodEvs.length === 0;
+  if(periodList) periodList.innerHTML = periodEvs.map(e => '<article class="period-event-card category-'+e.category+'"><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3><p class="period-event-dates">'+escHtml(fullDate(parseDate(e.start))+' — '+fullDate(parseDate(e.end)))+'</p><p>'+escHtml(e.place)+'</p></article>').join('');
   list.innerHTML = evs.map(e => {
     const d = parseDate(e.start);
     const officialName = data.lang !== 'ja' ? '<p class="official-name">'+escHtml(T.officialName)+'：'+escHtml(e.name)+'</p>' : '';
