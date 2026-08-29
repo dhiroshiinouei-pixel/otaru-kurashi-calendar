@@ -23,20 +23,6 @@ const rawEvents = [
   ...readJson('data/events-official-municipal-20260723.json'),
   ...readJson('data/events-official-tourism-20260723.json'),
 ];
-const featuredEventIds = new Set([
-  'north-canal-sound-energy-2026',
-  'former-nippon-yusen-jazz-night-20260830',
-  'otaru-anime-party-20260905',
-  'shukutsu-fireworks-20260905',
-  'tenguyama-night',
-  'taru-fes-hokkaido-gas-20260912',
-  'soran-heart-festival-20260913',
-  'classic-car-exhibition-20260913',
-  'kitaunga-night-market-yummy-20260919',
-  'former-nippon-yusen-120th-festival-20260919',
-  'otaru-creative-weeks-20260919',
-  'chaos-market-20260921',
-]);
 const rawOngoing = readJson('data/ongoing.json');
 const garbageRegions = readJson('data/garbage-regions.json');
 const garbagePatterns = readJson('data/garbage-patterns.json');
@@ -130,9 +116,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'カレンダー上の日付を押すと、その日の予定をまとめて確認できます。',
-    featuredView: '注目イベント',
-    allEventsView: 'すべての情報',
-    featuredHint: '初期表示では大きな催しを中心に整理しています。すべての登録情報も切り替えて確認できます。',
     multiDayToggle: '期間イベントを毎日表示',
     multiDayHint: '企画展など3日以上の期間イベントは、見やすさのため初日だけ表示しています。',
     prev: '前月',
@@ -227,9 +210,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'Select a date to see events and local information for that day.',
-    featuredView: 'Highlights',
-    allEventsView: 'All information',
-    featuredHint: 'The default view focuses on major events. Switch to All information to see every listing.',
     multiDayToggle: 'Show multi-day events on every date',
     multiDayHint: 'To keep the calendar readable, events lasting three days or more appear only on their first day.',
     prev: 'Previous month',
@@ -324,9 +304,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '點選日曆日期即可查看當天的活動與生活資訊。',
-    featuredView: '精選活動',
-    allEventsView: '全部資訊',
-    featuredHint: '預設顯示以大型活動為主；可切換至「全部資訊」查看所有資料。',
     multiDayToggle: '每天顯示期間活動',
     multiDayHint: '為方便閱讀，展覽等持續3天以上的活動預設僅顯示於首日。',
     prev: '上個月',
@@ -421,9 +398,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '点击日历日期即可查看当天的活动与生活信息。',
-    featuredView: '精选活动',
-    allEventsView: '全部信息',
-    featuredHint: '默认以大型活动为主；可切换至“全部信息”查看所有内容。',
     multiDayToggle: '每天显示期间活动',
     multiDayHint: '为便于阅读，展览等持续3天以上的活动默认仅显示在首日。',
     prev: '上个月',
@@ -518,9 +492,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '날짜를 선택하면 해당일의 행사와 생활 정보를 확인할 수 있습니다.',
-    featuredView: '주요 행사',
-    allEventsView: '전체 정보',
-    featuredHint: '기본 화면은 주요 행사를 중심으로 표시합니다. 전체 정보로 전환하면 모든 일정을 볼 수 있습니다.',
     multiDayToggle: '기간 행사를 날짜마다 표시',
     multiDayHint: '읽기 쉽도록 3일 이상 이어지는 전시·행사는 기본적으로 첫날에만 표시합니다.',
     prev: '이전 달',
@@ -944,7 +915,6 @@ function normalizeEvent(raw) {
     longitude: raw.longitude ?? null,
     mapQuery: raw.mapQuery !== undefined ? raw.mapQuery : (raw.place || ''),
     category: raw.category,
-    featured: raw.featured === true || featuredEventIds.has(raw.id),
     audience: audienceFor(raw, 'ja'),
     price: priceFor(raw, 'ja'),
     reservationRequired: typeof raw.reservationRequired === 'boolean'
@@ -1506,11 +1476,6 @@ ${renderHeader(lang)}
             <button class="mini-btn" onclick="goToday()">${esc(t.today)}</button>
           </div>
         </div>
-        <div class="calendar-view-control" role="group" aria-label="${attr(t.featuredHint)}">
-          <button type="button" class="view-toggle active" data-view-mode="featured" aria-pressed="true">${esc(t.featuredView)}</button>
-          <button type="button" class="view-toggle" data-view-mode="all" aria-pressed="false">${esc(t.allEventsView)}</button>
-          <span>${esc(t.featuredHint)}</span>
-        </div>
         <div class="calendar-filter-row filter-wrap">
           ${['all', 'child', 'job', 'event', 'business', 'civic'].map((key) => `<button class="filter ${key === 'all' ? 'active' : ''}" data-filter="${key}">${key !== 'all' ? `<span class="dot ${key}"></span>` : ''}${esc(t.filters[key])}</button>`).join('')}
         </div>
@@ -1805,11 +1770,10 @@ const [initialYear, initialMonth] = japanISODate().split('-').map(Number);
 let year = initialYear;
 let month = initialMonth - 1;
 let activeFilter = 'all';
-let activeViewMode = 'featured';
 let showLongRunningDaily = false;
 let currentEventId = '';
 const params = new URLSearchParams(location.search);
-if (/^\\d{4}-\\d{2}$/.test(params.get('month') || '')) {
+if (/^\\\\d{4}-\\\\d{2}$/.test(params.get('month') || '')) {
   const [y,m] = params.get('month').split('-').map(Number);
   year = y; month = m - 1;
 }
@@ -1851,7 +1815,6 @@ function monthEvents(){
   return events.filter(e => {
     if(e.end < japanISODate()) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
-    if(activeViewMode === 'featured' && e.category === 'event' && !e.featured) return false;
     const s = parseDate(e.start), en = parseDate(e.end);
     const ms = new Date(year, month, 1), me = new Date(year, month+1, 0, 23,59,59);
     return en >= ms && s <= me;
@@ -1863,7 +1826,7 @@ function eventsForDate(date){
   return monthEvents().filter(e => {
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     const longRunning = eventSpanDays(e) >= 2;
-    return showLongRunningDaily || (activeViewMode === 'all' && e.showEveryDay) || !longRunning || e.start === iso;
+    return showLongRunningDaily || e.showEveryDay || !longRunning || e.start === iso;
   });
 }
 function timeRange(e){ return e.timeDisplay || (e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || '')); }
@@ -1988,15 +1951,6 @@ document.querySelectorAll('.filter[data-filter]').forEach(btn => btn.addEventLis
   renderCalendar();
   renderOngoing();
   syncCategoryPresentation();
-}));
-document.querySelectorAll('[data-view-mode]').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('[data-view-mode]').forEach(x => {
-    const selected = x === btn;
-    x.classList.toggle('active', selected);
-    x.setAttribute('aria-pressed', String(selected));
-  });
-  activeViewMode = btn.dataset.viewMode;
-  renderCalendar();
 }));
 const multiDayToggle = document.getElementById('multiDayToggle');
 if(multiDayToggle){
