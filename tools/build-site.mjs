@@ -103,6 +103,7 @@ const copy = {
     splashSub: '子育て / 求人 / イベント / ビジネス / 市政',
     navCalendar: 'カレンダー',
     navGarbage: 'ごみ収集',
+    headerGarbageButton: 'ごみ収集日',
     navAkindo: 'AKINDO Lab',
     navPrivacy: 'プライバシー',
     navSpady: 'Spady公式 ↗',
@@ -197,6 +198,7 @@ const copy = {
     splashSub: 'FAMILY / JOBS / EVENTS / BUSINESS / CIVIC',
     navCalendar: 'Calendar',
     navGarbage: 'Waste pickup',
+    headerGarbageButton: 'Garbage collection days',
     navAkindo: 'AKINDO Lab',
     navPrivacy: 'Privacy',
     navSpady: 'Spady ↗',
@@ -291,6 +293,7 @@ const copy = {
     splashSub: '親子 / 求職 / 活動 / 商務 / 市政',
     navCalendar: '日曆',
     navGarbage: '垃圾收集',
+    headerGarbageButton: '垃圾收集日',
     navAkindo: 'AKINDO Lab',
     navPrivacy: '隱私權',
     navSpady: 'Spady官方 ↗',
@@ -385,6 +388,7 @@ const copy = {
     splashSub: '亲子 / 求职 / 活动 / 商务 / 市政',
     navCalendar: '日历',
     navGarbage: '垃圾收集',
+    headerGarbageButton: '垃圾收集日',
     navAkindo: 'AKINDO Lab',
     navPrivacy: '隐私政策',
     navSpady: 'Spady官方 ↗',
@@ -479,6 +483,7 @@ const copy = {
     splashSub: '가족 / 채용 / 행사 / 비즈니스 / 시정',
     navCalendar: '캘린더',
     navGarbage: '쓰레기 수거',
+    headerGarbageButton: '쓰레기 수거일',
     navAkindo: 'AKINDO Lab',
     navPrivacy: '개인정보',
     navSpady: 'Spady 공식 ↗',
@@ -1386,6 +1391,7 @@ function populationLabel(lang) {
 
 function renderHeader(lang, kind = 'index', slug = '') {
   const t = copy[lang];
+  const garbageHref = kind === 'index' ? '#garbage' : `${pageUrl(lang)}#garbage`;
   const logoSlot = kind === 'index'
     ? '<span class="brand-logo-slot" id="brandLogoSlot"><noscript><img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady"></noscript></span>'
     : '<span class="brand-logo-slot"><img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady"></span>';
@@ -1396,13 +1402,15 @@ function renderHeader(lang, kind = 'index', slug = '') {
       ${logoSlot}
       <span class="brand-text">${esc(langConfig[lang].siteName)}</span>
     </a>
-    <nav class="header-nav" aria-label="main">
-      <a href="${attr(pageUrl(lang))}#calendar">${esc(t.navCalendar)}</a>
-      <a href="${attr(pageUrl(lang))}#garbage">${esc(t.navGarbage)}</a>
-      <a href="${attr(pageUrl(lang))}#akindo">${esc(t.navAkindo)}</a>
-      <a href="${attr(pageUrl(lang, 'privacy'))}">${esc(t.navPrivacy)}</a>
-      <a class="accent" href="https://spady.net/" target="_blank" rel="noopener">${esc(t.navSpady)}</a>
-    </nav>
+    <div class="header-actions">
+      <nav class="header-nav" aria-label="main">
+        <a href="${attr(pageUrl(lang))}#calendar">${esc(t.navCalendar)}</a>
+        <a href="${attr(pageUrl(lang))}#akindo">${esc(t.navAkindo)}</a>
+        <a href="${attr(pageUrl(lang, 'privacy'))}">${esc(t.navPrivacy)}</a>
+        <a class="accent" href="https://spady.net/" target="_blank" rel="noopener">${esc(t.navSpady)}</a>
+      </nav>
+      <a class="header-garbage-btn" href="${attr(garbageHref)}">${esc(t.headerGarbageButton)}</a>
+    </div>
   </div>
   <div class="wrap">${languageLinks(lang, kind, slug)}</div>
 </header>`;
