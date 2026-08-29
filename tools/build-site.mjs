@@ -116,8 +116,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'カレンダー上の日付を押すと、その日の予定をまとめて確認できます。',
-    multiDayToggle: '3〜13日のイベントを毎日表示',
-    multiDayHint: '2週間以上続くイベントは対象外で、下の「期間開催中のイベント」にまとめています。',
     prev: '前月',
     next: '次月',
     today: '今日',
@@ -212,8 +210,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: 'Select a date to see events and local information for that day.',
-    multiDayToggle: 'Show 3–13 day events daily',
-    multiDayHint: 'Events lasting two weeks or longer stay in the Long-running events section below.',
     prev: 'Previous month',
     next: 'Next month',
     today: 'Today',
@@ -308,8 +304,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '點選日曆日期即可查看當天的活動與生活資訊。',
-    multiDayToggle: '每日顯示3至13天的活動',
-    multiDayHint: '持續兩週以上的活動不重複顯示，集中於下方「期間活動」。',
     prev: '上個月',
     next: '下個月',
     today: '今天',
@@ -404,8 +398,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '点击日历日期即可查看当天的活动与生活信息。',
-    multiDayToggle: '每天显示3至13天的活动',
-    multiDayHint: '持续两周以上的活动不会重复显示，集中在下方“长期活动”。',
     prev: '上个月',
     next: '下个月',
     today: '今天',
@@ -500,8 +492,6 @@ const copy = {
     calendarTitle1: 'OTARU',
     calendarTitle2: 'CALENDAR',
     calendarCopy: '날짜를 선택하면 해당일의 행사와 생활 정보를 확인할 수 있습니다.',
-    multiDayToggle: '3~13일 행사를 날짜마다 표시',
-    multiDayHint: '2주 이상 이어지는 행사는 반복하지 않고 아래 기간 행사 영역에 모아 표시합니다.',
     prev: '이전 달',
     next: '다음 달',
     today: '오늘',
@@ -1224,13 +1214,13 @@ function monthEvents(year, month, filter = 'all') {
   });
 }
 
-function eventsForDate(date, monthEventList, showLongRunningDaily = false) {
+function eventsForDate(date, monthEventList) {
   const iso = localISODate(date);
   return monthEventList.filter((event) => {
     if (event.startDate > iso || event.endDate < iso || event.excludedDates.includes(iso)) return false;
     if (isExtendedEvent(event)) return event.startDate === iso;
     const longRunning = dateSpanDays(event) >= 2;
-    return showLongRunningDaily || event.showEveryDay || !longRunning || event.startDate === iso;
+    return !longRunning || event.startDate === iso;
   });
 }
 
@@ -1507,10 +1497,6 @@ ${renderHeader(lang)}
         </div>
         <div class="calendar-filter-row filter-wrap">
           ${['all', 'child', 'job', 'event', 'business', 'civic'].map((key) => `<button class="filter ${key === 'all' ? 'active' : ''}" data-filter="${key}">${key !== 'all' ? `<span class="dot ${key}"></span>` : ''}${esc(t.filters[key])}</button>`).join('')}
-        </div>
-        <div class="calendar-density-control">
-          <button type="button" id="multiDayToggle" class="density-toggle" aria-pressed="false">${esc(t.multiDayToggle)}</button>
-          <span>${esc(t.multiDayHint)}</span>
         </div>
         <div class="calendar-grid-shell">
           <div class="calendar-board">
@@ -1803,7 +1789,6 @@ const [initialYear, initialMonth] = japanISODate().split('-').map(Number);
 let year = initialYear;
 let month = initialMonth - 1;
 let activeFilter = 'all';
-let showLongRunningDaily = false;
 let currentEventId = '';
 const params = new URLSearchParams(location.search);
 if (/^\\d{4}-\\d{2}$/.test(params.get('month') || '')) {
@@ -1860,7 +1845,7 @@ function eventsForDate(date){
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;
-    return showLongRunningDaily || e.showEveryDay || !longRunning || e.start === iso;
+    return !longRunning || e.start === iso;
   });
 }
 function timeRange(e){ return e.timeDisplay || (e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || '')); }
@@ -1992,15 +1977,6 @@ document.querySelectorAll('.filter[data-filter]').forEach(btn => btn.addEventLis
   renderOngoing();
   syncCategoryPresentation();
 }));
-const multiDayToggle = document.getElementById('multiDayToggle');
-if(multiDayToggle){
-  multiDayToggle.addEventListener('click', () => {
-    showLongRunningDaily = !showLongRunningDaily;
-    multiDayToggle.setAttribute('aria-pressed', String(showLongRunningDaily));
-    multiDayToggle.classList.toggle('active', showLongRunningDaily);
-    renderCalendar();
-  });
-}
 function dateDiffDays(a,b){ return Math.round((new Date(a+'T12:00:00') - new Date(b+'T12:00:00'))/86400000); }
 function garbageFor(group,dateString){
   const pattern = garbagePatterns[group]; if(!pattern) return [];
