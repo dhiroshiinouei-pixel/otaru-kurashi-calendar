@@ -1732,5 +1732,146 @@
         "reservation": "신청 방법과 접수 상태는 미정(공식 페이지 확인 필요)"
       }
     }
+  },
+  {
+    "id": "namae-wa-mada-nai-kaigi-19-20260910",
+    "title": "名前はまだない会議#19〜おたるMIRAI共創カイギ〜",
+    "category": "business",
+    "start": "2026-09-10",
+    "end": "2026-09-10",
+    "time": "18:00開場／18:30〜19:45（懇親会20:00〜）",
+    "startTime": "18:30",
+    "endTime": "19:45",
+    "doorsOpenTime": "18:00",
+    "place": "旧北海製罐 小樽工場 第3倉庫",
+    "address": "北海道小樽市港町4-6",
+    "mapQuery": "旧北海製罐第三倉庫 北海道小樽市港町4-6",
+    "summary": "小樽で夢や地域プロジェクトを語り、参加者同士でアイデアを出す共創会議。第19回は「おたるピリリ旅」、北海道産ワインの魅力発信、OTARU CREATIVE WEEKS 2026の全貌を紹介します。",
+    "description": "「小樽を愛する人を全力応援」「ぜんぶ、ジブンタチごと」を合言葉に、垣根を越えて小樽の未来を考える参加型アイデア会議です。小樽商科大学の学生によるテーマ特化型・クーポン付き紙マップ「おたるピリリ旅」の実証実験、北海道ワインと連携した北海道産ワインの魅力発信、北運河を舞台にしたOTARU CREATIVE WEEKS 2026の全貌を紹介します。本会終了後、20:00から近隣店舗で懇親会を予定しています。",
+    "source": "NPO法人 OTARU CREATIVE PLUS／Peatix／主催者提供チラシ",
+    "organizer": "NPO法人 OTARU CREATIVE PLUS",
+    "organizerUrl": "https://otarucreativeplus.org/",
+    "url": "https://peatix.com/event/5157932",
+    "registrationUrl": "https://peatix.com/event/5157932",
+    "audience": "小樽を愛し、地域の活動や未来づくりに関心がある方",
+    "price": "一般500円／OC+会員・学生無料（懇親会参加料は別途）",
+    "reservation": "Peatixから申込（懇親会は参加料別途）",
+    "reservationRequired": true,
+    "reservationStatus": "open",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "translations": {
+      "en": {
+        "name": "Namae wa Mada Mada Nai Kaigi #19 — Otaru MIRAI Co-Creation Meeting",
+        "summary": "A participatory meeting where people share ideas and local projects for Otaru. Session #19 features the student-led Otaru Piriri Tabi themed coupon map, a project promoting Hokkaido wine, and the full program for OTARU CREATIVE WEEKS 2026.",
+        "description": "An open co-creation meeting for people who care about Otaru to discuss ideas for the city’s future. Presentations cover Otaru Piriri Tabi, a themed paper map with coupons developed by first-year Otaru University of Commerce students; a university seminar project promoting Hokkaido wine with Hokkaido Wine; and the full program for OTARU CREATIVE WEEKS 2026 in the North Canal area. A separate-fee social gathering is scheduled from 8:00 PM after the main meeting.",
+        "venueName": "Former Hokkai Seikan Otaru Factory, Warehouse No. 3",
+        "address": "4-6 Minatomachi, Otaru, Hokkaido, Japan",
+        "audience": "Anyone who cares about Otaru and is interested in local projects and the city’s future",
+        "price": "JPY 500 general admission; free for OC+ members and students. Social gathering fee is separate.",
+        "reservation": "Register through Peatix. The social gathering requires a separate fee."
+      },
+      "zh-Hant": {
+        "name": "尚未命名的會議 #19～小樽MIRAI共創會議～",
+        "summary": "參加者共同分享小樽的夢想、在地計畫與創意的共創會議。第19回將介紹學生企劃「小樽PIRIRI之旅」主題優惠紙本地圖、北海道葡萄酒推廣計畫，以及OTARU CREATIVE WEEKS 2026完整內容。",
+        "description": "以支持熱愛小樽的人為主旨，跨越不同立場共同討論小樽未來的參與型創意會議。內容包括小樽商科大學一年級學生開發的主題式優惠紙本地圖「小樽PIRIRI之旅」、與北海道Wine合作推廣北海道產葡萄酒的大學專題，以及以北運河為舞台的OTARU CREATIVE WEEKS 2026完整企劃。本會結束後20:00起於附近店家舉行另行收費的交流會。",
+        "venueName": "舊北海製罐小樽工場第3倉庫",
+        "address": "日本北海道小樽市港町4-6",
+        "audience": "熱愛小樽並關心在地活動與城市未來的人",
+        "price": "一般500日圓；OC+會員及學生免費。交流會費用另計。",
+        "reservation": "請透過Peatix報名；交流會費用另計。"
+      },
+      "zh-Hans": {
+        "name": "尚未命名的会议 #19～小樽MIRAI共创会议～",
+        "summary": "参与者共同分享小樽梦想、当地项目和创意的共创会议。第19期将介绍学生策划的“小樽PIRIRI之旅”主题优惠纸质地图、北海道葡萄酒推广项目，以及OTARU CREATIVE WEEKS 2026完整内容。",
+        "description": "以支持热爱小樽的人为宗旨，跨越不同立场共同讨论小樽未来的参与式创意会议。内容包括小樽商科大学一年级学生开发的主题优惠纸质地图“小樽PIRIRI之旅”、与北海道Wine合作推广北海道产葡萄酒的大学项目，以及以北运河为舞台的OTARU CREATIVE WEEKS 2026完整策划。主会结束后20:00起在附近店铺举行另行收费的交流会。",
+        "venueName": "旧北海制罐小樽工厂第3仓库",
+        "address": "日本北海道小樽市港町4-6",
+        "audience": "热爱小樽并关注当地活动与城市未来的人",
+        "price": "普通参加500日元；OC+会员及学生免费。交流会费用另计。",
+        "reservation": "请通过Peatix报名；交流会费用另计。"
+      },
+      "ko": {
+        "name": "이름은 아직 없는 회의 #19~오타루 MIRAI 공동창조 회의~",
+        "summary": "오타루의 꿈과 지역 프로젝트를 공유하고 참가자들이 함께 아이디어를 만드는 회의입니다. 19회에서는 학생 기획 ‘오타루 피리리 여행’ 테마형 쿠폰 종이 지도, 홋카이도 와인 홍보 프로젝트, OTARU CREATIVE WEEKS 2026 전체 프로그램을 소개합니다.",
+        "description": "오타루를 사랑하는 사람들을 응원하며 서로 다른 분야의 참가자가 도시의 미래를 함께 생각하는 참여형 아이디어 회의입니다. 오타루상과대학 1학년 학생들이 개발한 테마형 쿠폰 종이 지도 ‘오타루 피리리 여행’, Hokkaido Wine과 연계한 홋카이도산 와인 홍보 프로젝트, 북운하를 무대로 하는 OTARU CREATIVE WEEKS 2026 전체 기획을 소개합니다. 본회 종료 후 20:00부터 인근 매장에서 별도 요금의 교류회가 열릴 예정입니다.",
+        "venueName": "구 홋카이세이칸 오타루 공장 제3창고",
+        "address": "일본 홋카이도 오타루시 미나토마치 4-6",
+        "audience": "오타루를 사랑하고 지역 활동과 도시의 미래에 관심 있는 사람",
+        "price": "일반 500엔, OC+ 회원 및 학생 무료. 교류회 참가비 별도.",
+        "reservation": "Peatix에서 신청. 교류회 참가비는 별도입니다."
+      }
+    }
+  },
+  {
+    "id": "former-nippon-yusen-120th-festival-20260919",
+    "title": "旧日本郵船株式会社小樽支店 竣工120周年祭",
+    "category": "event",
+    "start": "2026-09-19",
+    "end": "2026-09-20",
+    "time": "両日9:30〜17:00",
+    "startTime": "09:30",
+    "endTime": "17:00",
+    "place": "旧日本郵船株式会社小樽支店1階営業室・運河公園",
+    "address": "北海道小樽市色内3丁目7-8（旧日本郵船株式会社小樽支店）",
+    "mapQuery": "旧日本郵船株式会社小樽支店 北海道小樽市色内3丁目7-8",
+    "summary": "国指定重要文化財・旧日本郵船株式会社小樽支店の竣工120周年を記念する2日間。音楽、トーク、金唐紙、食、歴史を楽しめる企画を、館内と運河公園で開催します。入館無料です。",
+    "description": "【9月19日・運河公園】10:00 明峰高等学校 太鼓、12:15 OUC BRASS、15:00 高橋麻衣子＆運がっぱ、16:00 小樽商科大学YOSAKOI翔楽舞。【9月19日・営業室】11:00 金唐紙研究所 江端氏トーク＆実演、13:00 日本郵船北海道支店 森本支店長トーク、14:30 小樽商科大学ピアノサークル。【9月20日・運河公園】10:00 明峰高等学校 太鼓、12:30 小樽商科大学YOSAKOI翔楽舞、16:30 高島越後盆踊り。【9月20日・営業室】11:00 金唐紙研究所 江端氏トーク＆実演、13:00 日本郵船北海道支店 森本支店長トーク、14:30 駒木定正氏×小樽市総合博物館佐々木館長トーク、16:00 小樽商科大学室内管弦楽団。両日、フラワー展示・フォトスポット、日本郵船パネル展示、金唐紙ワークショップ、飲食・物販も行われます。入館無料。駐車台数に限りがあるため、公共交通機関または近隣有料駐車場の利用が案内されています。",
+    "source": "旧日本郵船株式会社小樽支店 公式ページ・公式Instagram",
+    "organizer": "重要文化財 旧日本郵船株式会社小樽支店（指定管理：株式会社日比谷花壇）",
+    "organizerUrl": "https://kyu-nippon-yusen-otaru.jp/",
+    "url": "https://kyu-nippon-yusen-otaru.jp/archives/event/%E3%80%909%E6%9C%8819%E6%97%A5%EF%BC%88%E5%9C%9F%EF%BC%8920%E6%97%A5%EF%BC%88%E6%97%A5%EF%BC%89%E9%96%8B%E5%82%AC%E3%80%91%E7%AB%A3%E5%B7%A5120%E5%91%A8%E5%B9%B4%E7%A5%AD",
+    "registrationUrl": "",
+    "audience": "小樽市民・観光客・歴史建築や音楽、文化、食に関心がある方",
+    "price": "入館無料",
+    "reservation": "予約不要",
+    "reservationRequired": false,
+    "reservationStatus": "not-required",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "translations": {
+      "en": {
+        "name": "Former Nippon Yusen Otaru Branch 120th Anniversary Festival",
+        "summary": "A free two-day festival marking the 120th anniversary of the Former Nippon Yusen Otaru Branch, a nationally designated Important Cultural Property, with live music, talks, kinkarakami art, food and history programs.",
+        "description": "September 19 at Canal Park: Meihou High School taiko at 10:00 AM, OUC BRASS at 12:15 PM, Maiko Takahashi and Ungappa at 3:00 PM, and Otaru University of Commerce YOSAKOI Shourakubu at 4:00 PM. In the Sales Room: a kinkarakami talk and demonstration at 11:00 AM, a Nippon Yusen Hokkaido Branch talk at 1:00 PM, and the university piano circle at 2:30 PM. September 20 at Canal Park: taiko at 10:00 AM, YOSAKOI at 12:30 PM, and Takashima Echigo Bon Odori at 4:30 PM. In the Sales Room: kinkarakami at 11:00 AM, the Nippon Yusen talk at 1:00 PM, an architecture and museum talk at 2:30 PM, and the university chamber orchestra at 4:00 PM. Flower displays, photo spots, a Nippon Yusen exhibit, kinkarakami workshops, food and shopping are available on both days. Admission is free.",
+        "venueName": "Former Nippon Yusen Otaru Branch, 1st-floor Sales Room and Canal Park",
+        "address": "3-7-8 Ironai, Otaru, Hokkaido, Japan (Former Nippon Yusen Otaru Branch)",
+        "audience": "Otaru residents and visitors interested in historic architecture, music, culture and food",
+        "price": "Free admission",
+        "reservation": "No reservation required"
+      },
+      "zh-Hant": {
+        "name": "舊日本郵船小樽支店竣工120週年祭",
+        "summary": "國家指定重要文化財舊日本郵船小樽支店的竣工120週年紀念活動，連續兩日舉辦音樂、講座、金唐紙、餐飲與歷史文化企劃，免費入館。",
+        "description": "9月19日運河公園：10:00明峰高中太鼓、12:15 OUC BRASS、15:00高橋麻衣子與運河童、16:00小樽商科大學YOSAKOI翔樂舞。營業室：11:00金唐紙講座與示範、13:00日本郵船北海道支店講座、14:30小樽商科大學鋼琴社。9月20日運河公園：10:00太鼓、12:30 YOSAKOI、16:30高島越後盆舞。營業室：11:00金唐紙講座與示範、13:00日本郵船講座、14:30建築與博物館講座、16:00小樽商科大學室內管弦樂團。兩日均設花藝展示、拍照區、日本郵船展覽、金唐紙工作坊、餐飲與商品販售。免費入館。",
+        "venueName": "舊日本郵船小樽支店1樓營業室、運河公園",
+        "address": "日本北海道小樽市色內3丁目7-8（舊日本郵船小樽支店）",
+        "audience": "小樽市民、旅客及對歷史建築、音樂、文化與美食有興趣的人",
+        "price": "免費入館",
+        "reservation": "不需預約"
+      },
+      "zh-Hans": {
+        "name": "旧日本邮船小樽支店竣工120周年庆典",
+        "summary": "国家指定重要文化财产旧日本邮船小樽支店的竣工120周年纪念活动，连续两天举办音乐、讲座、金唐纸、餐饮和历史文化项目，免费入馆。",
+        "description": "9月19日运河公园：10:00明峰高中太鼓、12:15 OUC BRASS、15:00高桥麻衣子与运河童、16:00小樽商科大学YOSAKOI翔乐舞。营业室：11:00金唐纸讲座与演示、13:00日本邮船北海道支店讲座、14:30小樽商科大学钢琴社。9月20日运河公园：10:00太鼓、12:30 YOSAKOI、16:30高岛越后盆舞。营业室：11:00金唐纸讲座与演示、13:00日本邮船讲座、14:30建筑与博物馆讲座、16:00小樽商科大学室内管弦乐团。两天均设花艺展示、拍照区、日本邮船展览、金唐纸工作坊、餐饮和商品销售。免费入馆。",
+        "venueName": "旧日本邮船小樽支店1楼营业室、运河公园",
+        "address": "日本北海道小樽市色内3丁目7-8（旧日本邮船小樽支店）",
+        "audience": "小樽市民、游客及对历史建筑、音乐、文化和美食感兴趣的人",
+        "price": "免费入馆",
+        "reservation": "无需预约"
+      },
+      "ko": {
+        "name": "구 일본우선 오타루 지점 준공 120주년 축제",
+        "summary": "국가 지정 중요문화재인 구 일본우선 오타루 지점의 준공 120주년을 기념해 음악, 토크, 금당지, 음식과 역사 프로그램을 이틀간 진행하는 무료 행사입니다.",
+        "description": "9월 19일 운하공원: 10:00 메이호고교 북 공연, 12:15 OUC BRASS, 15:00 다카하시 마이코와 운갓파, 16:00 오타루상과대학 YOSAKOI 쇼라쿠부. 영업실: 11:00 금당지 토크와 시연, 13:00 일본우선 홋카이도 지점 토크, 14:30 오타루상과대학 피아노 동아리. 9월 20일 운하공원: 10:00 북 공연, 12:30 YOSAKOI, 16:30 다카시마 에치고 본오도리. 영업실: 11:00 금당지 토크와 시연, 13:00 일본우선 토크, 14:30 건축·박물관 토크, 16:00 오타루상과대학 실내관현악단. 양일 꽃 전시와 포토존, 일본우선 패널전, 금당지 워크숍, 음식과 판매 부스가 운영됩니다. 입장 무료입니다.",
+        "venueName": "구 일본우선 오타루 지점 1층 영업실·운하공원",
+        "address": "일본 홋카이도 오타루시 이로나이 3초메 7-8(구 일본우선 오타루 지점)",
+        "audience": "오타루 시민, 관광객 및 역사 건축·음악·문화·음식에 관심 있는 사람",
+        "price": "무료 입장",
+        "reservation": "예약 불필요"
+      }
+    }
   }
 ]
