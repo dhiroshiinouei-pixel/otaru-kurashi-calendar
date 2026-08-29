@@ -1165,18 +1165,20 @@
   },
   {
     "id": "tenguyama-night",
-    "title": "おたる天狗山夜景の日 2026",
+    "title": "TENGUU FES 2026",
     "category": "event",
     "start": "2026-09-05",
-    "end": "2026-09-05",
-    "time": "11:00〜19:30（花火18:30頃予定）",
+    "end": "2026-09-06",
+    "time": "9/5 12:00～19:30・9/6 11:00～17:00",
     "place": "小樽天狗山 山頂",
-    "mapQuery": "小樽天狗山ロープウエイ 北海道小樽市最上2丁目16-15",
-    "summary": "夜景と花火、グルメ、音楽などを楽しめる山頂フェスティバルです。天狗太鼓や天狗さん登場企画も予定されています。",
-    "source": "小樽天狗山ロープウエイ・スキー場",
-    "url": "https://tenguyama.ckk.chuo-bus.co.jp/%F0%9F%8E%86-9-5%EF%BC%88%E5%9C%9F%EF%BC%89%E3%81%8A%E3%81%9F%E3%82%8B%E5%A4%A9%E7%8B%97%E5%B1%B1%E5%A4%9C%E6%99%AF%E3%81%AE%E6%97%A5-2026-%E9%96%8B%E5%82%AC%E6%B1%BA%E5%AE%9A%EF%BC%81/",
+    "mapQuery": "小樽天狗山ロープウェイ",
+    "summary": "「おたる天狗山夜景の日」と「おたる天狗山まつり」を2日間にわたって開催。グルメ、音楽、太鼓、マーケット、花火などを楽しめます。",
+    "source": "小樽天狗山ロープウエイ",
+    "url": "https://otaru.gr.jp/fall",
     "startTime": "11:00",
-    "endTime": "19:30"
+    "endTime": "19:30",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30"
   },
   {
     "id": "toy-library-september",
@@ -1871,6 +1873,811 @@
         "audience": "오타루 시민, 관광객 및 역사 건축·음악·문화·음식에 관심 있는 사람",
         "price": "무료 입장",
         "reservation": "예약 불필요"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "kitaunga-night-market-yummy-20260919",
+    "title": "北運河ナイトマーケット Yummy市 2026",
+    "start": "2026-09-19",
+    "end": "2026-09-26",
+    "showEveryDay": true,
+    "time": "17:00～21:00",
+    "startTime": "17:00",
+    "endTime": "21:00",
+    "place": "小樽・北運河（小樽運河中央橋～運河散策路～旧北海製罐第3倉庫前広場）",
+    "mapQuery": "小樽 北運河 旧北海製罐第3倉庫",
+    "summary": "北運河を舞台に、約30店舗の屋台・マーケット、イルミネーション、音楽ステージなどを楽しめる夜のイベント。入場無料、雨天決行・荒天中止です。",
+    "source": "Otaru Next 100実行委員会",
+    "url": "https://otaru-canal.jp/100th/",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "North Canal Night Market: Yummy-ichi 2026",
+        "summary": "A free evening market along Otaru’s North Canal with about 30 food and market stalls, illuminations and live music. Held in rain; cancelled in severe weather.",
+        "venueName": "Otaru North Canal area"
+      },
+      "zh-Hant": {
+        "name": "北運河夜間市集 Yummy市 2026",
+        "summary": "在小樽北運河舉行的免費夜間活動，約有30個餐飲與市集攤位、燈飾和音樂舞台。雨天照常，惡劣天候取消。",
+        "venueName": "小樽北運河一帶"
+      },
+      "zh-Hans": {
+        "name": "北运河夜市 Yummy市 2026",
+        "summary": "在小樽北运河举办的免费夜间活动，约有30个餐饮和市集摊位、灯饰及音乐舞台。雨天照常，恶劣天气取消。",
+        "venueName": "小樽北运河一带"
+      },
+      "ko": {
+        "name": "기타운가 나이트 마켓 Yummy이치 2026",
+        "summary": "오타루 기타운가에서 약 30개 먹거리·마켓 부스, 조명과 음악 무대를 즐기는 무료 야간 행사입니다. 우천 시 진행, 악천후 시 취소됩니다.",
+        "venueName": "오타루 기타운가 일대"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "chaos-market-20260921",
+    "title": "CHAOS MARKET 2026",
+    "start": "2026-09-21",
+    "end": "2026-09-23",
+    "showEveryDay": true,
+    "time": "公式ページでご確認ください",
+    "place": "小樽サンモール一番街アーケード",
+    "mapQuery": "小樽サンモール一番街",
+    "summary": "DJ、バンドライブ、カラオケ、アームレスリングなどが行われる3日間のイベント。入場無料、雨天決行です。",
+    "source": "CHAOS MARKET実行関係者・小樽観光協会",
+    "url": "https://otaru.gr.jp/event/chaos-market-2026",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "CHAOS MARKET 2026",
+        "summary": "A free three-day arcade event featuring DJs, live bands, karaoke and arm wrestling. Held in rain; check the official page for daily times.",
+        "venueName": "Sun Mall Ichibangai Shopping Arcade"
+      },
+      "zh-Hant": {
+        "name": "CHAOS MARKET 2026",
+        "summary": "為期三天的免費商店街活動，有DJ、樂團演出、卡拉OK與腕力比賽。雨天照常；每日時間請查官方頁面。",
+        "venueName": "小樽Sun Mall一番街商店街"
+      },
+      "zh-Hans": {
+        "name": "CHAOS MARKET 2026",
+        "summary": "为期三天的免费商店街活动，包括DJ、乐队演出、卡拉OK和腕力比赛。雨天照常；每日时间请查看官方页面。",
+        "venueName": "小樽Sun Mall一番街商店街"
+      },
+      "ko": {
+        "name": "CHAOS MARKET 2026",
+        "summary": "DJ, 밴드 라이브, 노래방, 팔씨름을 즐기는 3일간의 무료 아케이드 행사입니다. 우천 시 진행하며 시간은 공식 페이지를 확인하세요.",
+        "venueName": "오타루 선몰 이치반가이 상점가"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "otaru-anime-party-20260905",
+    "title": "小樽アニメパーティー2026",
+    "start": "2026-09-05",
+    "end": "2026-09-06",
+    "time": "11:00～17:00予定（企画により異なります）",
+    "place": "サンモール一番街商店街・都通り商店街・市立小樽文学館前庭・色内広場",
+    "mapQuery": "小樽サンモール一番街",
+    "summary": "小樽中心部を舞台に、トークショー、展示、ステージ、痛車展示、プラモデル展示、コスプレなどを楽しめるポップカルチャーイベントです。",
+    "source": "小樽アニメパーティー実行委員会",
+    "url": "https://otaru-anime.com/",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Otaru Anime Party 2026",
+        "summary": "A city-center pop-culture event with talk shows, exhibits, stage programs, decorated cars, plastic models and cosplay. Program times vary.",
+        "venueName": "Central Otaru shopping streets and public spaces"
+      },
+      "zh-Hant": {
+        "name": "小樽動漫派對2026",
+        "summary": "在小樽市中心舉行的流行文化活動，包含座談、展覽、舞台、痛車、模型與角色扮演。各企劃時間不同。",
+        "venueName": "小樽市中心商店街與公共空間"
+      },
+      "zh-Hans": {
+        "name": "小樽动漫派对2026",
+        "summary": "在小樽市中心举办的流行文化活动，包括访谈、展览、舞台、痛车、模型及角色扮演。各项目时间不同。",
+        "venueName": "小樽市中心商店街及公共空间"
+      },
+      "ko": {
+        "name": "오타루 애니메 파티 2026",
+        "summary": "오타루 중심가에서 토크쇼, 전시, 무대, 이타샤, 프라모델, 코스프레를 즐기는 팝컬처 행사입니다. 프로그램별 시간이 다릅니다.",
+        "venueName": "오타루 중심가 상점가 및 공공 공간"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "shukutsu-fireworks-20260905",
+    "title": "第19回おたる祝津花火大会",
+    "start": "2026-09-05",
+    "end": "2026-09-05",
+    "time": "17:00～21:00頃（花火19:00～20:00頃）",
+    "startTime": "17:00",
+    "endTime": "21:00",
+    "place": "小樽市鰊御殿前浜からおたる水族館駐車場までの一帯",
+    "mapQuery": "小樽市祝津3丁目 おたる水族館",
+    "summary": "祝津地区で開催される花火大会。約1,500発の花火のほか、露店やキッチンカー、ステージイベントなどが予定されています。周辺には駐車場が少ないため、公共交通機関の利用が推奨されています。荒天時の開催可否は主催者の最新情報をご確認ください。",
+    "source": "おたる祝津花火大会実行委員会",
+    "url": "https://otaru.gr.jp/event/syukutsu_fireworks",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "19th Otaru Shukutsu Fireworks Festival",
+        "summary": "A Shukutsu waterfront festival with about 1,500 fireworks, food stalls and stage events. Public transport is recommended. Check the organizer’s latest notice in severe weather.",
+        "venueName": "Shukutsu waterfront, from Otaru Herring Mansion to Otaru Aquarium parking area"
+      },
+      "zh-Hant": {
+        "name": "第19屆小樽祝津煙火大會",
+        "summary": "祝津海邊活動，約施放1,500發煙火，並有餐飲攤位與舞台。建議搭乘大眾運輸；惡劣天候請查主辦最新公告。",
+        "venueName": "祝津海岸（小樽鯡魚御殿至小樽水族館停車場一帶）"
+      },
+      "zh-Hans": {
+        "name": "第19届小樽祝津烟花大会",
+        "summary": "祝津海边活动，约燃放1,500发烟花，并有餐饮摊位和舞台。建议乘坐公共交通；恶劣天气请查看主办方最新公告。",
+        "venueName": "祝津海岸（小樽鲱鱼御殿至小樽水族馆停车场一带）"
+      },
+      "ko": {
+        "name": "제19회 오타루 슈쿠쓰 불꽃축제",
+        "summary": "슈쿠쓰 해변에서 약 1,500발의 불꽃과 먹거리 부스, 무대를 즐기는 행사입니다. 대중교통 이용을 권장하며 악천후 시 주최 측 최신 공지를 확인하세요.",
+        "venueName": "슈쿠쓰 해안(오타루 청어저택~오타루 수족관 주차장)"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "taru-fes-hokkaido-gas-20260912",
+    "title": "taruフェス2026＆北ガスグループ大感謝祭",
+    "start": "2026-09-12",
+    "end": "2026-09-13",
+    "time": "10:00～17:00",
+    "startTime": "10:00",
+    "endTime": "17:00",
+    "place": "グランドパーク小樽 5階",
+    "mapQuery": "グランドパーク小樽",
+    "summary": "小樽・後志のグルメ、キッチンカー、親子向け体験、ステージ、ガス機器・リフォーム展示などが行われる2日間のイベントです。",
+    "source": "北海道ガス株式会社 小樽支店",
+    "url": "https://www.hokkaido-gas.co.jp/mottokita/tarufes2026",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "taru Fes 2026 & Hokkaido Gas Group Appreciation Festival",
+        "summary": "A two-day event with Otaru and Shiribeshi food, food trucks, family activities, stage programs and home-equipment exhibits.",
+        "venueName": "Grand Park Otaru, 5th Floor"
+      },
+      "zh-Hant": {
+        "name": "taru Fes 2026＆北瓦斯集團感謝祭",
+        "summary": "為期兩天的活動，包含小樽與後志美食、餐車、親子體驗、舞台及住宅設備展示。",
+        "venueName": "Grand Park Otaru 5樓"
+      },
+      "zh-Hans": {
+        "name": "taru Fes 2026＆北海道燃气集团感谢祭",
+        "summary": "为期两天的活动，包括小樽及后志美食、餐车、亲子体验、舞台和住宅设备展示。",
+        "venueName": "Grand Park Otaru 5楼"
+      },
+      "ko": {
+        "name": "taru 페스 2026 & 홋카이도 가스 그룹 감사제",
+        "summary": "오타루·시리베시 음식, 푸드트럭, 가족 체험, 무대와 주택 설비 전시를 즐기는 이틀간의 행사입니다.",
+        "venueName": "그랜드 파크 오타루 5층"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "sake-otsumami-market-20260911",
+    "title": "酒とおつまみ市2026",
+    "start": "2026-09-11",
+    "end": "2026-10-12",
+    "showEveryDay": true,
+    "time": "9:05～17:55",
+    "startTime": "09:05",
+    "endTime": "17:55",
+    "place": "田中酒造 本店",
+    "mapQuery": "田中酒造 本店 小樽",
+    "summary": "秋季限定酒や道産ウイスキー、北海道のおつまみ、酒蔵どら焼きなどを紹介・販売する期間限定イベント。お酒が苦手な方や20歳未満の方も楽しめます。",
+    "source": "田中酒造株式会社",
+    "url": "https://otaru.gr.jp/tourist/tanakasyuzouhonntennsaketootumamiiti9-11-10-12",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Sake & Snacks Market 2026",
+        "summary": "A seasonal shop event featuring autumn sake, Hokkaido whisky, local snacks and brewery dorayaki. Non-drinkers and visitors under 20 can also enjoy the products.",
+        "venueName": "Tanaka Sake Brewery Main Store"
+      },
+      "zh-Hant": {
+        "name": "酒與下酒菜市集2026",
+        "summary": "期間限定販售秋季酒、北海道威士忌、在地小食與酒藏銅鑼燒。不飲酒者及未滿20歲者也可參觀選購。",
+        "venueName": "田中酒造本店"
+      },
+      "zh-Hans": {
+        "name": "酒与下酒菜市集2026",
+        "summary": "限期销售秋季酒、北海道威士忌、当地小食和酒藏铜锣烧。不饮酒者及未满20岁者也可参观选购。",
+        "venueName": "田中酒造本店"
+      },
+      "ko": {
+        "name": "술과 안주 시장 2026",
+        "summary": "가을 한정 술, 홋카이도 위스키, 지역 안주와 양조장 도라야키를 소개·판매합니다. 술을 마시지 않거나 20세 미만이어도 즐길 수 있습니다.",
+        "venueName": "다나카 주조 본점"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "soran-heart-festival-20260913",
+    "title": "第4回 SORAN HEART FESTIVAL",
+    "start": "2026-09-13",
+    "end": "2026-09-13",
+    "time": "11:00～18:00予定",
+    "startTime": "11:00",
+    "endTime": "18:00",
+    "place": "小樽港マリーナ",
+    "mapQuery": "小樽港マリーナ",
+    "summary": "道内各地のYOSAKOIソーランチームが小樽に集結。海を背景にした演舞のほか、後志グルメや水辺のビアガーデンを楽しめます。",
+    "source": "SORAN HEART FESTIVAL実行委員会",
+    "url": "https://heartfes-otaru.com/",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "4th SORAN HEART FESTIVAL",
+        "summary": "YOSAKOI Soran teams from across Hokkaido perform by the sea, joined by Shiribeshi food and a waterfront beer garden. Times are scheduled and may change.",
+        "venueName": "Otaru Port Marina"
+      },
+      "zh-Hant": {
+        "name": "第4屆 SORAN HEART FESTIVAL",
+        "summary": "北海道各地YOSAKOI索朗隊伍在海邊演出，另有後志美食與水岸啤酒花園。時間為預定安排。",
+        "venueName": "小樽港Marina"
+      },
+      "zh-Hans": {
+        "name": "第4届 SORAN HEART FESTIVAL",
+        "summary": "北海道各地YOSAKOI索朗队伍在海边表演，另有后志美食和水岸啤酒花园。时间为预定安排。",
+        "venueName": "小樽港Marina"
+      },
+      "ko": {
+        "name": "제4회 SORAN HEART FESTIVAL",
+        "summary": "홋카이도 각지의 YOSAKOI 소란 팀이 바다를 배경으로 공연하며 시리베시 음식과 워터프런트 비어가든도 즐길 수 있습니다. 시간은 예정입니다.",
+        "venueName": "오타루항 마리나"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "onza-namalive-20260913",
+    "title": "音座なまらいぶ小樽2026",
+    "start": "2026-09-13",
+    "end": "2026-09-13",
+    "time": "13:00～20:00",
+    "startTime": "13:00",
+    "endTime": "20:00",
+    "place": "小樽市内12会場",
+    "mapQuery": "小樽市",
+    "summary": "小樽市内の飲食店やストリートなど12会場で、道内から集まった多数のバンドが同時に演奏する音楽イベント。全会場入場無料です。",
+    "source": "音座なまらいぶ小樽実行関係者",
+    "url": "https://onza-namalive.com/2026/",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Onza Namalive Otaru 2026",
+        "summary": "Bands from across Hokkaido perform simultaneously at 12 restaurants, streets and other venues in Otaru. Admission is free at every venue.",
+        "venueName": "12 venues across Otaru"
+      },
+      "zh-Hant": {
+        "name": "音座 Namalive 小樽2026",
+        "summary": "來自北海道各地的樂團在小樽12個餐飲店、街頭等場地同步演出，各場地皆免費入場。",
+        "venueName": "小樽市內12個會場"
+      },
+      "zh-Hans": {
+        "name": "音座 Namalive 小樽2026",
+        "summary": "来自北海道各地的乐队在小樽12个餐饮店、街头等场地同时演出，所有场地均免费入场。",
+        "venueName": "小樽市内12个会场"
+      },
+      "ko": {
+        "name": "온자 나마라이브 오타루 2026",
+        "summary": "홋카이도 각지의 밴드가 오타루 시내 음식점과 거리 등 12개 장소에서 동시에 공연합니다. 모든 공연장은 무료입니다.",
+        "venueName": "오타루 시내 12개 장소"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "suzuki-hinako-mimicry-20260909",
+    "title": "鈴木比奈子作品展「mimicry」",
+    "start": "2026-09-09",
+    "end": "2026-09-13",
+    "showEveryDay": true,
+    "time": "10:00～17:00",
+    "startTime": "10:00",
+    "endTime": "17:00",
+    "place": "裏小樽モンパルナス",
+    "mapQuery": "裏小樽モンパルナス 小樽市稲穂4丁目3-9",
+    "summary": "パステルや色鉛筆などで制作された鈴木比奈子さんの作品展。入場無料。最終日の9月13日14:00からミニライブも予定されています。",
+    "source": "鈴木比奈子・裏小樽モンパルナス",
+    "url": "https://otaru.gr.jp/event/mimicry",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Hinako Suzuki Exhibition “mimicry”",
+        "summary": "A free exhibition of pastel, colored-pencil and other works by Hinako Suzuki. A mini concert is scheduled for 2:00 PM on the final day, September 13.",
+        "venueName": "Ura-Otaru Montparnasse"
+      },
+      "zh-Hant": {
+        "name": "鈴木比奈子作品展「mimicry」",
+        "summary": "鈴木比奈子的粉彩、色鉛筆等作品免費展覽。最後一天9月13日14:00預定舉行迷你音樂會。",
+        "venueName": "裏小樽Montparnasse"
+      },
+      "zh-Hans": {
+        "name": "铃木比奈子作品展“mimicry”",
+        "summary": "免费展出铃木比奈子的粉彩、彩色铅笔等作品。最后一天9月13日14:00预计举行迷你音乐会。",
+        "venueName": "里小樽Montparnasse"
+      },
+      "ko": {
+        "name": "스즈키 히나코 작품전 「mimicry」",
+        "summary": "스즈키 히나코의 파스텔·색연필 작품을 무료 전시합니다. 마지막 날인 9월 13일 14:00에 미니 라이브가 예정되어 있습니다.",
+        "venueName": "우라오타루 몽파르나스"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "otaru-art-base-kaii-igyo-20260905",
+    "title": "企画展「怪異と異形」",
+    "start": "2026-09-05",
+    "end": "2026-10-18",
+    "showEveryDay": true,
+    "excludedDates": [
+      "2026-09-24"
+    ],
+    "time": "9:30～17:00（最終入場16:30）",
+    "startTime": "09:30",
+    "endTime": "17:00",
+    "place": "小樽芸術村 浮世絵美術館",
+    "mapQuery": "小樽芸術村 浮世絵美術館",
+    "summary": "月岡芳年の「新形三十六怪撰」全点を中心に、歌川国芳らが描いた怪異や異形の世界を紹介する企画展。9月24日は休館、一部土曜日は20:00まで開館します。",
+    "source": "小樽芸術村",
+    "url": "https://www.nitorihd.co.jp/otaru-art-base/informations/",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Special Exhibition “Supernatural and Grotesque Forms”",
+        "summary": "An ukiyo-e exhibition centered on the complete New Forms of Thirty-Six Ghosts by Tsukioka Yoshitoshi, with works by Utagawa Kuniyoshi and others. Closed September 24; open until 8:00 PM on selected Saturdays.",
+        "venueName": "Otaru Art Base, Ukiyo-e Museum"
+      },
+      "zh-Hant": {
+        "name": "企劃展「怪異與異形」",
+        "summary": "以月岡芳年的《新形三十六怪撰》全套作品為主，展出歌川國芳等人描繪的怪異世界。9月24日休館，部分週六開放至20:00。",
+        "venueName": "小樽藝術村 浮世繪美術館"
+      },
+      "zh-Hans": {
+        "name": "企划展“怪异与异形”",
+        "summary": "以月冈芳年的《新形三十六怪撰》全套作品为主，展出歌川国芳等人描绘的怪异世界。9月24日闭馆，部分周六开放至20:00。",
+        "venueName": "小樽艺术村 浮世绘美术馆"
+      },
+      "ko": {
+        "name": "기획전 「괴이와 이형」",
+        "summary": "쓰키오카 요시토시의 신형삼십육괴선을 중심으로 우타가와 구니요시 등의 괴이한 세계를 소개합니다. 9월 24일 휴관, 일부 토요일은 20:00까지 개관합니다.",
+        "venueName": "오타루 예술촌 우키요에 미술관"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "otaru-creative-weeks-20260919",
+    "title": "OTARU CREATIVE WEEKS 2026（KITAUNGA DESIGN DISTRICT 2026）",
+    "start": "2026-09-19",
+    "end": "2026-10-04",
+    "showEveryDay": true,
+    "time": "各企画により異なります",
+    "place": "旧第3倉庫、旧前堀商店、観光船ターミナル、北運河周辺など",
+    "mapQuery": "旧北海製罐第3倉庫 小樽",
+    "summary": "北運河周辺を舞台に、マルシェ、展示、シンポジウム、ワークショップなどを展開する文化・まちづくりイベントです。",
+    "source": "OTARU CREATIVE PLUS・北運河デザイン地区",
+    "url": "https://otaru.gr.jp/event/kitaunga-design-district-2026",
+    "translations": {
+      "en": {
+        "name": "OTARU CREATIVE WEEKS 2026 (KITAUNGA DESIGN DISTRICT 2026)",
+        "summary": "A culture and community-design program around Otaru’s North Canal featuring markets, exhibitions, symposiums and workshops. Times and venues vary by program.",
+        "venueName": "Former No. 3 Warehouse and other North Canal venues"
+      },
+      "zh-Hant": {
+        "name": "OTARU CREATIVE WEEKS 2026（北運河設計地區2026）",
+        "summary": "在小樽北運河周邊舉行的文化與社區營造活動，包含市集、展覽、座談會與工作坊。時間及場地依企劃而異。",
+        "venueName": "舊第3倉庫等北運河周邊會場"
+      },
+      "zh-Hans": {
+        "name": "OTARU CREATIVE WEEKS 2026（北运河设计地区2026）",
+        "summary": "在小樽北运河周边举办的文化及社区营造活动，包括市集、展览、座谈会和工作坊。时间及场地因项目而异。",
+        "venueName": "旧第3仓库等北运河周边会场"
+      },
+      "ko": {
+        "name": "OTARU CREATIVE WEEKS 2026 (기타운가 디자인 디스트릭트 2026)",
+        "summary": "오타루 기타운가 일대에서 마켓, 전시, 심포지엄, 워크숍을 진행하는 문화·마을 만들기 행사입니다. 시간과 장소는 프로그램별로 다릅니다.",
+        "venueName": "구 제3창고 등 기타운가 일대"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "tantetsuko-art-project-20260913",
+    "title": "炭鉄港アートプロジェクト2026",
+    "start": "2026-09-13",
+    "end": "2026-10-04",
+    "showEveryDay": true,
+    "time": "会場により異なります",
+    "place": "手宮線跡・重要文化財 旧手宮鉄道施設",
+    "mapQuery": "小樽市総合博物館 本館",
+    "summary": "手宮線跡や旧手宮鉄道施設を会場に、炭鉱・鉄道・港湾の歴史とアートを通じて炭鉄港の魅力を伝える展示。参加無料です。",
+    "source": "炭鉄港推進協議会",
+    "url": "https://3city.net/tantetsukou_art_2026/",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Coal, Railway and Port Art Project 2026",
+        "summary": "A free art exhibition at the former Temiya Line and historic railway facilities exploring Hokkaido’s coal, railway and port heritage. Hours vary by venue.",
+        "venueName": "Former Temiya Line and Old Temiya Railway Facilities"
+      },
+      "zh-Hant": {
+        "name": "炭鐵港藝術計畫2026",
+        "summary": "在舊手宮線與重要文化財鐵道設施舉行的免費藝術展，呈現北海道煤礦、鐵路與港口的歷史。時間依會場而異。",
+        "venueName": "手宮線遺址與舊手宮鐵道設施"
+      },
+      "zh-Hans": {
+        "name": "炭铁港艺术项目2026",
+        "summary": "在旧手宫线和重要文化遗产铁路设施举办的免费艺术展，呈现北海道煤矿、铁路和港口历史。时间因会场而异。",
+        "venueName": "手宫线遗址及旧手宫铁路设施"
+      },
+      "ko": {
+        "name": "탄테츠코 아트 프로젝트 2026",
+        "summary": "구 테미야선과 중요문화재 철도 시설에서 석탄·철도·항만의 역사를 예술로 소개하는 무료 전시입니다. 시간은 장소별로 다릅니다.",
+        "venueName": "테미야선 옛터·구 테미야 철도 시설"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "tantetsuko-noh-music-performance-20260913",
+    "title": "炭鉄港・能と音楽のパフォーマンス",
+    "start": "2026-09-13",
+    "end": "2026-09-13",
+    "time": "13:30～15:30予定",
+    "startTime": "13:30",
+    "endTime": "15:30",
+    "place": "小樽市公会堂（能楽堂）",
+    "mapQuery": "小樽市公会堂 能楽堂",
+    "summary": "炭鉄港アートプロジェクトの関連企画。能、日舞、縄文太鼓、ピアノ・歌唱によるパフォーマンスが行われます。参加無料です。",
+    "source": "炭鉄港推進協議会",
+    "url": "https://otaru.gr.jp/event/tantetsukoart2026",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Coal, Railway and Port: Noh and Music Performance",
+        "summary": "A free related program featuring Noh, Japanese dance, Jomon drums, piano and singing. The announced time is scheduled and may change.",
+        "venueName": "Otaru Public Hall (Noh Theater)"
+      },
+      "zh-Hant": {
+        "name": "炭鐵港・能劇與音樂表演",
+        "summary": "炭鐵港藝術計畫的免費相關活動，包括能劇、日本舞、繩文太鼓、鋼琴與歌唱。公布時間為預定安排。",
+        "venueName": "小樽市公會堂（能樂堂）"
+      },
+      "zh-Hans": {
+        "name": "炭铁港・能剧与音乐表演",
+        "summary": "炭铁港艺术项目的免费相关活动，包括能剧、日本舞、绳文太鼓、钢琴和演唱。公布时间为预定安排。",
+        "venueName": "小樽市公会堂（能乐堂）"
+      },
+      "ko": {
+        "name": "탄테츠코·노와 음악 퍼포먼스",
+        "summary": "탄테츠코 아트 프로젝트 연계 무료 공연으로 노, 일본무용, 조몬 북, 피아노와 노래를 선보입니다. 시간은 예정입니다.",
+        "venueName": "오타루시 공회당(노가쿠도)"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "tozawa-noh-mask-exhibition-20260926",
+    "title": "令和8年 外沢照章 能面虫干し展",
+    "start": "2026-09-26",
+    "end": "2026-09-30",
+    "showEveryDay": true,
+    "time": "9:00～17:00",
+    "startTime": "09:00",
+    "endTime": "17:00",
+    "place": "小樽市公会堂 和室（梅・竹・松）",
+    "mapQuery": "小樽市公会堂",
+    "summary": "能面約130点とモデル面約50点、合計約180点を展示する大規模な能面展。入場無料です。",
+    "source": "小樽市教育委員会・外沢照章",
+    "url": "https://www.city.otaru.lg.jp/docs/2020101400927/",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "2026 Teruaki Tozawa Noh Mask Airing Exhibition",
+        "summary": "A free large-scale display of about 130 Noh masks and 50 model masks, approximately 180 works in total.",
+        "venueName": "Otaru Public Hall Japanese-style rooms"
+      },
+      "zh-Hant": {
+        "name": "令和8年 外澤照章 能面晾曬展",
+        "summary": "免費展出約130件能面與50件模型面，合計約180件的大型能面展。",
+        "venueName": "小樽市公會堂 和室（梅、竹、松）"
+      },
+      "zh-Hans": {
+        "name": "令和8年 外泽照章 能面晾晒展",
+        "summary": "免费展出约130件能面和50件模型面，合计约180件的大型能面展。",
+        "venueName": "小樽市公会堂 和室（梅、竹、松）"
+      },
+      "ko": {
+        "name": "레이와 8년 도자와 데루아키 노 가면 건조 전시",
+        "summary": "노 가면 약 130점과 모형 가면 약 50점, 총 약 180점을 무료로 전시합니다.",
+        "venueName": "오타루시 공회당 일본식 방"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "creative-caravan-otaru-20260919",
+    "title": "創作キャラバン in おたる",
+    "start": "2026-09-19",
+    "end": "2026-09-19",
+    "time": "11:00～17:00",
+    "startTime": "11:00",
+    "endTime": "17:00",
+    "place": "裏小樽モンパルナス・GCGB",
+    "mapQuery": "裏小樽モンパルナス 小樽市稲穂4丁目3-9",
+    "summary": "ハンドメイド作品やアート作品の展示販売、制作ワークショップ、お菓子・軽食・お茶・コーヒーなどを楽しめるイベントです。",
+    "source": "創作キャラバン・裏小樽モンパルナス",
+    "url": "https://otaru.gr.jp/event/creative-caravan",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Creative Caravan in Otaru",
+        "summary": "A market and workshop event featuring handmade and art works, sweets, light meals, tea and coffee.",
+        "venueName": "Ura-Otaru Montparnasse and GCGB"
+      },
+      "zh-Hant": {
+        "name": "創作 Caravan in 小樽",
+        "summary": "可欣賞及購買手作與藝術作品、參加製作工作坊，並享用甜點、輕食、茶與咖啡。",
+        "venueName": "裏小樽Montparnasse・GCGB"
+      },
+      "zh-Hans": {
+        "name": "创作 Caravan in 小樽",
+        "summary": "可欣赏和购买手工及艺术作品、参加制作体验，并享用甜点、轻食、茶和咖啡。",
+        "venueName": "里小樽Montparnasse・GCGB"
+      },
+      "ko": {
+        "name": "창작 캐러밴 in 오타루",
+        "summary": "핸드메이드·아트 작품 전시 판매와 제작 워크숍, 디저트·가벼운 식사·차·커피를 즐길 수 있습니다.",
+        "venueName": "우라오타루 몽파르나스·GCGB"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "kinkarakami-workshop-20260919",
+    "title": "金唐紙ワークショップ 夏の特別文化体験",
+    "start": "2026-09-19",
+    "end": "2026-09-20",
+    "time": "各日14:00～16:30",
+    "startTime": "14:00",
+    "endTime": "16:30",
+    "place": "旧日本郵船株式会社小樽支店",
+    "mapQuery": "旧日本郵船株式会社小樽支店",
+    "summary": "歴史的建築に使われてきた日本独自の装飾壁紙「金唐紙」の技法に触れ、作品を制作するワークショップ。各日定員10名、参加費13,200円、要申込です。",
+    "source": "旧日本郵船株式会社小樽支店",
+    "url": "https://kyu-nippon-yusen-otaru.jp/archives/event/%E3%80%909%E6%9C%8819%E6%97%A5%EF%BC%88%E5%9C%9F%EF%BC%8920%E6%97%A5%EF%BC%88%E6%97%A5%EF%BC%89%E9%96%8B%E5%82%AC%E3%80%91%E9%87%91%E5%94%90%E7%B4%99%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B7%E3%83%A7",
+    "price": "13,200円",
+    "reservation": "要申込（各日10名）",
+    "reservationRequired": true,
+    "translations": {
+      "en": {
+        "name": "Kinkarakami Workshop: Special Summer Cultural Experience",
+        "summary": "Create a work while learning the traditional Japanese embossed decorative wallpaper technique used in historic buildings. ¥13,200; advance booking required; 10 people per day.",
+        "venueName": "Former Nippon Yusen Otaru Branch"
+      },
+      "zh-Hant": {
+        "name": "金唐紙工作坊：夏季特別文化體驗",
+        "summary": "體驗歷史建築使用的日本傳統立體裝飾壁紙技法並製作作品。13,200日圓；須預約；每日10人。",
+        "venueName": "舊日本郵船株式會社小樽支店"
+      },
+      "zh-Hans": {
+        "name": "金唐纸工作坊：夏季特别文化体验",
+        "summary": "体验历史建筑使用的日本传统立体装饰壁纸技法并制作作品。13,200日元；须预约；每天10人。",
+        "venueName": "旧日本邮船株式会社小樽支店"
+      },
+      "ko": {
+        "name": "긴카라카미 워크숍: 여름 특별 문화 체험",
+        "summary": "역사적 건축에 사용된 일본 전통 입체 장식 벽지 기법으로 작품을 만듭니다. 13,200엔, 사전 신청 필수, 하루 10명입니다.",
+        "venueName": "구 일본우선 오타루 지점"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "kinkarakawashi-foil-workshop-20260921",
+    "title": "金唐革紙 箔押し体験会",
+    "start": "2026-09-21",
+    "end": "2026-09-21",
+    "time": "14:00～16:00",
+    "startTime": "14:00",
+    "endTime": "16:00",
+    "place": "旧日本郵船株式会社小樽支店",
+    "mapQuery": "旧日本郵船株式会社小樽支店",
+    "summary": "金唐革紙の版木を使い、実際に箔押しを体験できるワークショップ。料金や申込方法は公式ページをご確認ください。",
+    "source": "旧日本郵船株式会社小樽支店",
+    "url": "https://kyu-nippon-yusen-otaru.jp/archives/1024",
+    "translations": {
+      "en": {
+        "name": "Kinkarakawashi Foil-Stamping Workshop",
+        "summary": "A hands-on workshop using traditional Kinkarakawashi woodblocks to apply metallic foil. Check the official page for fees and registration.",
+        "venueName": "Former Nippon Yusen Otaru Branch"
+      },
+      "zh-Hant": {
+        "name": "金唐革紙燙箔體驗會",
+        "summary": "使用金唐革紙版木親手體驗燙箔。費用與報名方式請查官方頁面。",
+        "venueName": "舊日本郵船株式會社小樽支店"
+      },
+      "zh-Hans": {
+        "name": "金唐革纸烫箔体验会",
+        "summary": "使用金唐革纸版木亲手体验烫箔。费用及报名方式请查看官方页面。",
+        "venueName": "旧日本邮船株式会社小樽支店"
+      },
+      "ko": {
+        "name": "긴카라카와시 박찍기 체험회",
+        "summary": "긴카라카와시 판목을 사용해 금속박을 찍어 보는 체험입니다. 요금과 신청 방법은 공식 페이지를 확인하세요.",
+        "venueName": "구 일본우선 오타루 지점"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "ishikawa-naoaki-guide-20260921",
+    "title": "石川直章氏による旧日本郵船小樽支店解説会",
+    "start": "2026-09-21",
+    "end": "2026-09-21",
+    "time": "13:00～13:45",
+    "startTime": "13:00",
+    "endTime": "13:45",
+    "place": "旧日本郵船株式会社小樽支店",
+    "mapQuery": "旧日本郵船株式会社小樽支店",
+    "summary": "札幌大学非常勤講師の石川直章氏が、旧日本郵船小樽支店の歴史や建物の見どころを解説します。",
+    "source": "旧日本郵船株式会社小樽支店",
+    "url": "https://kyu-nippon-yusen-otaru.jp/archives/1028",
+    "translations": {
+      "en": {
+        "name": "Former Nippon Yusen Otaru Branch Talk by Naoaki Ishikawa",
+        "summary": "Sapporo University part-time lecturer Naoaki Ishikawa explains the history and architectural highlights of the Former Nippon Yusen Otaru Branch.",
+        "venueName": "Former Nippon Yusen Otaru Branch"
+      },
+      "zh-Hant": {
+        "name": "石川直章講解舊日本郵船小樽支店",
+        "summary": "札幌大學兼任講師石川直章介紹舊日本郵船小樽支店的歷史與建築看點。",
+        "venueName": "舊日本郵船株式會社小樽支店"
+      },
+      "zh-Hans": {
+        "name": "石川直章讲解旧日本邮船小樽支店",
+        "summary": "札幌大学兼职讲师石川直章介绍旧日本邮船小樽支店的历史和建筑看点。",
+        "venueName": "旧日本邮船株式会社小樽支店"
+      },
+      "ko": {
+        "name": "이시카와 나오아키의 구 일본우선 오타루 지점 해설회",
+        "summary": "삿포로대학 비상근 강사 이시카와 나오아키가 건물의 역사와 볼거리를 설명합니다.",
+        "venueName": "구 일본우선 오타루 지점"
+      }
+    }
+  },
+  {
+    "category": "event",
+    "sourceCheckedAt": "2026-08-30",
+    "updatedAt": "2026-08-30",
+    "eventStatus": "EventScheduled",
+    "id": "asakura-kasumi-kengwai-exhibition-20260716",
+    "title": "祝・『けんぐゎい』直木賞受賞 朝倉かすみ展",
+    "start": "2026-07-16",
+    "end": "2026-09-27",
+    "showEveryDay": true,
+    "excludedDates": [
+      "2026-07-21",
+      "2026-07-22",
+      "2026-07-27",
+      "2026-08-03",
+      "2026-08-10",
+      "2026-08-12",
+      "2026-08-17",
+      "2026-08-24",
+      "2026-08-31",
+      "2026-09-07",
+      "2026-09-14",
+      "2026-09-24",
+      "2026-09-25"
+    ],
+    "time": "9:30～17:00",
+    "startTime": "09:30",
+    "endTime": "17:00",
+    "place": "市立小樽文学館 カフェスペース",
+    "mapQuery": "市立小樽文学館",
+    "summary": "朝倉かすみさんの『けんぐゎい』直木賞受賞を記念し、同作と、これまでに描いてきた多様な女性像を紹介する無料展示です。",
+    "source": "市立小樽文学館",
+    "url": "https://www.city.otaru.lg.jp/docs/2026072000012/",
+    "price": "無料",
+    "reservationRequired": false,
+    "translations": {
+      "en": {
+        "name": "Kasumi Asakura Exhibition Celebrating the Naoki Prize for “Kengwai”",
+        "summary": "A free display celebrating Kasumi Asakura’s Naoki Prize, introducing the novel Kengwai and the diverse women portrayed across her work.",
+        "venueName": "Otaru Literature Museum Café Space"
+      },
+      "zh-Hant": {
+        "name": "朝倉霞《けんぐゎい》直木獎紀念展",
+        "summary": "紀念朝倉霞獲直木獎的免費展覽，介紹小說《けんぐゎい》及她作品中描繪的多元女性形象。",
+        "venueName": "市立小樽文學館 咖啡空間"
+      },
+      "zh-Hans": {
+        "name": "朝仓霞《けんぐゎい》直木奖纪念展",
+        "summary": "纪念朝仓霞获得直木奖的免费展览，介绍小说《けんぐゎい》及其作品中的多样女性形象。",
+        "venueName": "市立小樽文学馆 咖啡空间"
+      },
+      "ko": {
+        "name": "아사쿠라 가스미 『けんぐゎい』 나오키상 수상 기념전",
+        "summary": "아사쿠라 가스미의 나오키상 수상을 기념해 소설 『けんぐゎい』와 작품 속 다양한 여성상을 소개하는 무료 전시입니다.",
+        "venueName": "시립 오타루 문학관 카페 공간"
       }
     }
   }

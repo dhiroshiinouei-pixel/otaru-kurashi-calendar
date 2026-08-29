@@ -903,6 +903,7 @@ function normalizeEvent(raw) {
     startDate: raw.start,
     endDate: raw.end || raw.start,
     excludedDates: raw.excludedDates || [],
+    showEveryDay: raw.showEveryDay === true,
     timezone: 'Asia/Tokyo',
     startTime: raw.startTime || '',
     endTime: raw.endTime || '',
@@ -1214,7 +1215,7 @@ function eventsForDate(date, monthEventList, showLongRunningDaily = false) {
   return monthEventList.filter((event) => {
     if (event.startDate > iso || event.endDate < iso || event.excludedDates.includes(iso)) return false;
     const longRunning = dateSpanDays(event) >= 2;
-    return showLongRunningDaily || !longRunning || event.startDate === iso;
+    return showLongRunningDaily || event.showEveryDay || !longRunning || event.startDate === iso;
   });
 }
 
@@ -1825,7 +1826,7 @@ function eventsForDate(date){
   return monthEvents().filter(e => {
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     const longRunning = eventSpanDays(e) >= 2;
-    return showLongRunningDaily || !longRunning || e.start === iso;
+    return showLongRunningDaily || e.showEveryDay || !longRunning || e.start === iso;
   });
 }
 function timeRange(e){ return e.timeDisplay || (e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || '')); }
