@@ -233,19 +233,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <button class="event-pill job" type="button" data-event-id="word-excel-work-course-20260831">就職に役立つWord・Excel講座（仕事活用コース）第10回</button>
     </div><div class="day muted" data-date="2026-09-01">
       <div class="day-head"><div class="date-stamp"><span class="date-num">1</span><span class="date-full">9月1日</span></div></div>
-
+      <button class="event-pill child" type="button" data-event-id="sukusuku-hiyoko-20260901">すくすくひよこくらぶ 第1回</button>
     </div><div class="day muted" data-date="2026-09-02">
       <div class="day-head"><div class="date-stamp"><span class="date-num">2</span><span class="date-full">9月2日</span></div></div>
-
+      <button class="event-pill business" type="button" data-event-id="startup-followup-seminar-20260902">創業フォローアップセミナー 第3回「社会保険・法人化・労務管理について」</button><button class="event-pill event" type="button" data-event-id="museum-classic-car-history-20260902">小樽クラシックカー博覧会～20年の轍～</button>
     </div><div class="day muted" data-date="2026-09-03">
       <div class="day-head"><div class="date-stamp"><span class="date-num">3</span><span class="date-full">9月3日</span></div></div>
 
     </div><div class="day muted" data-date="2026-09-04">
       <div class="day-head"><div class="date-stamp"><span class="date-num">4</span><span class="date-full">9月4日</span></div></div>
-
+      <button class="event-pill child" type="button" data-event-id="tarupiyo-time-20260904">たるぴよタイム</button><button class="event-pill child" type="button" data-event-id="library-mini-book-fest-20260904">ミニミニブックフェス</button>
     </div><div class="day muted" data-date="2026-09-05">
       <div class="day-head"><div class="date-stamp"><span class="date-num">5</span><span class="date-full">9月5日</span></div></div>
-
+      <button class="event-pill event" type="button" data-event-id="tenguyama-night">TENGUU FES 2026</button><button class="event-pill event" type="button" data-event-id="otaru-anime-party-20260905">小樽アニメパーティー2026</button><button class="event-pill event" type="button" data-event-id="shukutsu-fireworks-20260905">第19回おたる祝津花火大会</button><div class="day-count">+4</div>
     </div></div>
           </div>
         </div>
@@ -911,7 +911,9 @@ function monthEvents(){
 function eventSpanDays(e){ return Math.max(0, Math.round((parseDate(e.end)-parseDate(e.start))/86400000)); }
 function eventsForDate(date){
   const iso=localISODate(date);
-  return monthEvents().filter(e => {
+  return events.filter(e => {
+    if(e.end < japanISODate()) return false;
+    if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;

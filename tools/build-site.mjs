@@ -1236,7 +1236,7 @@ function localISODate(date) {
 function renderStaticCalendar(lang) {
   const y = defaultMonth.year;
   const m = defaultMonth.month;
-  const monthList = monthEvents(y, m);
+  const visibleEventList = events.filter((event) => event.endDate >= today);
   const first = new Date(y, m, 1);
   const startDay = first.getDay();
   const days = new Date(y, m + 1, 0).getDate();
@@ -1260,11 +1260,11 @@ function renderStaticCalendar(lang) {
       cellDate = new Date(y, m, d);
     }
     const iso = localISODate(cellDate);
-    const evs = eventsForDate(cellDate, monthList).slice(0, 3);
+    const evs = eventsForDate(cellDate, visibleEventList).slice(0, 3);
     const isToday = iso === today;
     html += `<div class="day${muted ? ' muted' : ''}${isToday ? ' today' : ''}" data-date="${iso}">
       <div class="day-head"><div class="date-stamp"><span class="date-num">${d}</span><span class="date-full">${fmtShortDate(cellDate, lang)}</span></div>${isToday ? `<span class="today-badge">${esc(copy[lang].today)}</span>` : ''}</div>
-      ${evs.map((event) => `<button class="event-pill ${event.category}" type="button" data-event-id="${attr(event.id)}">${esc(eventText(event, lang).name)}</button>`).join('')}${eventsForDate(cellDate, monthList).length > 3 ? `<div class="day-count">+${eventsForDate(cellDate, monthList).length - 3}</div>` : ''}
+      ${evs.map((event) => `<button class="event-pill ${event.category}" type="button" data-event-id="${attr(event.id)}">${esc(eventText(event, lang).name)}</button>`).join('')}${eventsForDate(cellDate, visibleEventList).length > 3 ? `<div class="day-count">+${eventsForDate(cellDate, visibleEventList).length - 3}</div>` : ''}
     </div>`;
   }
   return html;
@@ -1849,7 +1849,9 @@ function monthEvents(){
 function eventSpanDays(e){ return Math.max(0, Math.round((parseDate(e.end)-parseDate(e.start))/86400000)); }
 function eventsForDate(date){
   const iso=localISODate(date);
-  return monthEvents().filter(e => {
+  return events.filter(e => {
+    if(e.end < japanISODate()) return false;
+    if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;

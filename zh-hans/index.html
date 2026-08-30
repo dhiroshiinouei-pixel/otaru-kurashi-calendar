@@ -233,19 +233,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <button class="event-pill job" type="button" data-event-id="word-excel-work-course-20260831">求职实用 Word・Excel 讲座 第10回</button>
     </div><div class="day muted" data-date="2026-09-01">
       <div class="day-head"><div class="date-stamp"><span class="date-num">1</span><span class="date-full">9/1（二）</span></div></div>
-
+      <button class="event-pill child" type="button" data-event-id="sukusuku-hiyoko-20260901">すくすくひよこくらぶ 第1回｜小樽亲子信息</button>
     </div><div class="day muted" data-date="2026-09-02">
       <div class="day-head"><div class="date-stamp"><span class="date-num">2</span><span class="date-full">9/2（三）</span></div></div>
-
+      <button class="event-pill business" type="button" data-event-id="startup-followup-seminar-20260902">创业后续讲座 第3回：社会保险、法人化与劳务管理</button><button class="event-pill event" type="button" data-event-id="museum-classic-car-history-20260902">小樽クラシックカー博覧会～20年の轍～｜小樽活动信息</button>
     </div><div class="day muted" data-date="2026-09-03">
       <div class="day-head"><div class="date-stamp"><span class="date-num">3</span><span class="date-full">9/3（四）</span></div></div>
 
     </div><div class="day muted" data-date="2026-09-04">
       <div class="day-head"><div class="date-stamp"><span class="date-num">4</span><span class="date-full">9/4（五）</span></div></div>
-
+      <button class="event-pill child" type="button" data-event-id="tarupiyo-time-20260904">Tarupiyo Time 绘本时间</button><button class="event-pill child" type="button" data-event-id="library-mini-book-fest-20260904">ミニミニブックフェス｜小樽亲子信息</button>
     </div><div class="day muted" data-date="2026-09-05">
       <div class="day-head"><div class="date-stamp"><span class="date-num">5</span><span class="date-full">9/5（六）</span></div></div>
-
+      <button class="event-pill event" type="button" data-event-id="tenguyama-night">TENGUU FES 2026｜小樽活动信息</button><button class="event-pill event" type="button" data-event-id="otaru-anime-party-20260905">小樽动漫派对2026</button><button class="event-pill event" type="button" data-event-id="shukutsu-fireworks-20260905">第19届小樽祝津烟花大会</button><div class="day-count">+4</div>
     </div></div>
           </div>
         </div>
@@ -911,7 +911,9 @@ function monthEvents(){
 function eventSpanDays(e){ return Math.max(0, Math.round((parseDate(e.end)-parseDate(e.start))/86400000)); }
 function eventsForDate(date){
   const iso=localISODate(date);
-  return monthEvents().filter(e => {
+  return events.filter(e => {
+    if(e.end < japanISODate()) return false;
+    if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;

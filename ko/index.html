@@ -233,19 +233,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <button class="event-pill job" type="button" data-event-id="word-excel-work-course-20260831">취업에 도움이 되는 Word・Excel 강좌 10회차</button>
     </div><div class="day muted" data-date="2026-09-01">
       <div class="day-head"><div class="date-stamp"><span class="date-num">1</span><span class="date-full">9/1 화</span></div></div>
-
+      <button class="event-pill child" type="button" data-event-id="sukusuku-hiyoko-20260901">すくすくひよこくらぶ 第1回｜오타루 가족 정보</button>
     </div><div class="day muted" data-date="2026-09-02">
       <div class="day-head"><div class="date-stamp"><span class="date-num">2</span><span class="date-full">9/2 수</span></div></div>
-
+      <button class="event-pill business" type="button" data-event-id="startup-followup-seminar-20260902">창업 후속 세미나 3회: 사회보험·법인화·노무관리</button><button class="event-pill event" type="button" data-event-id="museum-classic-car-history-20260902">小樽クラシックカー博覧会～20年の轍～｜오타루 행사 정보</button>
     </div><div class="day muted" data-date="2026-09-03">
       <div class="day-head"><div class="date-stamp"><span class="date-num">3</span><span class="date-full">9/3 목</span></div></div>
 
     </div><div class="day muted" data-date="2026-09-04">
       <div class="day-head"><div class="date-stamp"><span class="date-num">4</span><span class="date-full">9/4 금</span></div></div>
-
+      <button class="event-pill child" type="button" data-event-id="tarupiyo-time-20260904">타루피요 타임 그림책 시간</button><button class="event-pill child" type="button" data-event-id="library-mini-book-fest-20260904">ミニミニブックフェス｜오타루 가족 정보</button>
     </div><div class="day muted" data-date="2026-09-05">
       <div class="day-head"><div class="date-stamp"><span class="date-num">5</span><span class="date-full">9/5 토</span></div></div>
-
+      <button class="event-pill event" type="button" data-event-id="tenguyama-night">TENGUU FES 2026｜오타루 행사 정보</button><button class="event-pill event" type="button" data-event-id="otaru-anime-party-20260905">오타루 애니메 파티 2026</button><button class="event-pill event" type="button" data-event-id="shukutsu-fireworks-20260905">제19회 오타루 슈쿠쓰 불꽃축제</button><div class="day-count">+4</div>
     </div></div>
           </div>
         </div>
@@ -911,7 +911,9 @@ function monthEvents(){
 function eventSpanDays(e){ return Math.max(0, Math.round((parseDate(e.end)-parseDate(e.start))/86400000)); }
 function eventsForDate(date){
   const iso=localISODate(date);
-  return monthEvents().filter(e => {
+  return events.filter(e => {
+    if(e.end < japanISODate()) return false;
+    if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;
