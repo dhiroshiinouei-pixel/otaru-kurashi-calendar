@@ -14,7 +14,7 @@ const today = new Intl.DateTimeFormat('sv-SE', {
 const [defaultYear, defaultMonthNumber] = today.split('-').map(Number);
 const defaultMonth = { year: defaultYear, month: defaultMonthNumber - 1 };
 const buildDate = today;
-const cssVersion = `${buildDate.replaceAll('-', '')}-local-pages`;
+const cssVersion = `${buildDate.replaceAll('-', '')}-local-pages-layout`;
 const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -1479,20 +1479,8 @@ ${renderHeader(lang)}
       </div>
     </div>
   </section>
-  <div class="wrap">
-    <div class="seo-intro">
-      <p>${esc(t.intro)}</p>
-      <p class="population-note">${esc(t.population(numberWithCommas(population.population), populationLabel(lang)))} <a href="${attr(population.sourceUrl)}" target="_blank" rel="noopener">${esc(t.source)}</a></p>
-    </div>
-  </div>
   <section class="calendar-stage section" id="calendar">
     <div class="wrap">
-      <aside class="local-pages-note" aria-label="LOCAL PAGES">
-        <a class="local-pages-link" href="https://localpages.spady.net/" target="_blank" rel="noopener">
-          <img src="/assets/local-pages-banner.jpg" alt="LOCAL PAGES. 地域の魅力を、ひとつのLPに。" width="1280" height="720">
-          <span class="local-pages-copy"><span>${esc(({ja:'Spadyの地域事業者向けサービス',en:'A Spady service for local businesses','zh-Hant':'Spady 在地商家服務','zh-Hans':'Spady 本地商家服务',ko:'지역 사업자를 위한 Spady 서비스'})[lang])}</span><strong>${esc(({ja:'LOCAL PAGESを見る',en:'Explore LOCAL PAGES','zh-Hant':'探索 LOCAL PAGES','zh-Hans':'了解 LOCAL PAGES',ko:'LOCAL PAGES 보기'})[lang])} <span aria-hidden="true">↗</span></strong></span>
-        </a>
-      </aside>
       <div class="calendar-wrap">
         <div class="cal-head">
           <div>
@@ -1553,6 +1541,12 @@ ${renderHeader(lang)}
       </div>
     </div>
   </section>
+  <div class="wrap">
+    <div class="seo-intro">
+      <p>${esc(t.intro)}</p>
+      <p class="population-note">${esc(t.population(numberWithCommas(population.population), populationLabel(lang)))} <a href="${attr(population.sourceUrl)}" target="_blank" rel="noopener">${esc(t.source)}</a></p>
+    </div>
+  </div>
   <section class="section civic-section" id="civicArchive" hidden>
     <div class="wrap">
       <section class="panel category-panel" data-category="civic">
@@ -1581,6 +1575,13 @@ ${renderHeader(lang)}
       </div>
     </div>
   </section>
+  <aside class="section" aria-label="LOCAL PAGES">
+    <div class="wrap">
+      <a class="local-pages-banner" href="https://localpages.spady.net/" target="_blank" rel="noopener">
+        <img src="/assets/local-pages-banner-20260906.jpg" alt="LOCAL PAGES. 地域の魅力を、ひとつのLPに。" width="1280" height="720" loading="lazy">
+      </a>
+    </div>
+  </aside>
   <section class="section">
     <div class="wrap about-grid">
       <article class="about"><h3>${esc(t.policyTitle)}</h3><p>${esc(t.policyText)}</p></article>
