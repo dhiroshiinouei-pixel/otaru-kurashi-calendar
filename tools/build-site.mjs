@@ -14,7 +14,7 @@ const today = new Intl.DateTimeFormat('sv-SE', {
 const [defaultYear, defaultMonthNumber] = today.split('-').map(Number);
 const defaultMonth = { year: defaultYear, month: defaultMonthNumber - 1 };
 const buildDate = today;
-const cssVersion = `${buildDate.replaceAll('-', '')}-calendar-header`;
+const cssVersion = `${buildDate.replaceAll('-', '')}-local-pages`;
 const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
