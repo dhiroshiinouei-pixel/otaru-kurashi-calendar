@@ -1487,6 +1487,12 @@ ${renderHeader(lang)}
   </div>
   <section class="calendar-stage section" id="calendar">
     <div class="wrap">
+      <aside class="local-pages-note" aria-label="LOCAL PAGES">
+        <a class="local-pages-link" href="https://localpages.spady.net/" target="_blank" rel="noopener">
+          <img src="/assets/local-pages-banner.jpg" alt="LOCAL PAGES. 地域の魅力を、ひとつのLPに。" width="1280" height="720">
+          <span class="local-pages-copy"><span>${esc(({ja:'Spadyの地域事業者向けサービス',en:'A Spady service for local businesses','zh-Hant':'Spady 在地商家服務','zh-Hans':'Spady 本地商家服务',ko:'지역 사업자를 위한 Spady 서비스'})[lang])}</span><strong>${esc(({ja:'LOCAL PAGESを見る',en:'Explore LOCAL PAGES','zh-Hant':'探索 LOCAL PAGES','zh-Hans':'了解 LOCAL PAGES',ko:'LOCAL PAGES 보기'})[lang])} <span aria-hidden="true">↗</span></strong></span>
+        </a>
+      </aside>
       <div class="calendar-wrap">
         <div class="cal-head">
           <div>
