@@ -1,0 +1,33 @@
+{
+  "ja": {
+    "heroTitle": "小樽の毎日に、\n新しいきっかけ。",
+    "heroText": "まちのイベントから、子育て、仕事のことまで。日付や気になる言葉から、小樽の予定を見つけましょう。",
+    "explore": "予定を探す", "searchLabel": "キーワードで探す", "searchPlaceholder": "イベント名・会場など", "viewCalendar": "カレンダー", "viewList": "一覧", "viewLabel": "表示方法",
+    "skipOpening": "スキップして予定を見る", "skipToCalendar": "カレンダーへ移動", "openingNote": "このまちを、もっと身近に。",
+    "emptyResults": "条件に合う予定がありません。キーワードやカテゴリー、表示月を変えてお試しください。", "clearSearch": "検索をクリア", "dayEventsLabel": "この日の予定を開く", "resultsUnit": "件"
+  },
+  "en": {
+    "heroTitle": "Find your next\nOtaru moment.", "heroText": "Local events, family activities and work opportunities. Explore Otaru by date or search for something that interests you.",
+    "explore": "Explore the calendar", "searchLabel": "Search by keyword", "searchPlaceholder": "Event name or venue", "viewCalendar": "Calendar", "viewList": "List", "viewLabel": "Display format",
+    "skipOpening": "Skip to the calendar", "skipToCalendar": "Skip to calendar", "openingNote": "A little closer to local life.",
+    "emptyResults": "No matching events. Try another keyword, category or month.", "clearSearch": "Clear search", "dayEventsLabel": "View events on this day", "resultsUnit": "events"
+  },
+  "zh-Hant": {
+    "heroTitle": "在小樽的日常，\n發現新的可能。", "heroText": "從在地活動、親子體驗到工作資訊，依日期或關鍵字，找到你感興趣的小樽活動。",
+    "explore": "尋找活動", "searchLabel": "依關鍵字搜尋", "searchPlaceholder": "活動名稱或地點", "viewCalendar": "日曆", "viewList": "列表", "viewLabel": "顯示方式",
+    "skipOpening": "略過開場，查看活動", "skipToCalendar": "跳至日曆", "openingNote": "更貼近這座城市的生活。",
+    "emptyResults": "沒有符合條件的活動。請嘗試其他關鍵字、類別或月份。", "clearSearch": "清除搜尋", "dayEventsLabel": "查看當日活動", "resultsUnit": "項活動"
+  },
+  "zh-Hans": {
+    "heroTitle": "在小樽的日常，\n发现新的可能。", "heroText": "从当地活动、亲子体验到工作信息，按日期或关键词，找到你感兴趣的小樽活动。",
+    "explore": "查找活动", "searchLabel": "按关键词搜索", "searchPlaceholder": "活动名称或地点", "viewCalendar": "日历", "viewList": "列表", "viewLabel": "显示方式",
+    "skipOpening": "跳过开场，查看活动", "skipToCalendar": "跳至日历", "openingNote": "更贴近这座城市的生活。",
+    "emptyResults": "没有符合条件的活动。请尝试其他关键词、类别或月份。", "clearSearch": "清除搜索", "dayEventsLabel": "查看当天活动", "resultsUnit": "项活动"
+  },
+  "ko": {
+    "heroTitle": "오타루의 일상에서,\n새로운 발견을.", "heroText": "지역 행사부터 가족 체험, 일자리 정보까지. 날짜나 관심 있는 키워드로 오타루의 일정을 찾아보세요.",
+    "explore": "일정 찾아보기", "searchLabel": "키워드로 검색", "searchPlaceholder": "행사 이름 또는 장소", "viewCalendar": "달력", "viewList": "목록", "viewLabel": "보기 방식",
+    "skipOpening": "건너뛰고 일정 보기", "skipToCalendar": "달력으로 이동", "openingNote": "이 도시의 일상에 한 걸음 더 가까이.",
+    "emptyResults": "조건에 맞는 일정이 없습니다. 키워드, 카테고리 또는 월을 바꿔 보세요.", "clearSearch": "검색 지우기", "dayEventsLabel": "이날의 일정 보기", "resultsUnit": "건"
+  }
+}

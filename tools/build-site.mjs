@@ -14,7 +14,7 @@ const today = new Intl.DateTimeFormat('sv-SE', {
 const [defaultYear, defaultMonthNumber] = today.split('-').map(Number);
 const defaultMonth = { year: defaultYear, month: defaultMonthNumber - 1 };
 const buildDate = today;
-const cssVersion = `${buildDate.replaceAll('-', '')}-local-pages-layout`;
+const cssVersion = `${buildDate.replaceAll('-', '')}-renewal`;
 const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -27,6 +27,7 @@ const rawOngoing = readJson('data/ongoing.json');
 const garbageRegions = readJson('data/garbage-regions.json');
 const garbagePatterns = readJson('data/garbage-patterns.json');
 const population = readJson('data/population.json');
+const renewalCopy = readJson('data/interface-renewal.json');
 
 const langOrder = ['ja', 'en', 'zh-Hant', 'zh-Hans', 'ko'];
 const langConfig = {
@@ -1072,6 +1073,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ${alternateLinks(lang, kind, slug)}
 <link rel="icon" href="/assets/favicon-otaru-20260713.png" type="image/png">
 <link rel="stylesheet" href="/assets/site.css?v=${cssVersion}">
+<link rel="stylesheet" href="/assets/renewal.css?v=${cssVersion}">
 <meta property="og:type" content="${attr(type)}">
 <meta property="og:locale" content="${attr(cfg.ogLocale)}">
 ${ogAlternateMeta(lang)}
@@ -1088,6 +1090,7 @@ ${ogAlternateMeta(lang)}
 <meta name="twitter:image" content="${attr(ogImage)}">
 ${jsonLd.length ? `<script type="application/ld+json">${jsonScript({ '@context': 'https://schema.org', '@graph': jsonLd })}</script>` : ''}
 <noscript><style>.splash,.flying-logo{display:none!important}body.loading{overflow:auto!important}</style></noscript>
+<script>if(location.hostname.endsWith('.otaru-kurashi-calendar.pages.dev')) document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('a[href^="https://otaru.spady.net/"]').forEach(a=>{const u=new URL(a.href);a.href=u.pathname+u.search+u.hash;});});</script>
 </head>`;
 }
 
@@ -1384,17 +1387,16 @@ function addMinutesToGoogleDateTime(dateString, timeString, minutesToAdd) {
 
 function populationLabel(lang) {
   if (lang === 'ja') return population.asOfLabelJa;
-  if (lang === 'en') return 'as of the end of June 2026';
-  if (lang === 'ko') return '2026년 6월 말 현재';
-  return '截至2026年6月底';
+  const [year, month] = population.asOf.split('-').map(Number);
+  if (lang === 'en') return 'as of the end of ' + new Intl.DateTimeFormat('en-US', {month:'long', year:'numeric', timeZone:'UTC'}).format(new Date(Date.UTC(year, month - 1, 1)));
+  if (lang === 'ko') return `${year}년 ${month}월 말 현재`;
+  return `截至${year}年${month}月底`;
 }
 
 function renderHeader(lang, kind = 'index', slug = '') {
   const t = copy[lang];
   const garbageHref = kind === 'index' ? '#garbage' : `${pageUrl(lang)}#garbage`;
-  const logoSlot = kind === 'index'
-    ? '<span class="brand-logo-slot" id="brandLogoSlot"><noscript><img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady"></noscript></span>'
-    : '<span class="brand-logo-slot"><img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady"></span>';
+  const logoSlot = '<span class="brand-logo-slot"><img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady" width="42" height="42"></span>';
   return `<div class="topnote">${esc(t.topnote)}</div>
 <header>
   <div class="wrap header-inner">
@@ -1419,6 +1421,7 @@ function renderHeader(lang, kind = 'index', slug = '') {
 function renderIndexPage(lang) {
   const cfg = langConfig[lang];
   const t = copy[lang];
+  const ui = renewalCopy[lang];
   const canonical = pageUrl(lang);
   const currentMonthEvents = monthEvents(defaultMonth.year, defaultMonth.month);
   const currentPeriodEvents = currentMonthEvents.filter(isExtendedEvent);
@@ -1430,6 +1433,7 @@ function renderIndexPage(lang) {
     defaultMonth: defaultMonth.month,
     events: events.map((event) => ({
       ...event,
+      translations: undefined,
       title: eventText(event, lang).name,
       summary: eventText(event, lang).summary,
       place: eventText(event, lang).venueName,
@@ -1451,35 +1455,39 @@ function renderIndexPage(lang) {
     langUrls: Object.fromEntries(langOrder.map((code) => [code, pageUrl(code)])),
     text: {
       ...t,
+      ...ui,
       countZero: t.count(0),
     },
   };
   return `${head({ lang, title: cfg.title, description: cfg.description, canonical, kind: 'index', jsonLd: collectionJsonLd(lang) })}
-<body class="loading">
+<body class="calendar-home">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPRLRR5S" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<img class="flying-logo" id="flyingLogo" src="/assets/spady-logo-header.jpg" alt="Spady">
-<div class="splash" id="splash" aria-hidden="true">
-  <div class="splash-stars"><span style="left:12%;top:22%;animation-duration:5s"></span><span style="left:78%;top:28%;animation-duration:6.5s"></span><span style="left:38%;top:74%;animation-duration:4.8s"></span></div>
+<a class="skip-link" href="#calendar">${esc(ui.skipToCalendar)}</a>
+<div class="splash" id="splash" role="dialog" aria-modal="true" aria-labelledby="openingTitle" hidden>
   <div class="splash-inner">
-    <div class="splash-title">${esc(cfg.siteName)}</div>
-    <div class="splash-sub">${esc(t.splashSub)}</div>
-    <div class="splash-line"><span></span></div>
+    <span class="splash-kicker">OTARU, HOKKAIDO</span>
+    <img class="splash-mark" src="/assets/spady-logo-header.jpg" alt="Spady" width="64" height="64">
+    <div class="splash-title" id="openingTitle">${esc(cfg.siteName)}</div>
+    <div class="splash-sub">${esc(ui.openingNote)}</div>
+    <button class="splash-skip" id="skipOpening">${esc(ui.skipOpening)} <span aria-hidden="true">→</span></button>
   </div>
 </div>
 ${renderHeader(lang)}
-<main>
+<main id="mainContent">
   <section class="hero">
     <div class="wrap hero-shell">
       <div class="hero-card">
         <span class="hero-kicker">${esc(t.heroKicker)}</span>
-        <h1>${esc(t.heroTitle)}</h1>
-        <p>${esc(t.heroText)}</p>
+        <h1>${esc(ui.heroTitle).replaceAll('\n', '<br>')}</h1>
+        <p>${esc(ui.heroText)}</p>
+        <div class="hero-actions"><a class="btn" href="#calendar">${esc(ui.explore)} <span aria-hidden="true">↓</span></a></div>
       </div>
+      <div class="hero-photo"><img src="/assets/otaru-canal-photo-20260713.jpg" alt="${esc(lang === 'ja' ? '夕暮れの小樽運河' : lang === 'en' ? 'Otaru Canal at dusk' : lang === 'ko' ? '해 질 무렵의 오타루 운하' : '黃昏時的小樽運河')}" width="1672" height="941" fetchpriority="high"><span>OTARU CANAL / HOKKAIDO</span></div>
     </div>
   </section>
-  <section class="calendar-stage section" id="calendar">
+  <section class="calendar-stage section" id="calendar" tabindex="-1">
     <div class="wrap">
       <div class="calendar-wrap">
         <div class="cal-head">
@@ -1487,7 +1495,11 @@ ${renderHeader(lang)}
             <h2 class="cal-title schedule-en"><span>${esc(t.calendarTitle1)}</span><span>${esc(t.calendarTitle2)}</span></h2>
             <p class="cal-copy">${esc(t.calendarCopy)}</p>
           </div>
-          <div class="sparkles" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="calendar-location">OTARU / JAPAN</span>
+        </div>
+        <div class="calendar-tools js-only">
+          <label class="calendar-search" for="eventSearch"><span>${esc(ui.searchLabel)}</span><input type="search" id="eventSearch" placeholder="${attr(ui.searchPlaceholder)}" autocomplete="off" aria-controls="calendarGrid eventList"></label>
+          <div class="view-switch" role="group" aria-label="${attr(ui.viewLabel)}"><button id="viewCalendar" aria-pressed="true">${esc(ui.viewCalendar)}</button><button id="viewList" aria-pressed="false">${esc(ui.viewList)}</button></div>
         </div>
         <div class="calendar-toolbar controls">
           <div class="month-controls toolbar-month">
@@ -1498,7 +1510,7 @@ ${renderHeader(lang)}
           </div>
         </div>
         <div class="calendar-filter-row filter-wrap">
-          ${['all', 'child', 'job', 'event', 'business', 'civic'].map((key) => `<button class="filter ${key === 'all' ? 'active' : ''}" data-filter="${key}">${key !== 'all' ? `<span class="dot ${key}"></span>` : ''}${esc(t.filters[key])}</button>`).join('')}
+          ${['all', 'child', 'job', 'event', 'business', 'civic'].map((key) => `<button class="filter ${key === 'all' ? 'active' : ''}" data-filter="${key}" aria-pressed="${key === 'all'}">${key !== 'all' ? `<span class="dot ${key}" aria-hidden="true"></span>` : ''}${esc(t.filters[key])}</button>`).join('')}
         </div>
         <div class="calendar-grid-shell">
           <div class="calendar-board">
@@ -1511,11 +1523,11 @@ ${renderHeader(lang)}
         <section class="panel category-panel" id="monthlyPanel" data-category="all">
           <h2>${esc(t.monthlyTitle)}</h2>
           <p class="lead">${esc(t.monthlyLead)}</p>
-          <p id="listNote" class="note">${esc(t.count(currentMonthEvents.length))}</p>
-          <section class="period-events" id="periodEvents"${currentPeriodEvents.length ? '' : ' hidden'}>
-            <div class="period-events-heading"><h3>${esc(t.periodTitle)}</h3><p>${esc(t.periodLead)}</p></div>
+          <p id="listNote" class="note" role="status" aria-live="polite">${esc(t.count(currentMonthEvents.length))}</p>
+          <details class="period-events" id="periodEvents"${currentPeriodEvents.length ? '' : ' hidden'}>
+            <summary class="period-events-heading"><h3>${esc(t.periodTitle)}</h3><span id="periodCount">${currentPeriodEvents.length}</span></summary>
             <div class="period-event-list" id="periodEventList">${renderPeriodCards(currentPeriodEvents, lang)}</div>
-          </section>
+          </details>
           <div class="event-list" id="eventList">${renderEventCards(currentDatedEvents, lang)}</div>
           <div class="event-list ongoing-list" id="ongoingList">${renderOngoingCards(lang)}</div>
         </section>
@@ -1793,6 +1805,11 @@ function clientScript() {
   return `
 (function(){
 const data = window.OTARU_PAGE_DATA;
+document.documentElement.classList.add('js');
+if(location.hostname.endsWith('.otaru-kurashi-calendar.pages.dev')) {
+  data.events.forEach(e => { const u=new URL(e.detailUrl); e.detailUrl=u.pathname; });
+  Object.keys(data.langUrls).forEach(k => { data.langUrls[k]=new URL(data.langUrls[k]).pathname; });
+}
 const events = data.events;
 const ongoing = data.ongoing;
 const garbageRegions = data.garbageRegions;
@@ -1805,11 +1822,17 @@ let year = initialYear;
 let month = initialMonth - 1;
 let activeFilter = 'all';
 let currentEventId = '';
+let searchTerm = '';
+let viewMode = 'calendar';
 const params = new URLSearchParams(location.search);
 if (/^\\d{4}-\\d{2}$/.test(params.get('month') || '')) {
   const [y,m] = params.get('month').split('-').map(Number);
-  year = y; month = m - 1;
+  if(m>=1 && m<=12) {year = y; month = m - 1;}
 }
+if(Object.hasOwn(categoryLabels, params.get('category'))) activeFilter=params.get('category');
+searchTerm=(params.get('q') || '').slice(0,120);
+try { viewMode=params.get('view') || localStorage.getItem('otaru-calendar-view') || 'calendar'; } catch(e) {}
+if(!['calendar','list'].includes(viewMode)) viewMode='calendar';
 try { localStorage.setItem('otaru-calendar-lang', data.lang); } catch(e) {}
 
 function escHtml(value){
@@ -1844,10 +1867,16 @@ function monthTitle(){
   return year+'年'+(month+1)+'月';
 }
 function dateInRange(date,start,end){ return date >= parseDate(start) && date <= parseDate(end); }
+function matchesSearch(e){
+  const words=searchTerm.normalize('NFKC').toLocaleLowerCase().trim().split(/\\s+/).filter(Boolean);
+  const haystack=[e.title,e.name,e.place,e.summary,e.address].filter(Boolean).join(' ').normalize('NFKC').toLocaleLowerCase();
+  return words.every(word=>haystack.includes(word));
+}
 function monthEvents(){
   return events.filter(e => {
     if(e.end < japanISODate()) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
+    if(!matchesSearch(e)) return false;
     const s = parseDate(e.start), en = parseDate(e.end);
     const ms = new Date(year, month, 1), me = new Date(year, month+1, 0, 23,59,59);
     return en >= ms && s <= me;
@@ -1859,6 +1888,7 @@ function eventsForDate(date){
   return events.filter(e => {
     if(e.end < japanISODate()) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
+    if(!matchesSearch(e)) return false;
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
     const longRunning = eventSpanDays(e) >= 2;
@@ -1888,9 +1918,10 @@ function renderCalendar(){
     const cell = document.createElement('div');
     cell.className = 'day' + (muted ? ' muted' : '') + (isToday ? ' today' : '');
     cell.dataset.date = iso;
-    cell.innerHTML = '<div class="day-head"><div class="date-stamp"><span class="date-num">'+d+'</span><span class="date-full">'+labelDate(cellDate)+'</span></div>'+(isToday ? '<span class="today-badge">'+escHtml(T.today)+'</span>' : '')+'</div>' +
-      evs.slice(0,3).map(e => '<button class="event-pill '+e.category+'" type="button" data-event-id="'+escHtml(e.id)+'">'+escHtml(e.title)+'</button>').join('') +
-      (evs.length>3 ? '<div class="day-count">+'+(evs.length-3)+'</div>' : '');
+    cell.innerHTML = '<button class="day-open day-head" type="button" aria-label="'+escHtml(fullDate(cellDate)+' · '+evs.length+' '+T.resultsUnit+' · '+T.dayEventsLabel)+'"'+(isToday?' aria-current="date"':'')+'><span class="date-stamp"><span class="date-num">'+d+'</span><span class="date-full">'+labelDate(cellDate)+'</span></span>'+(isToday ? '<span class="today-badge">'+escHtml(T.today)+'</span>' : '')+'</button>' +
+      evs.slice(0,3).map(e => '<button class="event-pill '+e.category+'" type="button" title="'+escHtml(e.title)+'" data-event-id="'+escHtml(e.id)+'">'+escHtml(e.title)+'</button>').join('') +
+      (evs.length>3 ? '<div class="day-count">+'+(evs.length-3)+'</div>' : '') +
+      (evs.length ? '<div class="day-mobile-summary" aria-hidden="true"><div class="day-category-dots">'+[...new Set(evs.map(e=>e.category))].map(c=>'<i class="dot '+c+'"></i>').join('')+'</div><span>'+evs.length+' '+escHtml(T.resultsUnit)+'</span></div>' : '');
     cell.addEventListener('click', (ev) => {
       if(ev.target && ev.target.dataset && ev.target.dataset.eventId) return;
       openDayModal(cellDate, evs);
@@ -1907,7 +1938,8 @@ function renderList(){
   const allMonthEvents = monthEvents().sort((a,b)=>a.start.localeCompare(b.start));
   const periodEvs = allMonthEvents.filter(e => eventSpanDays(e) >= 13);
   const evs = allMonthEvents.filter(e => eventSpanDays(e) < 13);
-  document.getElementById('listNote').textContent = allMonthEvents.length ? (data.lang==='en' ? allMonthEvents.length+' items shown' : data.lang==='ko' ? allMonthEvents.length+'건 표시 중' : data.lang==='ja' ? allMonthEvents.length+'件の情報を表示中' : '顯示 '+allMonthEvents.length+' 筆資訊') : T.countZero;
+  document.getElementById('listNote').textContent = monthTitle()+' / '+allMonthEvents.length+' '+T.resultsUnit;
+  document.getElementById('periodCount').textContent=periodEvs.length;
   const periodSection = document.getElementById('periodEvents');
   const periodList = document.getElementById('periodEventList');
   if(periodSection) periodSection.hidden = periodEvs.length === 0;
@@ -1916,12 +1948,12 @@ function renderList(){
     const d = parseDate(e.start);
     const officialName = data.lang !== 'ja' ? '<p class="official-name">'+escHtml(T.officialName)+'：'+escHtml(e.name)+'</p>' : '';
     return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><strong>'+d.getDate()+'</strong><small>'+fullDate(d)+'</small></div></div><div><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3>'+officialName+'<p><strong>'+escHtml(T.dateTime)+'：</strong>'+escHtml(fullDate(d)+' '+timeRange(e))+'</p><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+e.detailUrl+'">'+escHtml(T.detailsArrow)+'</a><a href="'+e.calendarUrl+'" target="_blank" rel="noopener">'+escHtml(T.calendarAdd)+'</a>'+(e.registrationUrl ? '<a href="'+e.registrationUrl+'" target="_blank" rel="noopener">'+escHtml(T.registrationAction)+'</a>' : '')+'<a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a></div></article>';
-  }).join('');
+  }).join('') || (periodEvs.length ? '' : '<p class="empty-results">'+escHtml(T.emptyResults)+'</p>');
 }
 function renderOngoing(){
   const box = document.getElementById('ongoingList');
   if(!box) return;
-  box.innerHTML = ongoing.filter(x => activeFilter === 'all' || x.category === activeFilter).map(x => '<div class="info-card category-'+x.category+'"><div class="meta"><span class="tag">'+escHtml(categoryLabels[x.category])+'</span><span class="tag">'+escHtml(x.label)+'</span></div><h3>'+escHtml(x.title)+'</h3><p>'+escHtml(x.summary)+'</p>'+(x.url ? '<a href="'+x.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a>' : '')+'</div>').join('');
+  box.innerHTML = ongoing.filter(x => (activeFilter === 'all' || x.category === activeFilter) && matchesSearch(x)).map(x => '<div class="info-card category-'+x.category+'"><div class="meta"><span class="tag">'+escHtml(categoryLabels[x.category])+'</span><span class="tag">'+escHtml(x.label)+'</span></div><h3>'+escHtml(x.title)+'</h3><p>'+escHtml(x.summary)+'</p>'+(x.url ? '<a href="'+x.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a>' : '')+'</div>').join('');
 }
 function openEventModalById(id){ const event = events.find(x => x.id === id); if(event) openEventModal(event); }
 function openEventModal(e){
@@ -1932,12 +1964,13 @@ function openEventModal(e){
   document.getElementById('modalBody').innerHTML = '<p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p>';
   document.getElementById('modalSource').textContent = T.sourceLabel+'：'+e.source;
   document.getElementById('modalDetailLink').href = e.detailUrl;
+  document.getElementById('modalDetailLink').style.display = 'inline-flex';
   document.getElementById('modalLink').href = e.url;
   document.getElementById('modalLink').style.display = 'inline-flex';
   document.getElementById('modalCalendarLink').href = e.calendarUrl;
   document.getElementById('modalCalendarLink').style.display = 'inline-flex';
   renderMap(e.mapQuery, e.place);
-  document.getElementById('modal').classList.add('show');
+  showModal();
   updateLanguageLinks();
 }
 function openDayModal(date, dayEvents){
@@ -1961,7 +1994,7 @@ function openDayModal(date, dayEvents){
     document.getElementById('mapExternalLink').style.display = 'none';
     renderMap('', '');
   }
-  document.getElementById('modal').classList.add('show');
+  showModal();
   updateLanguageLinks();
 }
 function renderMap(query,title){
@@ -1977,7 +2010,34 @@ function renderMap(query,title){
     external.style.display = 'none';
   }
 }
-window.closeModal = function(){ document.getElementById('modal').classList.remove('show'); currentEventId=''; updateLanguageLinks(); };
+let returnFocus=null;
+function setBackgroundInert(value){ document.querySelectorAll('header,main,footer,.topnote,.skip-link').forEach(el=>{el.inert=value;}); }
+function showModal(){
+  returnFocus=document.activeElement;
+  document.getElementById('modal').classList.add('show');
+  document.body.classList.add('modal-open');
+  setBackgroundInert(true);
+  document.querySelector('#modal .close').focus();
+}
+window.closeModal = function(){
+  document.getElementById('modal').classList.remove('show');
+  document.body.classList.remove('modal-open');
+  setBackgroundInert(false);
+  currentEventId=''; updateLanguageLinks();
+  if(returnFocus && returnFocus.isConnected) returnFocus.focus();
+};
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal') closeModal();});
+document.addEventListener('keydown',e=>{
+  const modal=document.getElementById('modal');
+  if(!modal.classList.contains('show')) return;
+  if(e.key==='Escape'){e.preventDefault();closeModal();}
+  if(e.key==='Tab'){
+    const items=[...modal.querySelectorAll('button,a[href],input,iframe')].filter(el=>el.getClientRects().length);
+    const first=items[0],last=items[items.length-1];
+    if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
 window.changeMonth = function(delta){ month += delta; if(month<0){month=11;year--;} if(month>11){month=0;year++;} renderCalendar(); };
 window.goToday = function(){ const [y,m] = japanISODate().split('-').map(Number); year=y; month=m-1; renderCalendar(); };
 function syncCategoryPresentation(){
@@ -1987,8 +2047,9 @@ function syncCategoryPresentation(){
   if(monthlyPanel) monthlyPanel.dataset.category = activeFilter;
 }
 document.querySelectorAll('.filter[data-filter]').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('.filter[data-filter]').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.filter[data-filter]').forEach(x => {x.classList.remove('active');x.setAttribute('aria-pressed','false');});
   btn.classList.add('active');
+  btn.setAttribute('aria-pressed','true');
   activeFilter = btn.dataset.filter;
   renderCalendar();
   renderOngoing();
@@ -2057,40 +2118,65 @@ function updateLanguageLinks(){
     const p = new URLSearchParams();
     p.set('month', year+'-'+String(month+1).padStart(2,'0'));
     if(currentEventId) p.set('event', currentEventId);
+    if(activeFilter !== 'all') p.set('category',activeFilter);
+    if(searchTerm) p.set('q',searchTerm);
+    p.set('view',viewMode);
     a.href = base + '?' + p.toString();
   });
 }
-const flyingLogo = document.getElementById('flyingLogo');
-const brandSlot = document.getElementById('brandLogoSlot');
-const brandTap = document.querySelector('.brand');
-let logoAngle = 0, scrollBoost = 0, logoLoopStarted = false, lastScrollY = window.scrollY, lastFrameTime = performance.now();
-function flashLogo(){ if(!flyingLogo) return; flyingLogo.classList.remove('logo-glow'); void flyingLogo.offsetWidth; flyingLogo.classList.add('logo-glow'); }
-function startLogoRotation(){ if(logoLoopStarted || !flyingLogo) return; logoLoopStarted=true; function frame(now){ const dt=Math.min(40, now-lastFrameTime); lastFrameTime=now; logoAngle += dt*0.0022 + scrollBoost; scrollBoost *= .88; flyingLogo.style.transform='rotate('+logoAngle+'deg)'; requestAnimationFrame(frame); } requestAnimationFrame(frame); }
-window.addEventListener('scroll', () => { const y=window.scrollY; const delta=y-lastScrollY; lastScrollY=y; scrollBoost += delta*.055; }, {passive:true});
-if(brandTap) brandTap.addEventListener('click', flashLogo);
-async function runOpening(){
-  document.body.classList.remove('loading');
-  const splash = document.getElementById('splash');
-  if(!flyingLogo || !brandSlot || !splash){ startLogoRotation(); return; }
-  await new Promise(resolve => setTimeout(resolve, 180));
-  flashLogo();
-  await new Promise(resolve => setTimeout(resolve, 520));
-  const target = brandSlot.getBoundingClientRect();
-  const start = flyingLogo.getBoundingClientRect();
-  const dx = target.left - start.left;
-  const dy = target.top - start.top;
-  const scale = target.width / start.width;
-  const logoAnim = flyingLogo.animate([{transform:'translate(0,0) scale(1) rotate(0deg)',filter:'brightness(1)',offset:0},{transform:'translate(0,0) scale(1.08) rotate(55deg)',filter:'brightness(1.75) drop-shadow(0 0 28px rgba(255,244,185,.95))',offset:.2},{transform:'translate('+dx+'px,'+dy+'px) scale('+scale+') rotate(720deg)',filter:'brightness(1)',offset:1}],{duration:1500,easing:'cubic-bezier(.22,.78,.22,1)',fill:'forwards'});
-  splash.animate([{opacity:1,offset:0},{opacity:1,offset:.46},{opacity:0,offset:1}],{duration:1500,easing:'ease',fill:'forwards'});
-  try { await logoAnim.finished; } catch(e) {}
-  logoAnim.cancel();
-  brandSlot.appendChild(flyingLogo);
-  flyingLogo.className = 'brand-logo';
-  flyingLogo.style.position='static'; flyingLogo.style.left='auto'; flyingLogo.style.top='auto'; flyingLogo.style.width='42px'; flyingLogo.style.height='42px'; flyingLogo.style.display='block'; flyingLogo.style.opacity='1'; flyingLogo.style.visibility='visible'; flyingLogo.style.transform='rotate(0deg)';
-  splash.classList.add('hide');
-  startLogoRotation();
+function setView(mode){
+  viewMode=mode;
+  document.getElementById('calendar').classList.toggle('list-mode',mode==='list');
+  document.getElementById('viewCalendar').setAttribute('aria-pressed',String(mode==='calendar'));
+  document.getElementById('viewList').setAttribute('aria-pressed',String(mode==='list'));
+  try{localStorage.setItem('otaru-calendar-view',mode);}catch(e){}
+  updateLanguageLinks();
 }
-window.addEventListener('load', runOpening);
+document.getElementById('viewCalendar').addEventListener('click',()=>setView('calendar'));
+document.getElementById('viewList').addEventListener('click',()=>setView('list'));
+const searchInput=document.getElementById('eventSearch');
+searchInput.value=searchTerm;
+let searchTimer;
+searchInput.addEventListener('input',()=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>{searchTerm=searchInput.value;renderCalendar();renderOngoing();},120);
+});
+document.querySelectorAll('.filter[data-filter]').forEach(btn=>{
+  const selected=btn.dataset.filter===activeFilter;
+  btn.classList.toggle('active',selected);btn.setAttribute('aria-pressed',String(selected));
+});
+setView(viewMode);
+function runOpening(){
+  const splash=document.getElementById('splash');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  let seen=false;
+  try{seen=sessionStorage.getItem('otaru-opening-v2')==='seen';}catch(e){}
+  if(reduce.matches || params.get('event') || location.hash || (seen && params.get('opening')!=='1')) return;
+  splash.hidden=false;
+  document.body.classList.add('opening-active');
+  setBackgroundInert(true);
+  const beforeFocus=document.activeElement;
+  const skip=document.getElementById('skipOpening');
+  skip.focus({preventScroll:true});
+  let finished=false;
+  function finish(){
+    if(finished)return;finished=true;
+    splash.classList.add('hide');
+    document.body.classList.remove('opening-active');
+    setBackgroundInert(false);
+    try{sessionStorage.setItem('otaru-opening-v2','seen');}catch(e){}
+    if(document.activeElement===skip){
+      if(beforeFocus && beforeFocus!==document.body)beforeFocus.focus({preventScroll:true});
+      else document.querySelector('.brand').focus({preventScroll:true});
+    }
+    setTimeout(()=>{splash.hidden=true;},260);
+  }
+  skip.addEventListener('click',finish,{once:true});
+  splash.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();finish();}if(e.key==='Tab'){e.preventDefault();skip.focus();}});
+  reduce.addEventListener('change',()=>{if(reduce.matches)finish();},{once:true});
+  setTimeout(finish,1500);
+}
+runOpening();
 renderCalendar();
 renderOngoing();
 syncCategoryPresentation();
