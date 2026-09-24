@@ -20,6 +20,7 @@ const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const rawEvents = [
   ...readJson('data/events.json'),
+  ...readJson('data/events-curated-20260925.json'),
   ...readJson('data/events-official-municipal-20260723.json'),
   ...readJson('data/events-official-tourism-20260723.json'),
 ];
@@ -28,6 +29,7 @@ const garbageRegions = readJson('data/garbage-regions.json');
 const garbagePatterns = readJson('data/garbage-patterns.json');
 const population = readJson('data/population.json');
 const renewalCopy = readJson('data/interface-renewal.json');
+const submissionCopy = readJson('data/submission-ui.json');
 
 const langOrder = ['ja', 'en', 'zh-Hant', 'zh-Hans', 'ko'];
 const langConfig = {
@@ -932,6 +934,7 @@ function normalizeEvent(raw) {
     organizerUrl: raw.organizerUrl || raw.url || '',
     officialSourceName: raw.source || '',
     officialSourceUrl: raw.url || '',
+    sourceLinkLabel: raw.sourceLinkLabel || null,
     registrationUrl: raw.registrationUrl || '',
     offers: raw.offers || null,
     sourceCheckedAt: raw.sourceCheckedAt || '2026-07-13',
@@ -1031,12 +1034,14 @@ function eventText(event, lang) {
 }
 
 function languageLinks(lang, kind = 'index', slug = '') {
-  return `<nav class="language-switcher" aria-label="${attr(copy[lang].languageLabel)}">
+  return `<details class="language-picker">
+<summary aria-label="${attr(copy[lang].languageLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c-2.5 2.5-4 5.5-4 9s1.5 6.5 4 9c2.5-2.5 4-5.5 4-9s-1.5-6.5-4-9Z"></path></svg><span>${esc(langConfig[lang].label)}</span><span class="language-picker-chevron" aria-hidden="true">⌄</span></summary>
+<nav class="language-picker-options" aria-label="${attr(copy[lang].languageLabel)}">
 ${langOrder.map((code) => {
   const active = code === lang;
-  return `<a href="${attr(pageUrl(code, kind, slug))}" hreflang="${attr(code)}" lang="${attr(langConfig[code].htmlLang)}" data-lang-link="${attr(code)}" class="${active ? 'active' : ''}" aria-current="${active ? 'page' : 'false'}">${esc(langConfig[code].label)}</a>`;
-}).join('<span aria-hidden="true">｜</span>')}
-</nav>`;
+  return `<a href="${attr(pageUrl(code, kind, slug))}" hreflang="${attr(code)}" lang="${attr(langConfig[code].htmlLang)}" data-lang-link="${attr(code)}" class="${active ? 'active' : ''}" ${active ? 'aria-current="page"' : ''}>${esc(langConfig[code].label)}</a>`;
+}).join('')}
+</nav></details>`;
 }
 
 function alternateLinks(lang, kind = 'index', slug = '') {
@@ -1299,7 +1304,7 @@ function renderEventCards(eventList, lang) {
         <a href="${attr(pageUrl(lang, 'event', event.slug))}">${esc(copy[lang].detailsArrow)}</a>
         <a href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(copy[lang].calendarAdd)}</a>
         ${event.registrationUrl ? `<a href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(copy[lang].registrationAction)}</a>` : ''}
-        <a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(copy[lang].official)}</a>
+        <a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.sourceLinkLabel?.[lang] || copy[lang].official)}</a>
       </div>
     </article>`;
   }).join('\n');
@@ -1414,7 +1419,7 @@ function renderHeader(lang, kind = 'index', slug = '') {
       <a class="header-garbage-btn" href="${attr(garbageHref)}">${esc(t.headerGarbageButton)}</a>
     </div>
   </div>
-  <div class="wrap">${languageLinks(lang, kind, slug)}</div>
+  <div class="wrap header-language">${languageLinks(lang, kind, slug)}</div>
 </header>`;
 }
 
@@ -1444,6 +1449,7 @@ function renderIndexPage(lang) {
       timeDisplay: formatTimeRange(event, lang),
       url: event.officialSourceUrl,
       source: event.officialSourceName,
+      sourceLinkLabel: event.sourceLinkLabel?.[lang] || t.official,
       start: event.startDate,
       end: event.endDate,
     })),
@@ -1617,12 +1623,36 @@ function monthTitle(year, month, lang) {
 }
 
 function renderFooter(lang) {
+  const s = submissionCopy[lang];
   return `<footer>
-  <div class="wrap footer-inner">
-    <span>${esc(copy[lang].footerNotice)}</span>
-    <span><a href="https://spady.net/akindo/" target="_blank" rel="noopener">AKINDO Lab</a> ｜ <a href="https://spady.net/" target="_blank" rel="noopener">Spady</a> ｜ <a href="${attr(pageUrl(lang, 'privacy'))}">${esc(copy[lang].navPrivacy)}</a></span>
+  <div class="wrap footer-content">
+    <details class="listing-request">
+      <summary>${esc(s.trigger)} <span aria-hidden="true">＋</span></summary>
+      <div class="listing-request-body">
+        <p>${esc(s.intro)}</p>
+        <form class="listing-form" action="/api/listing" method="post" data-sending="${attr(s.sending)}" data-success="${attr(s.success)}" data-error="${attr(s.error)}">
+          <label>${esc(s.kind)}<select name="kind" required><option value="event">${esc(s.kinds[0])}</option><option value="opening">${esc(s.kinds[1])}</option><option value="other">${esc(s.kinds[2])}</option></select></label>
+          <label>${esc(s.title)}<input name="title" type="text" maxlength="120" required></label>
+          <label>${esc(s.date)}<input name="date" type="date"></label>
+          <label>${esc(s.venue)}<input name="venue" type="text" maxlength="160"></label>
+          <label>${esc(s.url)}<input name="officialUrl" type="url" maxlength="500" placeholder="https://"></label>
+          <label class="listing-wide">${esc(s.details)}<textarea name="details" rows="4" minlength="20" maxlength="2000" required></textarea></label>
+          <label>${esc(s.contactName)}<input name="contactName" type="text" maxlength="80" autocomplete="name" required></label>
+          <label>${esc(s.contactEmail)}<input name="contactEmail" type="email" maxlength="160" autocomplete="email" required></label>
+          <label class="listing-trap" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+          <label class="listing-consent listing-wide"><input name="consent" type="checkbox" value="yes" required><span>${esc(s.consent)} <a href="${attr(pageUrl(lang, 'privacy'))}">${esc(copy[lang].navPrivacy)}</a></span></label>
+          <div class="listing-wide listing-submit"><button type="submit">${esc(s.submit)}</button><p class="listing-status" role="status" aria-live="polite"></p></div>
+        </form>
+      </div>
+    </details>
+    <div class="footer-inner">
+      <span>${esc(copy[lang].footerNotice)}</span>
+      <nav aria-label="Footer"><a href="https://spady.net/" target="_blank" rel="noopener">Spady</a><a href="${attr(pageUrl(lang, 'privacy'))}">${esc(copy[lang].navPrivacy)}</a></nav>
+    </div>
   </div>
-</footer>`;
+</footer>
+<aside class="radio-dock" aria-label="ヲタル電波倶楽部"><span class="radio-dock-note">お知らせ</span><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640"><button type="button" class="radio-dock-close" aria-label="このお知らせを閉じる">×</button></aside>
+<script src="/assets/submission.js" defer></script>`;
 }
 
 function renderModal(lang) {
@@ -1691,10 +1721,10 @@ ${renderHeader(lang, 'event', event.slug)}
       <p class="source">${esc(t.sourceLabel)}：<a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.officialSourceName)}</a></p>
     </section>
     <div class="modal-actions detail-actions">
-      <a class="btn" href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(t.official)}</a>
+      <a class="btn" href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.sourceLinkLabel?.[lang] || t.official)}</a>
       ${event.registrationUrl ? `<a class="btn" href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(t.registrationAction)}</a>` : ''}
       <a class="btn calendar-btn" href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(t.calendarAdd)}</a>
-      ${event.mapQuery ? `<a class="btn map-external-btn" href="https://www.google.com/maps/search/?api=1&query=${attr(encodeURIComponent(event.mapQuery))}" target="_blank" rel="noopener">${esc(t.mapOpen)}</a>` : `<span class="map-empty">${esc(t.mapEmpty)}</span>`}
+      ${event.mapQuery ? `<a class="btn map-external-btn" href="https://www.google.com/maps/search/?api=1&query=${attr(encodeURIComponent(event.mapQuery))}" target="_blank" rel="noopener">${esc(t.mapOpen)}</a>` : `<span class="map-empty">${esc(t.mapEmpty)}<span class="radio-inline"><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640" loading="lazy"></span></span>`}
       <a class="btn ghost-btn" href="${attr(pageUrl(lang))}#calendar">${esc(t.backHome)}</a>
     </div>
     <section class="detail-section">
@@ -1743,8 +1773,8 @@ ${renderFooter(lang)}
 function privacySections(lang) {
   if (lang === 'ja') {
     return [
-      ['取得する情報', 'お問い合わせフォームおよびLINEを通じて、お名前、事業・会社名、メールアドレス、ご相談内容などの情報を取得します。'],
-      ['利用目的', '取得した情報は、お問い合わせへの回答、ご相談・お打ち合わせの調整、およびご依頼いただいた業務の遂行のためにのみ利用します。'],
+      ['取得する情報', 'お問い合わせフォーム、掲載情報の投稿フォームおよびLINEを通じて、お名前、事業・会社名、メールアドレス、ご相談内容、投稿いただいた情報などを取得します。'],
+      ['利用目的', '取得した情報は、お問い合わせへの回答、掲載内容と出典の確認、ご相談・お打ち合わせの調整、およびご依頼いただいた業務の遂行のために利用します。掲載フォームの内容は、Larkを通じて運営チームへ通知します。'],
       ['第三者への提供', '法令にもとづく場合を除き、ご本人の同意なく個人情報を第三者に提供することはありません。'],
       ['アクセス解析・広告ツール', '当サイトでは、サイト改善および広告配信の効果測定のため、Google アナリティクス等を利用する場合があります。'],
       ['安全管理', '取得した個人情報は、漏えい・滅失・毀損の防止のため、適切に管理します。'],
@@ -1754,8 +1784,8 @@ function privacySections(lang) {
   }
   if (lang === 'en') {
     return [
-      ['Information we collect', 'We may collect your name, organization, email address and inquiry details when you contact us through forms or messaging services.'],
-      ['Purpose of use', 'We use this information only to respond to inquiries, coordinate consultations and provide requested services.'],
+      ['Information we collect', 'We may collect your name, organization, email address, inquiry details and information submitted through the event or business listing form.'],
+      ['Purpose of use', 'We use this information to respond to inquiries, verify submissions and sources, coordinate consultations and provide requested services. Listing submissions are sent to the Spady team through Lark.'],
       ['Third-party disclosure', 'We do not provide personal information to third parties without consent except when required by law.'],
       ['Analytics and advertising tools', 'We may use tools such as Google Analytics to improve the site and measure advertising effectiveness. These tools may use cookies.'],
       ['Security management', 'We manage collected personal information appropriately to prevent leakage, loss or damage.'],
@@ -1765,8 +1795,8 @@ function privacySections(lang) {
   }
   if (lang === 'ko') {
     return [
-      ['수집하는 정보', '문의 양식이나 메시지를 통해 이름, 회사명, 이메일 주소, 상담 내용을 수집할 수 있습니다.'],
-      ['이용 목적', '문의 답변, 상담 일정 조정, 요청받은 업무 수행을 위해서만 이용합니다.'],
+      ['수집하는 정보', '문의 및 행사·가게 제보 양식이나 메시지를 통해 이름, 회사명, 이메일 주소, 상담 및 제보 내용을 수집할 수 있습니다.'],
+      ['이용 목적', '문의 답변, 제보 내용과 출처 확인, 상담 일정 조정 및 요청받은 업무 수행에 이용합니다. 제보 내용은 Lark를 통해 Spady 운영팀에 알립니다.'],
       ['제3자 제공', '법령에 따른 경우를 제외하고 본인 동의 없이 개인정보를 제3자에게 제공하지 않습니다.'],
       ['분석 및 광고 도구', '사이트 개선과 광고 효과 측정을 위해 Google Analytics 등의 도구를 사용할 수 있습니다.'],
       ['안전 관리', '개인정보의 유출, 분실, 훼손을 방지하기 위해 적절히 관리합니다.'],
@@ -1776,8 +1806,8 @@ function privacySections(lang) {
   }
   const hant = lang === 'zh-Hant';
   return [
-    [hant ? '取得的資訊' : '取得的信息', hant ? '透過諮詢表單或訊息服務聯絡時，可能取得姓名、公司名稱、電子郵件與諮詢內容。' : '通过咨询表单或消息服务联系时，可能取得姓名、公司名称、电子邮件和咨询内容。'],
-    [hant ? '使用目的' : '使用目的', hant ? '僅用於回覆諮詢、安排洽談以及執行受委託的業務。' : '仅用于回复咨询、安排沟通以及执行受委托的业务。'],
+    [hant ? '取得的資訊' : '取得的信息', hant ? '透過諮詢或活動、店鋪資訊提交表單時，可能取得姓名、公司名稱、電子郵件與提交內容。' : '通过咨询或活动、店铺信息提交表单时，可能取得姓名、公司名称、电子邮件和提交内容。'],
+    [hant ? '使用目的' : '使用目的', hant ? '用於回覆諮詢、查核提交內容與來源、安排洽談以及執行受委託的業務。投稿內容會透過 Lark 通知 Spady 團隊。' : '用于回复咨询、核实提交内容及来源、安排沟通和执行受委托的业务。投稿内容会通过 Lark 通知 Spady 团队。'],
     [hant ? '提供給第三方' : '向第三方提供', hant ? '除法律要求外，未經本人同意不會向第三方提供個人資訊。' : '除法律要求外，未经本人同意不会向第三方提供个人信息。'],
     [hant ? '分析與廣告工具' : '分析与广告工具', hant ? '為改善網站與衡量廣告效果，可能使用 Google Analytics 等工具。' : '为改善网站和衡量广告效果，可能使用 Google Analytics 等工具。'],
     [hant ? '安全管理' : '安全管理', hant ? '會採取適當措施管理個人資訊，防止洩漏、遺失或毀損。' : '会采取适当措施管理个人信息，防止泄露、遗失或损坏。'],
@@ -1947,7 +1977,7 @@ function renderList(){
   list.innerHTML = evs.map(e => {
     const d = parseDate(e.start);
     const officialName = data.lang !== 'ja' ? '<p class="official-name">'+escHtml(T.officialName)+'：'+escHtml(e.name)+'</p>' : '';
-    return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><strong>'+d.getDate()+'</strong><small>'+fullDate(d)+'</small></div></div><div><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3>'+officialName+'<p><strong>'+escHtml(T.dateTime)+'：</strong>'+escHtml(fullDate(d)+' '+timeRange(e))+'</p><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+e.detailUrl+'">'+escHtml(T.detailsArrow)+'</a><a href="'+e.calendarUrl+'" target="_blank" rel="noopener">'+escHtml(T.calendarAdd)+'</a>'+(e.registrationUrl ? '<a href="'+e.registrationUrl+'" target="_blank" rel="noopener">'+escHtml(T.registrationAction)+'</a>' : '')+'<a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a></div></article>';
+    return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><strong>'+d.getDate()+'</strong><small>'+fullDate(d)+'</small></div></div><div><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3>'+officialName+'<p><strong>'+escHtml(T.dateTime)+'：</strong>'+escHtml(fullDate(d)+' '+timeRange(e))+'</p><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+e.detailUrl+'">'+escHtml(T.detailsArrow)+'</a><a href="'+e.calendarUrl+'" target="_blank" rel="noopener">'+escHtml(T.calendarAdd)+'</a>'+(e.registrationUrl ? '<a href="'+e.registrationUrl+'" target="_blank" rel="noopener">'+escHtml(T.registrationAction)+'</a>' : '')+'<a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(e.sourceLinkLabel || T.official)+'</a></div></article>';
   }).join('') || (periodEvs.length ? '' : '<p class="empty-results">'+escHtml(T.emptyResults)+'</p>');
 }
 function renderOngoing(){
@@ -1966,6 +1996,7 @@ function openEventModal(e){
   document.getElementById('modalDetailLink').href = e.detailUrl;
   document.getElementById('modalDetailLink').style.display = 'inline-flex';
   document.getElementById('modalLink').href = e.url;
+  document.getElementById('modalLink').textContent = e.sourceLinkLabel || T.official;
   document.getElementById('modalLink').style.display = 'inline-flex';
   document.getElementById('modalCalendarLink').href = e.calendarUrl;
   document.getElementById('modalCalendarLink').style.display = 'inline-flex';
@@ -1987,7 +2018,7 @@ function openDayModal(date, dayEvents){
     renderMap('', '');
   } else {
     document.getElementById('modalDetailLink').style.display = 'none';
-    document.getElementById('modalBody').innerHTML = '<div class="day-events-list">'+dayEvents.map(e => '<div class="day-event-item"><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(timeRange(e))+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p><p><a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(T.official)+'</a></p></div>').join('')+'</div>';
+    document.getElementById('modalBody').innerHTML = '<div class="day-events-list">'+dayEvents.map(e => '<div class="day-event-item"><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(timeRange(e))+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p><p><a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(e.sourceLinkLabel || T.official)+'</a></p></div>').join('')+'</div>';
     document.getElementById('modalSource').textContent = T.items ? T.items(dayEvents.length) : dayEvents.length;
     document.getElementById('modalLink').style.display = 'none';
     document.getElementById('modalCalendarLink').style.display = 'none';
@@ -2006,7 +2037,7 @@ function renderMap(query,title){
     external.href = 'https://www.google.com/maps/search/?api=1&query='+encoded;
     external.style.display = 'inline-flex';
   } else {
-    map.innerHTML = '<div class="map-empty">'+escHtml(T.mapEmpty)+'</div>';
+    map.innerHTML = '<div class="map-empty"><p>'+escHtml(T.mapEmpty)+'</p><div class="radio-inline"><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640" loading="lazy"></div></div>';
     external.style.display = 'none';
   }
 }

@@ -1661,9 +1661,9 @@
     "place": "会場未発表",
     "address": "",
     "mapQuery": "",
-    "summary": "小樽発、地域事業者向けの少人数制デジタル集客勉強会。2026年10月21日は18:00開場、18:30開始です。公式ページの年間予定では10月のテーマを「LINE公式の基本と活用法」と案内していますが、開催回によって内容が変更される場合があります。会場、終了時刻、料金、申込方法、受付状況は2026年8月24日時点で公式ページに掲載されていません。",
-    "description": "AKINDO Lab by Spadyは、小樽・銭函を拠点に活動するSpadyが主催する、地域事業者向けのデジタル集客勉強会です。Instagram、LINE公式アカウント、Googleビジネスプロフィール、Meta広告、AI、ホームページや予約導線などを扱います。2026年10月21日は18:00開場、18:30開始です。公式ページの年間予定では10月のテーマを「LINE公式の基本と活用法」と案内していますが、開催回によって内容や日程が変更される場合があります。会場、終了時刻、料金、申込方法、受付状況は2026年8月24日時点で未発表のため、推測せず公式ページの更新をお待ちください。",
-    "source": "Spady（主催者提供情報・公式ページ）",
+    "summary": "地域事業者向けのデジタル集客勉強会。10月21日はLINE公式アカウントがテーマで、18:00開場・18:30開始です。主催者の案内では満席です。会場と終了時刻は未発表です。",
+    "description": "AKINDO Lab by Spadyは、Spadyが主催する地域事業者向けのデジタル集客勉強会です。2026年10月21日はLINE公式アカウントの基本と活用法を扱い、18:00開場・18:30開始です。主催者から満席との案内がありました。会場・終了時刻・参加費は公式ページで確認できていないため、推測せず主催者の最新案内をご確認ください。",
+    "source": "Spady（主催者提供の開催・満席情報／公式ページのテーマ案内）",
     "organizer": "Spady",
     "organizerUrl": "https://spady.net/akindo/",
     "url": "https://spady.net/akindo/",
@@ -1682,56 +1682,56 @@
       "ko": "미정(공식 페이지 확인 필요)"
     },
     "reservation": {
-      "ja": "申込方法・受付状況は未発表（公式ページをご確認ください）",
-      "en": "Registration method and availability have not yet been announced; check the official page",
-      "zh-Hant": "報名方式與名額狀況尚未公布，請確認官方頁面",
-      "zh-Hans": "报名方式和名额情况尚未公布，请查看官方页面",
-      "ko": "신청 방법과 접수 상태는 미정(공식 페이지 확인 필요)"
+      "ja": "満席（主催者からの案内。追加募集の有無は公式ページをご確認ください）",
+      "en": "Full, according to the organizer. Check the official page for any additional places.",
+      "zh-Hant": "已額滿（主辦單位告知）；如有追加名額，請確認官方頁面。",
+      "zh-Hans": "已满（主办方告知）；如有追加名额，请查看官方页面。",
+      "ko": "만석(주최 측 안내). 추가 모집 여부는 공식 페이지를 확인해 주세요."
     },
-    "reservationStatus": "unknown",
-    "sourceCheckedAt": "2026-08-24",
-    "updatedAt": "2026-08-24",
+    "reservationStatus": "soldOut",
+    "sourceCheckedAt": "2026-09-25",
+    "updatedAt": "2026-09-25",
     "eventStatus": "EventScheduled",
     "translations": {
       "en": {
         "name": "AKINDO Lab by Spady",
-        "summary": "A small-group digital marketing study session for local businesses, organized by Spady in Otaru. Doors open at 6:00 PM and the session starts at 6:30 PM JST on October 21, 2026. The official annual plan lists “LINE Official Account Basics and Practical Use” as the October theme, but session content may change. The venue, end time, fee, registration method and availability had not been announced as of August 24, 2026.",
-        "description": "AKINDO Lab by Spady is a small-group digital marketing study session for local businesses, organized by Spady in Otaru. Topics include Instagram, LINE Official Account, Google Business Profile, Meta ads, AI, websites and booking flows. Doors open at 6:00 PM and the session starts at 6:30 PM JST on October 21, 2026. The official annual plan lists “LINE Official Account Basics and Practical Use” as the October theme, but the content and schedule may change. The venue, end time, fee, registration method and availability had not been announced as of August 24, 2026; please check the official page for updates.",
+        "summary": "A digital marketing study session for local businesses on LINE Official Account. Doors open at 6:00 PM and the session starts at 6:30 PM JST on October 21. The organizer says it is full; the venue and end time have not been announced.",
+        "description": "AKINDO Lab by Spady is a digital marketing study session for local businesses in Otaru. The October 21, 2026 session covers the basics and practical use of LINE Official Account. Doors open at 6:00 PM and the session begins at 6:30 PM JST. The organizer has reported that all places are taken. The venue, end time and fee have not been confirmed on the official page; check the organizer's latest information.",
         "venueName": "Venue not yet announced",
         "address": "",
         "audience": "Owners and staff of local shops and small businesses in Otaru, Sapporo, Teine, Ishikari, Yoichi and nearby areas",
         "price": "Not yet announced; check the official page",
-        "reservation": "Registration method and availability have not yet been announced; check the official page"
+        "reservation": "Full, according to the organizer. Check the official page for any additional places."
       },
       "zh-Hant": {
         "name": "AKINDO Lab by Spady",
-        "summary": "由 Spady 在小樽主辦、面向在地商家的小班制數位集客學習會。2026年10月21日18:00開場、18:30開始。官方年度規劃將10月主題列為「LINE官方帳號基礎與運用」，但每次內容可能調整。截至2026年8月24日，會場、結束時間、費用、報名方式與名額狀況尚未公布。",
-        "description": "AKINDO Lab by Spady 是 Spady 在小樽主辦、面向在地商家的小班制數位集客學習會，內容涵蓋 Instagram、LINE官方帳號、Google 商家檔案、Meta 廣告、AI、網站與預約流程。2026年10月21日18:00開場、18:30開始。官方年度規劃將10月主題列為「LINE官方帳號基礎與運用」，但內容與日程可能調整。截至2026年8月24日，會場、結束時間、費用、報名方式與名額狀況尚未公布，請以官方頁面更新為準。",
+        "summary": "面向在地商家的數位集客學習會，10月21日主題為 LINE 官方帳號。18:00開場、18:30開始；主辦單位告知已額滿。會場與結束時間尚未公布。",
+        "description": "AKINDO Lab by Spady 是在小樽舉辦的在地商家數位集客學習會。2026年10月21日的主題是 LINE 官方帳號基礎與運用，18:00開場、18:30開始。主辦單位告知已額滿。官方頁面尚未確認會場、結束時間與費用，請以主辦單位最新消息為準。",
         "venueName": "會場尚未公布",
         "address": "",
         "audience": "小樽、札幌、手稻、石狩、余市等地區的商家與中小企業",
         "price": "尚未公布，請確認官方頁面",
-        "reservation": "報名方式與名額狀況尚未公布，請確認官方頁面"
+        "reservation": "已額滿（主辦單位告知）；如有追加名額，請確認官方頁面。"
       },
       "zh-Hans": {
         "name": "AKINDO Lab by Spady",
-        "summary": "由 Spady 在小樽主办、面向当地商家的小班制数字营销学习会。2026年10月21日18:00入场、18:30开始。官方年度计划将10月主题列为“LINE官方账号基础与应用”，但每期内容可能调整。截至2026年8月24日，会场、结束时间、费用、报名方式和名额情况尚未公布。",
-        "description": "AKINDO Lab by Spady 是 Spady 在小樽主办、面向当地商家的小班制数字营销学习会，内容包括 Instagram、LINE官方账号、Google 商家资料、Meta 广告、AI、网站和预约流程。2026年10月21日18:00入场、18:30开始。官方年度计划将10月主题列为“LINE官方账号基础与应用”，但内容和日程可能调整。截至2026年8月24日，会场、结束时间、费用、报名方式和名额情况尚未公布，请以官方页面更新为准。",
+        "summary": "面向当地商家的数字营销学习会，10月21日主题为 LINE 官方账号。18:00入场、18:30开始；主办方告知已满。会场和结束时间尚未公布。",
+        "description": "AKINDO Lab by Spady 是在小樽举办的当地商家数字营销学习会。2026年10月21日的主题是 LINE 官方账号基础与应用，18:00入场、18:30开始。主办方告知已满。官方页面尚未确认会场、结束时间和费用，请以主办方最新消息为准。",
         "venueName": "会场尚未公布",
         "address": "",
         "audience": "小樽、札幌、手稻、石狩、余市等地区的商家和中小企业",
         "price": "尚未公布，请查看官方页面",
-        "reservation": "报名方式和名额情况尚未公布，请查看官方页面"
+        "reservation": "已满（主办方告知）；如有追加名额，请查看官方页面。"
       },
       "ko": {
         "name": "AKINDO Lab by Spady",
-        "summary": "Spady가 오타루에서 주최하는 지역 사업자 대상 소규모 디지털 마케팅 스터디입니다. 2026년 10월 21일 18:00 입장, 18:30 시작입니다. 공식 연간 계획에는 10월 주제가 ‘LINE 공식 계정의 기본과 활용법’으로 안내되어 있으나 회차별 내용은 변경될 수 있습니다. 2026년 8월 24일 현재 장소, 종료 시각, 참가비, 신청 방법과 접수 상태는 발표되지 않았습니다.",
-        "description": "AKINDO Lab by Spady는 Spady가 오타루에서 주최하는 지역 사업자 대상 소규모 디지털 마케팅 스터디입니다. Instagram, LINE 공식 계정, Google 비즈니스 프로필, Meta 광고, AI, 웹사이트와 예약 동선을 다룹니다. 2026년 10월 21일 18:00 입장, 18:30 시작입니다. 공식 연간 계획에는 10월 주제가 ‘LINE 공식 계정의 기본과 활용법’으로 안내되어 있으나 내용과 일정은 변경될 수 있습니다. 2026년 8월 24일 현재 장소, 종료 시각, 참가비, 신청 방법과 접수 상태는 발표되지 않았으므로 공식 페이지의 최신 내용을 확인해 주세요.",
+        "summary": "지역 사업자를 위한 디지털 마케팅 스터디로 10월 21일 주제는 LINE 공식 계정입니다. 18:00 입장, 18:30 시작이며 주최 측에 따르면 만석입니다. 장소와 종료 시각은 미정입니다.",
+        "description": "AKINDO Lab by Spady는 오타루 지역 사업자를 위한 디지털 마케팅 스터디입니다. 2026년 10월 21일에는 LINE 공식 계정의 기본과 활용법을 다루며 18:00 입장, 18:30 시작입니다. 주최 측에서 만석이라고 안내했습니다. 장소, 종료 시각, 참가비는 공식 페이지에서 확인되지 않았으므로 주최 측의 최신 안내를 확인해 주세요.",
         "venueName": "장소 미정",
         "address": "",
         "audience": "오타루·삿포로·테이네·이시카리·요이치 등 지역의 점포 및 중소기업 관계자",
         "price": "미정(공식 페이지 확인 필요)",
-        "reservation": "신청 방법과 접수 상태는 미정(공식 페이지 확인 필요)"
+        "reservation": "만석(주최 측 안내). 추가 모집 여부는 공식 페이지를 확인해 주세요."
       }
     }
   },

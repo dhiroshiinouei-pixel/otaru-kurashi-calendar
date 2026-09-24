@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
 const dataFiles = [
   'data/events.json',
+  'data/events-curated-20260925.json',
   'data/events-official-municipal-20260723.json',
   'data/events-official-tourism-20260723.json',
 ];

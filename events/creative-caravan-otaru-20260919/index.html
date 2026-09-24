@@ -25,8 +25,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="alternate" hreflang="ko" href="https://otaru.spady.net/ko/events/creative-caravan-otaru-20260919/">
 <link rel="alternate" hreflang="x-default" href="https://otaru.spady.net/events/creative-caravan-otaru-20260919/">
 <link rel="icon" href="/assets/favicon-otaru-20260713.png" type="image/png">
-<link rel="stylesheet" href="/assets/site.css?v=20260906-renewal">
-<link rel="stylesheet" href="/assets/renewal.css?v=20260906-renewal">
+<link rel="stylesheet" href="/assets/site.css?v=20260925-renewal">
+<link rel="stylesheet" href="/assets/renewal.css?v=20260925-renewal">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:locale:alternate" content="en_US">
@@ -69,9 +69,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <a class="header-garbage-btn" href="https://otaru.spady.net/#garbage">ごみ収集日</a>
     </div>
   </div>
-  <div class="wrap"><nav class="language-switcher" aria-label="表示言語">
-<a href="https://otaru.spady.net/events/creative-caravan-otaru-20260919/" hreflang="ja" lang="ja" data-lang-link="ja" class="active" aria-current="page">日本語</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/en/events/creative-caravan-otaru-20260919/" hreflang="en" lang="en" data-lang-link="en" class="" aria-current="false">English</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/zh-hant/events/creative-caravan-otaru-20260919/" hreflang="zh-Hant" lang="zh-Hant" data-lang-link="zh-Hant" class="" aria-current="false">繁體中文</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/zh-hans/events/creative-caravan-otaru-20260919/" hreflang="zh-Hans" lang="zh-Hans" data-lang-link="zh-Hans" class="" aria-current="false">简体中文</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/ko/events/creative-caravan-otaru-20260919/" hreflang="ko" lang="ko" data-lang-link="ko" class="" aria-current="false">한국어</a>
-</nav></div>
+  <div class="wrap header-language"><details class="language-picker">
+<summary aria-label="表示言語"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c-2.5 2.5-4 5.5-4 9s1.5 6.5 4 9c2.5-2.5 4-5.5 4-9s-1.5-6.5-4-9Z"></path></svg><span>日本語</span><span class="language-picker-chevron" aria-hidden="true">⌄</span></summary>
+<nav class="language-picker-options" aria-label="表示言語">
+<a href="https://otaru.spady.net/events/creative-caravan-otaru-20260919/" hreflang="ja" lang="ja" data-lang-link="ja" class="active" aria-current="page">日本語</a><a href="https://otaru.spady.net/en/events/creative-caravan-otaru-20260919/" hreflang="en" lang="en" data-lang-link="en" class="" >English</a><a href="https://otaru.spady.net/zh-hant/events/creative-caravan-otaru-20260919/" hreflang="zh-Hant" lang="zh-Hant" data-lang-link="zh-Hant" class="" >繁體中文</a><a href="https://otaru.spady.net/zh-hans/events/creative-caravan-otaru-20260919/" hreflang="zh-Hans" lang="zh-Hans" data-lang-link="zh-Hans" class="" >简体中文</a><a href="https://otaru.spady.net/ko/events/creative-caravan-otaru-20260919/" hreflang="ko" lang="ko" data-lang-link="ko" class="" >한국어</a>
+</nav></details></div>
 </header>
 <main class="detail-main">
   <article class="event-detail wrap">
@@ -164,10 +166,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </article>
 </main>
 <footer>
-  <div class="wrap footer-inner">
-    <span>本サイトは小樽市や行政機関の公式サイトではありません。公開情報を整理した民間運営のカレンダーです。</span>
-    <span><a href="https://spady.net/akindo/" target="_blank" rel="noopener">AKINDO Lab</a> ｜ <a href="https://spady.net/" target="_blank" rel="noopener">Spady</a> ｜ <a href="https://otaru.spady.net/privacy/">プライバシー</a></span>
+  <div class="wrap footer-content">
+    <details class="listing-request">
+      <summary>イベント・お店の掲載を知らせる <span aria-hidden="true">＋</span></summary>
+      <div class="listing-request-body">
+        <p>小樽のイベントや新しいお店の情報をお寄せください。掲載可否と内容は確認後に判断します。</p>
+        <form class="listing-form" action="/api/listing" method="post" data-sending="送信中…" data-success="ありがとうございます。情報を受け付けました。内容を確認します。" data-error="送信できませんでした。時間をおいて再度お試しください。">
+          <label>情報の種類<select name="kind" required><option value="event">イベント</option><option value="opening">お店のオープン</option><option value="other">その他の地域情報</option></select></label>
+          <label>イベント名・お店の名前<input name="title" type="text" maxlength="120" required></label>
+          <label>開催日・オープン日（分かる場合）<input name="date" type="date"></label>
+          <label>会場・所在地（分かる場合）<input name="venue" type="text" maxlength="160"></label>
+          <label>公式ページ・公式SNSのURL（分かる場合）<input name="officialUrl" type="url" maxlength="500" placeholder="https://"></label>
+          <label class="listing-wide">内容と、確認できる情報源<textarea name="details" rows="4" minlength="20" maxlength="2000" required></textarea></label>
+          <label>ご担当者名<input name="contactName" type="text" maxlength="80" autocomplete="name" required></label>
+          <label>返信先メールアドレス<input name="contactEmail" type="email" maxlength="160" autocomplete="email" required></label>
+          <label class="listing-trap" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+          <label class="listing-consent listing-wide"><input name="consent" type="checkbox" value="yes" required><span>入力情報を掲載内容の確認・返信・Larkでの社内通知に利用することに同意します。 <a href="https://otaru.spady.net/privacy/">プライバシー</a></span></label>
+          <div class="listing-wide listing-submit"><button type="submit">掲載情報を送信</button><p class="listing-status" role="status" aria-live="polite"></p></div>
+        </form>
+      </div>
+    </details>
+    <div class="footer-inner">
+      <span>本サイトは小樽市や行政機関の公式サイトではありません。公開情報を整理した民間運営のカレンダーです。</span>
+      <nav aria-label="Footer"><a href="https://spady.net/" target="_blank" rel="noopener">Spady</a><a href="https://otaru.spady.net/privacy/">プライバシー</a></nav>
+    </div>
   </div>
 </footer>
+<aside class="radio-dock" aria-label="ヲタル電波倶楽部"><span class="radio-dock-note">お知らせ</span><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640"><button type="button" class="radio-dock-close" aria-label="このお知らせを閉じる">×</button></aside>
+<script src="/assets/submission.js" defer></script>
 </body>
 </html>

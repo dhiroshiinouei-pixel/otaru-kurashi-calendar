@@ -25,8 +25,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="alternate" hreflang="ko" href="https://otaru.spady.net/ko/events/ototano-aquarium-20260926/">
 <link rel="alternate" hreflang="x-default" href="https://otaru.spady.net/events/ototano-aquarium-20260926/">
 <link rel="icon" href="/assets/favicon-otaru-20260713.png" type="image/png">
-<link rel="stylesheet" href="/assets/site.css?v=20260906-renewal">
-<link rel="stylesheet" href="/assets/renewal.css?v=20260906-renewal">
+<link rel="stylesheet" href="/assets/site.css?v=20260925-renewal">
+<link rel="stylesheet" href="/assets/renewal.css?v=20260925-renewal">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
@@ -69,9 +69,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <a class="header-garbage-btn" href="https://otaru.spady.net/en/#garbage">Garbage collection days</a>
     </div>
   </div>
-  <div class="wrap"><nav class="language-switcher" aria-label="Language">
-<a href="https://otaru.spady.net/events/ototano-aquarium-20260926/" hreflang="ja" lang="ja" data-lang-link="ja" class="" aria-current="false">日本語</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/en/events/ototano-aquarium-20260926/" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">English</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/zh-hant/events/ototano-aquarium-20260926/" hreflang="zh-Hant" lang="zh-Hant" data-lang-link="zh-Hant" class="" aria-current="false">繁體中文</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/zh-hans/events/ototano-aquarium-20260926/" hreflang="zh-Hans" lang="zh-Hans" data-lang-link="zh-Hans" class="" aria-current="false">简体中文</a><span aria-hidden="true">｜</span><a href="https://otaru.spady.net/ko/events/ototano-aquarium-20260926/" hreflang="ko" lang="ko" data-lang-link="ko" class="" aria-current="false">한국어</a>
-</nav></div>
+  <div class="wrap header-language"><details class="language-picker">
+<summary aria-label="Language"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c-2.5 2.5-4 5.5-4 9s1.5 6.5 4 9c2.5-2.5 4-5.5 4-9s-1.5-6.5-4-9Z"></path></svg><span>English</span><span class="language-picker-chevron" aria-hidden="true">⌄</span></summary>
+<nav class="language-picker-options" aria-label="Language">
+<a href="https://otaru.spady.net/events/ototano-aquarium-20260926/" hreflang="ja" lang="ja" data-lang-link="ja" class="" >日本語</a><a href="https://otaru.spady.net/en/events/ototano-aquarium-20260926/" hreflang="en" lang="en" data-lang-link="en" class="active" aria-current="page">English</a><a href="https://otaru.spady.net/zh-hant/events/ototano-aquarium-20260926/" hreflang="zh-Hant" lang="zh-Hant" data-lang-link="zh-Hant" class="" >繁體中文</a><a href="https://otaru.spady.net/zh-hans/events/ototano-aquarium-20260926/" hreflang="zh-Hans" lang="zh-Hans" data-lang-link="zh-Hans" class="" >简体中文</a><a href="https://otaru.spady.net/ko/events/ototano-aquarium-20260926/" hreflang="ko" lang="ko" data-lang-link="ko" class="" >한국어</a>
+</nav></details></div>
 </header>
 <main class="detail-main">
   <article class="event-detail wrap">
@@ -164,10 +166,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </article>
 </main>
 <footer>
-  <div class="wrap footer-inner">
-    <span>This is not an official Otaru City or government website. It is a privately operated calendar that organizes public information.</span>
-    <span><a href="https://spady.net/akindo/" target="_blank" rel="noopener">AKINDO Lab</a> ｜ <a href="https://spady.net/" target="_blank" rel="noopener">Spady</a> ｜ <a href="https://otaru.spady.net/en/privacy/">Privacy</a></span>
+  <div class="wrap footer-content">
+    <details class="listing-request">
+      <summary>Submit an event or new business <span aria-hidden="true">＋</span></summary>
+      <div class="listing-request-body">
+        <p>Tell us about an Otaru event or newly opened business. We review the facts before deciding whether to list it.</p>
+        <form class="listing-form" action="/api/listing" method="post" data-sending="Sending…" data-success="Thank you. Your information has been received and will be reviewed." data-error="We could not send your information. Please try again later.">
+          <label>Information type<select name="kind" required><option value="event">Event</option><option value="opening">New business</option><option value="other">Other local information</option></select></label>
+          <label>Event or business name<input name="title" type="text" maxlength="120" required></label>
+          <label>Event or opening date (if known)<input name="date" type="date"></label>
+          <label>Venue or address (if known)<input name="venue" type="text" maxlength="160"></label>
+          <label>Official page or social media URL (if available)<input name="officialUrl" type="url" maxlength="500" placeholder="https://"></label>
+          <label class="listing-wide">Details and verifiable source<textarea name="details" rows="4" minlength="20" maxlength="2000" required></textarea></label>
+          <label>Your name<input name="contactName" type="text" maxlength="80" autocomplete="name" required></label>
+          <label>Email for a reply<input name="contactEmail" type="email" maxlength="160" autocomplete="email" required></label>
+          <label class="listing-trap" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+          <label class="listing-consent listing-wide"><input name="consent" type="checkbox" value="yes" required><span>I agree that my information may be used to review this submission, reply to me and notify the Spady team through Lark. <a href="https://otaru.spady.net/en/privacy/">Privacy</a></span></label>
+          <div class="listing-wide listing-submit"><button type="submit">Send information</button><p class="listing-status" role="status" aria-live="polite"></p></div>
+        </form>
+      </div>
+    </details>
+    <div class="footer-inner">
+      <span>This is not an official Otaru City or government website. It is a privately operated calendar that organizes public information.</span>
+      <nav aria-label="Footer"><a href="https://spady.net/" target="_blank" rel="noopener">Spady</a><a href="https://otaru.spady.net/en/privacy/">Privacy</a></nav>
+    </div>
   </div>
 </footer>
+<aside class="radio-dock" aria-label="ヲタル電波倶楽部"><span class="radio-dock-note">お知らせ</span><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640"><button type="button" class="radio-dock-close" aria-label="このお知らせを閉じる">×</button></aside>
+<script src="/assets/submission.js" defer></script>
 </body>
 </html>

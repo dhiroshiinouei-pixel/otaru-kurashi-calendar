@@ -196,3 +196,61 @@ footer{background:#e9eee4;padding:30px 0;color:#4a5f43;font-size:13px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.splash{display:none!important}}
 @media(forced-colors:active){.day.today{border:2px solid Highlight}.filter.active,.view-switch [aria-pressed="true"]{border:2px solid Highlight}}
 @media print{header,.hero,.splash,.calendar-tools,.calendar-filter-row,footer,.local-pages-banner{display:none!important}.wrap{width:100%}.panel,.event-card{box-shadow:none;break-inside:avoid}}
+
+/* Compact language chooser, submission form and unobtrusive radio announcement. */
+.header-language{display:flex;justify-content:flex-end;position:relative;z-index:90;padding-bottom:10px}
+.language-picker{position:relative;font-size:13px;color:var(--ink)}
+.language-picker summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:7px 12px;background:#fff;border:1px solid #b9c9be;border-radius:9px;font-weight:700}
+.language-picker summary::-webkit-details-marker{display:none}
+.language-picker summary svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;flex:none}
+.language-picker-chevron{font-size:16px;line-height:1;margin-left:2px}
+.language-picker[open] .language-picker-chevron{transform:rotate(180deg)}
+.language-picker-options{position:absolute;right:0;top:calc(100% + 4px);width:max-content;min-width:180px;padding:6px;display:grid;gap:2px;background:#fff;border:1px solid #cbd7cd;border-radius:10px;box-shadow:0 10px 24px rgba(20,50,38,.14)}
+.language-picker-options a{display:flex;align-items:center;min-height:44px;padding:8px 12px;border-radius:7px;color:#23463c;text-decoration:none;font-weight:600}
+.language-picker-options a:hover,.language-picker-options a:focus-visible{background:#eef3ec}
+.language-picker-options a.active{background:#e1ede3;color:#173e32}
+.language-picker summary:focus-visible,.radio-dock-close:focus-visible,.listing-request summary:focus-visible,.listing-form :focus-visible{outline:3px solid #186d8c;outline-offset:3px}
+
+footer{padding:28px 0 32px}
+.footer-content{display:grid;gap:20px}
+.listing-request{border:1px solid #c9d8ca;border-radius:12px;background:#fff;overflow:hidden}
+.listing-request>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:52px;padding:12px 18px;color:#183e35;font-size:15px;font-weight:720}
+.listing-request>summary::-webkit-details-marker{display:none}
+.listing-request>summary span{font-size:21px;line-height:1}
+.listing-request[open]>summary span{transform:rotate(45deg)}
+.listing-request-body{padding:0 18px 20px;border-top:1px solid #e2eae1}
+.listing-request-body>p{margin:14px 0 18px;max-width:680px;color:#536657;font-size:13px}
+.listing-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px}
+.listing-form label{display:grid;gap:6px;min-width:0;color:#304c41;font-size:13px;font-weight:650}
+.listing-form input:not([type=checkbox]),.listing-form select,.listing-form textarea{width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid #aebeb1;border-radius:8px;background:#fff;color:#1d372f;font:inherit;font-size:16px}
+.listing-form textarea{resize:vertical;line-height:1.6}
+.listing-form .listing-wide{grid-column:1/-1}
+.listing-form .listing-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.listing-form .listing-consent{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.7;font-weight:500}
+.listing-consent input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:#285d4d}
+.listing-consent a{color:#225d51;text-decoration:underline}
+.listing-submit{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.listing-submit button{min-height:46px;padding:10px 20px;border:0;border-radius:8px;background:#22584a;color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.listing-submit button:hover{background:#194336}
+.listing-submit button:disabled{opacity:.6;cursor:wait}
+.listing-status{margin:0!important;font-size:13px;color:#245c45}
+.listing-status.is-error{color:#9b3030}
+.footer-inner{display:flex;align-items:center;gap:14px;padding-top:0;font-size:12px}
+.footer-inner>span{max-width:650px}
+.footer-inner nav{display:flex;gap:16px;flex-wrap:wrap}
+.footer-inner nav a{color:#315e49;text-underline-offset:3px}
+
+body{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+body.radio-dismissed{padding-bottom:0}
+.radio-dock{position:fixed;left:0;right:0;bottom:0;z-index:80;min-height:88px;padding:6px 64px calc(6px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;gap:14px;background:#fff;border-top:1px solid #cbd8ce;box-shadow:0 -4px 20px rgba(18,41,31,.1)}
+.radio-dismissed .radio-dock,.modal-open .radio-dock{display:none}
+.radio-dock-note{color:#5d665d;font-size:11px;letter-spacing:.08em}
+.radio-dock img{width:min(340px,calc(100vw - 105px));height:68px;object-fit:cover;object-position:center;border-radius:6px;display:block}
+.radio-dock-close{position:absolute;right:14px;top:calc(50% - 22px);width:44px;height:44px;border:1px solid #d4ddd3;background:#f7f9f5;color:#324d3b;border-radius:8px;font-size:22px;cursor:pointer}
+.map-wrap:has(.map-empty){min-height:0}
+.map-empty{display:block;padding:14px;text-align:center}
+.map-empty>p{margin:0 0 12px}
+.radio-inline{display:block;margin:12px auto 0;max-width:400px}
+.radio-inline img{display:block;width:100%;height:auto;border-radius:8px}
+@media(max-width:640px){.header-language{padding-bottom:8px}.listing-form{grid-template-columns:1fr}.listing-request-body{padding:0 14px 18px}.listing-request>summary{padding:10px 14px}.footer-inner{align-items:flex-start}.radio-dock{padding-left:12px;padding-right:60px;min-height:84px}.radio-dock-note{display:none}.radio-dock img{width:min(290px,calc(100vw - 84px));height:64px}.radio-dock-close{right:8px}}
+@media print{.radio-dock{display:none!important}body{padding-bottom:0}}
