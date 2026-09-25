@@ -1,6 +1,6 @@
 {
   "ja": {
-    "trigger": "イベント・お店の掲載を知らせる",
+    "trigger": "掲載情報を送る",
     "intro": "小樽のイベントや新しいお店の情報をお寄せください。掲載可否と内容は確認後に判断します。",
     "kind": "情報の種類",
     "kinds": ["イベント", "お店のオープン", "その他の地域情報"],
@@ -18,7 +18,7 @@
     "error": "送信できませんでした。時間をおいて再度お試しください。"
   },
   "en": {
-    "trigger": "Submit an event or new business",
+    "trigger": "Submit a listing",
     "intro": "Tell us about an Otaru event or newly opened business. We review the facts before deciding whether to list it.",
     "kind": "Information type",
     "kinds": ["Event", "New business", "Other local information"],
@@ -36,7 +36,7 @@
     "error": "We could not send your information. Please try again later."
   },
   "zh-Hant": {
-    "trigger": "提供活動或新店資訊",
+    "trigger": "提供刊登資訊",
     "intro": "歡迎提供小樽活動或新開店資訊。確認事實後，再決定是否刊登。",
     "kind": "資訊類型",
     "kinds": ["活動", "新開店", "其他在地資訊"],
@@ -54,7 +54,7 @@
     "error": "未能送出資訊，請稍後重試。"
   },
   "zh-Hans": {
-    "trigger": "提交活动或新店信息",
+    "trigger": "提交刊登信息",
     "intro": "欢迎提交小樽活动或新开店信息。核实事实后，再决定是否刊登。",
     "kind": "信息类型",
     "kinds": ["活动", "新开店", "其他当地信息"],
@@ -72,7 +72,7 @@
     "error": "发送失败，请稍后重试。"
   },
   "ko": {
-    "trigger": "행사·새 가게 정보 제보",
+    "trigger": "게재 정보 보내기",
     "intro": "오타루의 행사나 새로 문을 여는 가게를 알려주세요. 사실 확인 후 게재 여부를 결정합니다.",
     "kind": "정보 종류",
     "kinds": ["행사", "새 가게", "그 밖의 지역 정보"],

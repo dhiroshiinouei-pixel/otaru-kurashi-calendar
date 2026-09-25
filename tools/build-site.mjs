@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import discoveredEvents from '../data/events-discovered-20260925.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -14,13 +15,14 @@ const today = new Intl.DateTimeFormat('sv-SE', {
 const [defaultYear, defaultMonthNumber] = today.split('-').map(Number);
 const defaultMonth = { year: defaultYear, month: defaultMonthNumber - 1 };
 const buildDate = today;
-const cssVersion = `${buildDate.replaceAll('-', '')}-renewal`;
+const cssVersion = `${buildDate.replaceAll('-', '')}-calendar-refresh-2`;
 const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
 const rawEvents = [
   ...readJson('data/events.json'),
   ...readJson('data/events-curated-20260925.json'),
+  ...discoveredEvents,
   ...readJson('data/events-official-municipal-20260723.json'),
   ...readJson('data/events-official-tourism-20260723.json'),
 ];
@@ -1401,12 +1403,10 @@ function populationLabel(lang) {
 function renderHeader(lang, kind = 'index', slug = '') {
   const t = copy[lang];
   const garbageHref = kind === 'index' ? '#garbage' : `${pageUrl(lang)}#garbage`;
-  const logoSlot = '<span class="brand-logo-slot"><img class="brand-logo" src="/assets/spady-logo-header.jpg" alt="Spady" width="42" height="42"></span>';
   return `<div class="topnote">${esc(t.topnote)}</div>
 <header>
   <div class="wrap header-inner">
     <a class="brand" href="${attr(pageUrl(lang))}" aria-label="${attr(langConfig[lang].siteName)}">
-      ${logoSlot}
       <span class="brand-text">${esc(langConfig[lang].siteName)}</span>
     </a>
     <div class="header-actions">
@@ -1414,7 +1414,6 @@ function renderHeader(lang, kind = 'index', slug = '') {
         <a href="${attr(pageUrl(lang))}#calendar">${esc(t.navCalendar)}</a>
         <a href="${attr(pageUrl(lang))}#akindo">${esc(t.navAkindo)}</a>
         <a href="${attr(pageUrl(lang, 'privacy'))}">${esc(t.navPrivacy)}</a>
-        <a class="accent" href="https://spady.net/" target="_blank" rel="noopener">${esc(t.navSpady)}</a>
       </nav>
       <a class="header-garbage-btn" href="${attr(garbageHref)}">${esc(t.headerGarbageButton)}</a>
     </div>
@@ -1474,7 +1473,6 @@ function renderIndexPage(lang) {
 <div class="splash" id="splash" role="dialog" aria-modal="true" aria-labelledby="openingTitle" hidden>
   <div class="splash-inner">
     <span class="splash-kicker">OTARU, HOKKAIDO</span>
-    <img class="splash-mark" src="/assets/spady-logo-header.jpg" alt="Spady" width="64" height="64">
     <div class="splash-title" id="openingTitle">${esc(cfg.siteName)}</div>
     <div class="splash-sub">${esc(ui.openingNote)}</div>
     <button class="splash-skip" id="skipOpening">${esc(ui.skipOpening)} <span aria-hidden="true">→</span></button>
@@ -1603,7 +1601,7 @@ ${renderHeader(lang)}
   <section class="section">
     <div class="wrap about-grid">
       <article class="about"><h3>${esc(t.policyTitle)}</h3><p>${esc(t.policyText)}</p></article>
-      <article class="about"><h3>${esc(t.operatorTitle)}</h3><p>${esc(t.operatorText)}</p><div class="operator"><img src="/assets/spady-logo-header.jpg" alt="Spady"><span>Spady</span></div></article>
+      <article class="about"><h3>${esc(t.operatorTitle)}</h3><p>${esc(t.operatorText)}</p></article>
     </div>
   </section>
 </main>
@@ -1626,6 +1624,7 @@ function renderFooter(lang) {
   const s = submissionCopy[lang];
   return `<footer>
   <div class="wrap footer-content">
+    <div class="footer-actions">
     <details class="listing-request">
       <summary>${esc(s.trigger)} <span aria-hidden="true">＋</span></summary>
       <div class="listing-request-body">
@@ -1645,13 +1644,13 @@ function renderFooter(lang) {
         </form>
       </div>
     </details>
+    <a class="footer-privacy" href="${attr(pageUrl(lang, 'privacy'))}">${esc(copy[lang].navPrivacy)}</a>
+    </div>
     <div class="footer-inner">
       <span>${esc(copy[lang].footerNotice)}</span>
-      <nav aria-label="Footer"><a href="https://spady.net/" target="_blank" rel="noopener">Spady</a><a href="${attr(pageUrl(lang, 'privacy'))}">${esc(copy[lang].navPrivacy)}</a></nav>
     </div>
   </div>
 </footer>
-<aside class="radio-dock" aria-label="ヲタル電波倶楽部"><span class="radio-dock-note">お知らせ</span><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640"><button type="button" class="radio-dock-close" aria-label="このお知らせを閉じる">×</button></aside>
 <script src="/assets/submission.js" defer></script>`;
 }
 

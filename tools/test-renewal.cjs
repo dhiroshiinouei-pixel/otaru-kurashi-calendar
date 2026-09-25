@@ -23,7 +23,8 @@ async function main(){
  assert.equal(await page.locator('#splash').isVisible(),false);
  assert.equal(await page.locator('#calendarGrid .day').count(),35);
  assert.equal(await page.locator('.local-pages-banner').count(),1);
- assert.equal(await page.locator('.radio-dock img').count(),1);
+ assert.equal(await page.locator('.radio-dock').count(),0);
+ assert.equal(await page.locator('.footer-privacy').count(),1);
  assert.equal(await page.locator('.language-picker-options a').count(),5);
  assert.equal(await page.locator('.listing-form').count(),1);
  assert(await page.evaluate(()=>document.querySelector('#garbage').compareDocumentPosition(document.querySelector('.seo-intro'))&Node.DOCUMENT_POSITION_FOLLOWING));
@@ -31,7 +32,7 @@ async function main(){
  results.push('Layout structure, reduced-motion opening, September dates: PASS');
  await page.screenshot({path:'/private/tmp/otaru-renewal-desktop.png',fullPage:false});
  await page.locator('#eventSearch').fill('小樽地域遺産');
- await page.waitForTimeout(200);
+ await page.waitForFunction(()=>document.querySelectorAll('#eventList .event-card').length===1);
  assert.equal(await page.locator('#eventList .event-card').count(),1);
  await page.locator('#viewList').click();
  assert.equal(await page.locator('.calendar-grid-shell').isVisible(),false);
@@ -50,7 +51,7 @@ async function main(){
  assert.equal(await page.locator('#civicArchive').isVisible(),true);
  await page.locator('[data-filter="all"]').click();
  await page.locator('#eventSearch').fill('小樽地域遺産');
- await page.waitForTimeout(200);
+ await page.waitForFunction(()=>document.querySelectorAll('#eventList .event-card').length===1);
  assert.equal(await page.locator('#eventList .event-card').count(),1);
  await page.locator('#eventSearch').fill('');
  results.push('Search, empty results, saved list mode, category filter: PASS');

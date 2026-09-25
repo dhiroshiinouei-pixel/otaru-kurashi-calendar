@@ -1,14 +1,3 @@
-const radioDock = document.querySelector('.radio-dock');
-if (radioDock) {
-  try {
-    if (sessionStorage.getItem('otaru-radio-dismissed') === '1') document.body.classList.add('radio-dismissed');
-  } catch { /* Storage can be unavailable in private browsing. */ }
-  radioDock.querySelector('.radio-dock-close')?.addEventListener('click', () => {
-    document.body.classList.add('radio-dismissed');
-    try { sessionStorage.setItem('otaru-radio-dismissed', '1'); } catch { /* Keep the current-page dismissal. */ }
-  });
-}
-
 for (const form of document.querySelectorAll('.listing-form')) {
   form.addEventListener('submit', async (event) => {
     if (!form.reportValidity()) return;
