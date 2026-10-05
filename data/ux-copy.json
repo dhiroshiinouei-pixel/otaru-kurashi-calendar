@@ -1,0 +1,32 @@
+{
+  "ja": {
+    "policyDate": "制定日：2026年7月",
+    "archiveLinks": [["小樽市議会","本会議・委員会の日程"],["会議録","過去の公式記録"],["議会映像","YouTube中継・録画"],["地方選挙","候補者・選挙日程"],["選挙結果","過去の開票結果"]],
+    "heroTitle": "小樽の予定を、ひとつに。", "heroText": "小樽のイベント・暮らしの情報を、日付やキーワードから探せます。",
+    "findTitle": "予定を探す", "monthRange": "月から", "todayRange": "今日", "weekendRange": "今週末", "upcomingRange": "これから", "rangeLabel": "探す期間", "resultsTitle": "予定の一覧", "reset": "条件をリセット", "more": "続きを表示", "showing": "表示", "allUpcoming": "今後の予定", "archive": "過去の予定", "sourceNote": "開催状況は、主催者の公式情報をご確認ください。", "backResults": "探していた予定に戻る", "relatedTitle": "同じカテゴリーのこれからの予定", "usefulInfo": "いつでも使える生活情報", "savedRegion": "前回の地区を表示しています。", "regionNotFound": "地区を特定できません。町名の候補を選ぶか、公式の地区別PDFをご確認ください。", "clearSearch": "検索をクリア", "searchScope": "キーワード検索は今後の全期間が対象です。", "close": "閉じる", "shortDate": "日付", "home": "ホーム", "infoTitle": "情報について", "timeUnknown": "開催時間は公式情報をご確認ください。"
+  },
+  "en": {
+    "policyDate": "Established: July 2026",
+    "archiveLinks": [["Otaru City Council","Council and committee dates"],["Meeting minutes","Official meeting records"],["Council video","Live streams and recordings"],["Local elections","Candidates and election dates"],["Election results","Past voting results"]],
+    "heroTitle": "Your day in Otaru, made simple.", "heroText": "Local events, family activities and everyday information. Find a plan by date or by what interests you.",
+    "findTitle": "Find a plan", "monthRange": "By month", "todayRange": "Today", "weekendRange": "Weekend", "upcomingRange": "Upcoming", "rangeLabel": "Date range", "resultsTitle": "Events & activities", "reset": "Reset filters", "more": "Show more", "showing": "Shown", "allUpcoming": "All upcoming dates", "archive": "Past events", "sourceNote": "Check the organizer’s official information for the latest updates.", "backResults": "Back to your results", "relatedTitle": "Upcoming in this category", "usefulInfo": "Everyday community information", "savedRegion": "Your previous area has been restored.", "regionNotFound": "We could not identify the area. Select a suggested town name or check the official collection PDF.", "clearSearch": "Clear search", "searchScope": "Keyword search covers all upcoming dates.", "close": "Close", "shortDate": "Date", "home": "Home", "infoTitle": "About this information", "timeUnknown": "Check the official source for opening times."
+  },
+  "zh-Hant": {
+    "policyDate": "制定日期：2026年7月",
+    "archiveLinks": [["小樽市議會","大會與委員會日程"],["會議紀錄","歷次官方紀錄"],["議會影像","直播與錄影"],["地方選舉","候選人與選舉日程"],["選舉結果","歷次開票結果"]],
+    "heroTitle": "小樽行程，輕鬆找到。", "heroText": "在地活動、親子體驗與日常生活資訊。依日期或感興趣的內容，安排你的小樽時光。",
+    "findTitle": "尋找活動", "monthRange": "按月份", "todayRange": "今天", "weekendRange": "本週末", "upcomingRange": "即將舉行", "rangeLabel": "日期範圍", "resultsTitle": "活動列表", "reset": "重設條件", "more": "顯示更多", "showing": "已顯示", "allUpcoming": "所有即將舉行的活動", "archive": "過往活動", "sourceNote": "最新舉辦情況請查閱主辦單位的官方資訊。", "backResults": "返回剛才的搜尋結果", "relatedTitle": "同類別即將舉行的活動", "usefulInfo": "日常生活資訊", "savedRegion": "已顯示上次選擇的地區。", "regionNotFound": "無法確定地區。請選擇建議的町名，或查閱官方收集日程PDF。", "clearSearch": "清除搜尋", "searchScope": "關鍵字搜尋涵蓋所有未來日期。", "close": "關閉", "shortDate": "日期", "home": "首頁", "infoTitle": "關於本資訊", "timeUnknown": "開放時間請查閱官方資訊。"
+  },
+  "zh-Hans": {
+    "policyDate": "制定日期：2026年7月",
+    "archiveLinks": [["小樽市议会","大会与委员会日程"],["会议记录","历次官方记录"],["议会影像","直播与录像"],["地方选举","候选人与选举日程"],["选举结果","历次计票结果"]],
+    "heroTitle": "小樽行程，轻松找到。", "heroText": "当地活动、亲子体验与日常生活信息。按日期或感兴趣的内容，安排你的小樽时光。",
+    "findTitle": "查找活动", "monthRange": "按月份", "todayRange": "今天", "weekendRange": "本周末", "upcomingRange": "即将举行", "rangeLabel": "日期范围", "resultsTitle": "活动列表", "reset": "重置条件", "more": "显示更多", "showing": "已显示", "allUpcoming": "所有即将举行的活动", "archive": "往期活动", "sourceNote": "最新举办情况请查看主办方的官方信息。", "backResults": "返回刚才的搜索结果", "relatedTitle": "同类别即将举行的活动", "usefulInfo": "日常生活信息", "savedRegion": "已显示上次选择的地区。", "regionNotFound": "无法确定地区。请选择建议的町名，或查看官方收集日程PDF。", "clearSearch": "清除搜索", "searchScope": "关键词搜索涵盖所有未来日期。", "close": "关闭", "shortDate": "日期", "home": "首页", "infoTitle": "关于本信息", "timeUnknown": "开放时间请查看官方信息。"
+  },
+  "ko": {
+    "policyDate": "제정일: 2026년 7월",
+    "archiveLinks": [["오타루 시의회","본회의·위원회 일정"],["회의록","지난 공식 기록"],["의회 영상","생중계·녹화 영상"],["지방선거","후보자·선거 일정"],["선거 결과","지난 개표 결과"]],
+    "heroTitle": "오타루의 일정, 한눈에.", "heroText": "지역 행사, 가족 체험부터 생활 정보까지. 날짜나 관심 있는 주제로 오타루의 일정을 찾아보세요.",
+    "findTitle": "일정 찾기", "monthRange": "월별", "todayRange": "오늘", "weekendRange": "이번 주말", "upcomingRange": "앞으로", "rangeLabel": "날짜 범위", "resultsTitle": "행사 목록", "reset": "조건 초기화", "more": "더 보기", "showing": "표시", "allUpcoming": "앞으로의 모든 일정", "archive": "지난 행사", "sourceNote": "최신 개최 정보는 주최 측의 공식 안내를 확인해 주세요.", "backResults": "검색하던 목록으로 돌아가기", "relatedTitle": "같은 카테고리의 예정 행사", "usefulInfo": "일상에 유용한 생활 정보", "savedRegion": "지난번 선택한 지역을 표시합니다.", "regionNotFound": "지역을 확인할 수 없습니다. 제안된 동네 이름을 선택하거나 공식 수거 일정 PDF를 확인해 주세요.", "clearSearch": "검색 지우기", "searchScope": "키워드로 앞으로의 모든 일정을 검색합니다.", "close": "닫기", "shortDate": "날짜", "home": "홈", "infoTitle": "정보 안내", "timeUnknown": "운영 시간은 공식 안내를 확인해 주세요."
+  }
+}

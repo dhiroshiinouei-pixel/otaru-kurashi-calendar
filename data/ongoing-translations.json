@@ -1,0 +1,98 @@
+{
+  "週刊ワーク情報・銭函地域の求人情報": {
+    "en": {"title": "Weekly job listings and jobs in Zenibako", "summary": "Hello Work Otaru (ハローワーク小樽) regularly publishes job vacancies, including opportunities in the Zenibako area.", "label": "Updated regularly"},
+    "zh-Hant": {"title": "每週職缺與銭函地區徵才資訊", "summary": "Hello Work小樽（ハローワーク小樽）定期公布職缺，包括銭函地區的工作機會。", "label": "持續更新"},
+    "zh-Hans": {"title": "每周职位与钱函地区招聘信息", "summary": "Hello Work小樽（ハローワーク小樽）定期发布招聘信息，包括钱函地区的工作机会。", "label": "持续更新"},
+    "ko": {"title": "주간 구인 정보·제니바코 지역 일자리", "summary": "헬로워크 오타루(ハローワーク小樽)가 제니바코 지역을 포함한 구인 정보를 정기적으로 제공합니다.", "label": "수시 업데이트"}
+  },
+  "求職相談・就職マッチング支援": {
+    "en": {"title": "Career advice and job-matching support", "summary": "Career consultation and support to connect job seekers with employers.", "label": "Ongoing consultations"},
+    "zh-Hant": {"title": "求職諮詢與就業媒合支援", "summary": "提供職涯諮詢，並協助求職者與企業媒合。", "label": "持續提供諮詢"},
+    "zh-Hans": {"title": "求职咨询与就业对接服务", "summary": "提供职业发展咨询，并帮助求职者对接招聘企业。", "label": "持续提供咨询"},
+    "ko": {"title": "구직 상담·취업 매칭 지원", "summary": "진로·취업 상담과 구직자와 기업을 연결하는 매칭 지원을 제공합니다.", "label": "수시 상담"}
+  },
+  "事業者向けセミナー・伴走型支援": {
+    "en": {"title": "Business seminars and ongoing support", "summary": "Information on support for Otaru businesses, including growth seminars, market development and more effective communications.", "label": "New opportunities posted regularly"},
+    "zh-Hant": {"title": "業者研討會與持續經營支援", "summary": "介紹面向小樽企業的成長研討會、拓展銷售管道及提升資訊傳播能力等支援。", "label": "持續公布資訊"},
+    "zh-Hans": {"title": "企业研讨会与持续经营支持", "summary": "介绍面向小樽企业的成长研讨会、销售渠道拓展及信息传播能力提升等支持。", "label": "持续发布信息"},
+    "ko": {"title": "사업자 세미나·지속적인 경영 지원", "summary": "오타루 기업을 위한 성장 지원 세미나, 판로 확대, 정보 발신 역량 향상 등의 지원 정보를 안내합니다.", "label": "수시 안내"}
+  },
+  "経営相談・補助金・事業承継情報": {
+    "en": {"title": "Business advice, subsidies and succession", "summary": "The business-support page of 小樽商工会議所 provides contacts for advice on management, subsidies, business succession and financing.", "label": "Updated regularly"},
+    "zh-Hant": {"title": "經營諮詢、補助金與事業傳承資訊", "summary": "小樽商工會議所（小樽商工会議所）的經營支援頁面，提供經營、補助金、事業傳承及融資等諮詢窗口資訊。", "label": "持續更新"},
+    "zh-Hans": {"title": "经营咨询、补助金与企业传承信息", "summary": "小樽商工会议所（小樽商工会議所）的经营支持页面，提供经营、补助金、企业传承及融资等咨询渠道。", "label": "持续更新"},
+    "ko": {"title": "경영 상담·보조금·사업 승계 정보", "summary": "오타루 상공회의소(小樽商工会議所)의 경영 지원 페이지입니다. 경영, 보조금, 사업 승계, 금융 관련 상담 창구를 확인할 수 있습니다.", "label": "수시 업데이트"}
+  },
+  "観光地づくり加速化補助金": {
+    "en": {"title": "Tourism development subsidy (観光地づくり加速化補助金)", "summary": "A subsidy programme for accommodation and tourism-related businesses in Hokkaido. Applications are accepted from August 3 to October 30, 2026.", "label": "Applications open August 3"},
+    "zh-Hant": {"title": "觀光地建設加速化補助金（観光地づくり加速化補助金）", "summary": "面向北海道住宿業者及觀光相關業者的補助制度。申請期間為2026年8月3日至10月30日。", "label": "8月3日起受理"},
+    "zh-Hans": {"title": "旅游目的地建设加速补助金（観光地づくり加速化補助金）", "summary": "面向北海道住宿业及旅游相关企业的补助制度。申请时间为2026年8月3日至10月30日。", "label": "8月3日起受理"},
+    "ko": {"title": "관광지 조성 촉진 보조금（観光地づくり加速化補助金）", "summary": "홋카이도 숙박업자와 관광 관련 사업자를 위한 보조금 제도입니다. 신청 기간은 2026년 8월 3일부터 10월 30일까지입니다.", "label": "8월 3일 접수 시작"}
+  },
+  "小規模事業者持続化補助金": {
+    "en": {"title": "Small-business sustainability subsidy (小規模事業者持続化補助金)", "summary": "Notice of application guidelines for the 20th general-type standard round and the 4th startup-type round. Applications open on November 5, 2026.", "label": "Applications open November 5"},
+    "zh-Hant": {"title": "小規模業者持續經營補助金（小規模事業者持続化補助金）", "summary": "一般型通常名額第20次及創業型第4次徵件要點的公布資訊。自2026年11月5日起受理申請。", "label": "11月5日起受理"},
+    "zh-Hans": {"title": "小规模企业持续经营补助金（小規模事業者持続化補助金）", "summary": "一般型常规名额第20轮及创业型第4轮申报指南的发布信息。2026年11月5日起受理申请。", "label": "11月5日起受理"},
+    "ko": {"title": "소규모 사업자 지속화 보조금（小規模事業者持続化補助金）", "summary": "일반형 통상 부문(一般型通常枠) 제20차 및 창업형 제4차 모집요강 공개 안내입니다. 신청 접수는 2026년 11월 5일에 시작됩니다.", "label": "11월 5일 접수 시작"}
+  },
+  "小樽市議会 本会議の日程・質問通告・提出議案": {
+    "en": {"title": "Otaru City Council: schedules, questions and bills", "summary": "The council holds four regular sessions a year. Check the official page for meeting dates, summaries of submitted questions and proposed bills.", "label": "February, June, September, December"},
+    "zh-Hant": {"title": "小樽市議會：會議日程、質詢與議案", "summary": "每年舉行4次定期會議。可在官方頁面查閱會議日程、質詢要旨及提交議案。", "label": "2、6、9、12月"},
+    "zh-Hans": {"title": "小樽市议会：会议日程、质询与议案", "summary": "每年举行4次定期会议。可在官方页面查看会议日程、质询摘要及提交议案。", "label": "2、6、9、12月"},
+    "ko": {"title": "오타루 시의회 본회의 일정·질문·제출 의안", "summary": "정례회는 연 4회 열립니다. 공식 페이지에서 회의 일정, 질문 요지, 제출 의안을 확인할 수 있습니다.", "label": "2·6·9·12월"}
+  },
+  "小樽市議会 会議録・映像アーカイブ": {
+    "en": {"title": "Otaru City Council: minutes and video archive", "summary": "Access minutes of plenary and committee meetings, plus YouTube broadcasts and recordings.", "label": "Browse past meetings"},
+    "zh-Hant": {"title": "小樽市議會：會議紀錄與影音檔案", "summary": "查閱本會議與委員會的會議紀錄，並前往YouTube觀看直播及錄影。", "label": "查閱歷次會議"},
+    "zh-Hans": {"title": "小樽市议会：会议记录与影像档案", "summary": "查看全体会议与委员会的会议记录，并前往YouTube观看直播和录像。", "label": "查阅历次会议"},
+    "ko": {"title": "오타루 시의회 회의록·영상 자료", "summary": "본회의·위원회 회의록과 YouTube 중계·녹화 영상을 확인할 수 있습니다.", "label": "지난 회의 열람"}
+  },
+  "今後の選挙・過去の選挙結果": {
+    "en": {"title": "Upcoming elections and past results", "summary": "Find election dates, candidate information and past vote-counting results on the official website.", "label": "Updated regularly"},
+    "zh-Hant": {"title": "未來選舉與歷次選舉結果", "summary": "可在官方頁面查閱選舉日程、候選人相關資訊及歷次開票結果。", "label": "持續更新"},
+    "zh-Hans": {"title": "未来选举与历次选举结果", "summary": "可在官方页面查看选举日程、候选人相关信息及历次计票结果。", "label": "持续更新"},
+    "ko": {"title": "예정된 선거·지난 선거 결과", "summary": "공식 페이지에서 선거 일정, 후보자 관련 정보, 지난 개표 결과를 확인할 수 있습니다.", "label": "수시 업데이트"}
+  },
+  "小樽市 ごみ収集カレンダー・分別案内": {
+    "en": {"title": "Otaru waste collection and sorting guide", "summary": "Check Otaru City’s official guidance for collection dates by address, waste sorting and household disposal rules. Use it alongside this site’s collection-day lookup.", "label": "Everyday information"},
+    "zh-Hant": {"title": "小樽市垃圾收集日曆與分類指南", "summary": "小樽市官方頁面提供各地址的收集日期、垃圾分類及家庭垃圾處理方式。可搭配本網站的收集日查詢功能使用。", "label": "生活資訊"},
+    "zh-Hans": {"title": "小樽市垃圾收集日历与分类指南", "summary": "小樽市官方页面提供各地址的收集日期、垃圾分类及家庭垃圾投放方式。可结合本站的收集日查询功能使用。", "label": "生活信息"},
+    "ko": {"title": "오타루시 쓰레기 수거일·분리배출 안내", "summary": "오타루시 공식 페이지에서 주소별 수거일, 분리배출 방법, 생활 쓰레기 배출 요령을 확인할 수 있습니다. 이 사이트의 수거일 검색과 함께 이용하세요.", "label": "생활 정보"}
+  },
+  "子育てイベント新着一覧": {
+    "en": {"title": "Latest family and parenting activities", "summary": "Otaru City’s latest notices for parenting and family activities, including classes, hands-on experiences and events at support centres.", "label": "Updated regularly"},
+    "zh-Hant": {"title": "育兒與親子活動最新資訊", "summary": "小樽市公布的育兒及親子活動新訊，包括課程、體驗及支援中心舉辦的活動。", "label": "持續更新"},
+    "zh-Hans": {"title": "育儿与亲子活动最新信息", "summary": "小樽市发布的育儿及亲子活动新信息，包括课程、体验和支援中心举办的活动。", "label": "持续更新"},
+    "ko": {"title": "육아·가족 행사 최신 소식", "summary": "오타루시의 육아·부모와 아이를 위한 행사 안내입니다. 강좌, 체험, 지원센터 행사 등의 새 소식을 확인할 수 있습니다.", "label": "수시 업데이트"}
+  },
+  "子どものイベント・学習のお知らせ": {
+    "en": {"title": "Children’s activities and learning opportunities", "summary": "Otaru City’s list of activities for children up to junior-high-school age, including library events, general museum programmes and sports classes.", "label": "July–September edition"},
+    "zh-Hant": {"title": "兒童活動與學習資訊", "summary": "小樽市公布的國中生及以下兒童活動一覽，包括圖書館、綜合博物館及運動課程等企劃。", "label": "7至9月版"},
+    "zh-Hans": {"title": "儿童活动与学习信息", "summary": "小樽市发布的面向初中生及以下儿童的活动一览，包括图书馆、综合博物馆和体育课程等项目。", "label": "7至9月版"},
+    "ko": {"title": "어린이 행사·학습 안내", "summary": "오타루시가 안내하는 중학생 이하 어린이 대상 행사 목록입니다. 도서관·종합박물관 프로그램과 스포츠 교실 등을 확인할 수 있습니다.", "label": "7~9월호"}
+  },
+  "かぜのこルーム": {
+    "en": {"title": "Kazenoko Room (かぜのこルーム)", "summary": "For children aged 3 and under with their guardians. Free play, interactive play and picture-book readings take place at であえーる稲北団地.", "label": "Monday afternoons"},
+    "zh-Hant": {"title": "Kazenoko Room（かぜのこルーム）", "summary": "面向3歲及以下兒童與家長。在であえーる稲北団地提供自由遊戲、親子互動遊戲及繪本朗讀等活動。", "label": "週一下午"},
+    "zh-Hans": {"title": "Kazenoko Room（かぜのこルーム）", "summary": "面向3岁及以下儿童与家长。在であえーる稲北団地开展自由游戏、亲子互动游戏和绘本朗读等活动。", "label": "周一下午"},
+    "ko": {"title": "카제노코 룸（かぜのこルーム）", "summary": "만 3세 이하 어린이와 보호자를 위한 프로그램입니다. であえーる稲北団地에서 자유 놀이, 상호작용 놀이, 그림책 읽기 등을 진행합니다.", "label": "월요일 오후"}
+  },
+  "かぜのこパーク": {
+    "en": {"title": "Kazenoko Park (かぜのこパーク)", "summary": "For children aged 3 and under with their guardians. Free play, interactive play and picture-book readings take place in the playroom at いなきた児童館.", "label": "Friday mornings"},
+    "zh-Hant": {"title": "Kazenoko Park（かぜのこパーク）", "summary": "面向3歲及以下兒童與家長。在いなきた児童館的遊戲室提供自由遊戲、親子互動遊戲及繪本朗讀等活動。", "label": "週五上午"},
+    "zh-Hans": {"title": "Kazenoko Park（かぜのこパーク）", "summary": "面向3岁及以下儿童与家长。在いなきた児童館的游戏室开展自由游戏、亲子互动游戏和绘本朗读等活动。", "label": "周五上午"},
+    "ko": {"title": "카제노코 파크（かぜのこパーク）", "summary": "만 3세 이하 어린이와 보호자를 위한 프로그램입니다. いなきた児童館 놀이실에서 자유 놀이, 상호작용 놀이, 그림책 읽기 등을 진행합니다.", "label": "금요일 오전"}
+  },
+  "こども家庭センター「にこにこ」開放事業": {
+    "en": {"title": "Family play sessions at Nikoniko (こども家庭センター「にこにこ」)", "summary": "Sessions such as おひさまひろば and のびのびひろば let parents and children play together, with advice on parenting, nutrition and dental care also available.", "label": "Reservation required"},
+    "zh-Hant": {"title": "兒童家庭中心「にこにこ」親子開放活動", "summary": "「おひさまひろば」「のびのびひろば」等活動讓親子一起遊玩，也可諮詢育兒、營養及牙齒保健問題。", "label": "須預約"},
+    "zh-Hans": {"title": "儿童家庭中心「にこにこ」亲子开放活动", "summary": "「おひさまひろば」「のびのびひろば」等活动让亲子一起游戏，也可咨询育儿、营养及牙齿保健问题。", "label": "需预约"},
+    "ko": {"title": "어린이가정센터 「にこにこ」 가족 놀이 프로그램", "summary": "「おひさまひろば」「のびのびひろば」 등에서 부모와 아이가 함께 놀며 육아·영양·치과 상담도 받을 수 있습니다.", "label": "예약 필요"}
+  },
+  "小樽ライトアップ散策ガイドツアー": {
+    "en": {"title": "Guided evening walk around illuminated Otaru", "summary": "A free guided walk to enjoy Otaru’s illuminations, held on Tuesday, Thursday and Saturday evenings in July and August. No reservation is required.", "label": "July–August: Tue, Thu, Sat"},
+    "zh-Hant": {"title": "小樽夜間點燈散步導覽", "summary": "7至8月每週二、四、六晚間舉辦的點燈散步導覽。免費參加，無須預約。", "label": "7至8月：週二、四、六"},
+    "zh-Hans": {"title": "小樽夜间灯光散步导览", "summary": "7至8月每周二、四、六晚间举办的灯光散步导览。免费参加，无需预约。", "label": "7至8月：周二、四、六"},
+    "ko": {"title": "오타루 야간 조명 산책 가이드 투어", "summary": "7~8월 매주 화·목·토요일 저녁에 열리는 야간 조명 산책 가이드 투어입니다. 참가비는 무료이며 예약은 필요하지 않습니다.", "label": "7~8월 화·목·토"}
+  }
+}

@@ -15,7 +15,7 @@ const today = new Intl.DateTimeFormat('sv-SE', {
 const [defaultYear, defaultMonthNumber] = today.split('-').map(Number);
 const defaultMonth = { year: defaultYear, month: defaultMonthNumber - 1 };
 const buildDate = today;
-const cssVersion = `${buildDate.replaceAll('-', '')}-calendar-refresh-2`;
+const cssVersion = `${buildDate.replaceAll('-', '')}-everyday-1`;
 const ogImage = `${origin}/assets/og-image-20260713.jpg`;
 
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
@@ -27,11 +27,13 @@ const rawEvents = [
   ...readJson('data/events-official-tourism-20260723.json'),
 ];
 const rawOngoing = readJson('data/ongoing.json');
+const ongoingTranslations = readJson('data/ongoing-translations.json');
 const garbageRegions = readJson('data/garbage-regions.json');
 const garbagePatterns = readJson('data/garbage-patterns.json');
 const population = readJson('data/population.json');
 const renewalCopy = readJson('data/interface-renewal.json');
 const submissionCopy = readJson('data/submission-ui.json');
+const uxCopy = readJson('data/ux-copy.json');
 
 const langOrder = ['ja', 'en', 'zh-Hant', 'zh-Hans', 'ko'];
 const langConfig = {
@@ -186,6 +188,9 @@ const copy = {
     ended: '終了済み',
     scheduled: '開催予定',
     cancelled: '中止',
+    postponed: '延期',
+    rescheduled: '日程変更',
+    movedOnline: 'オンライン開催に変更',
     soldOut: '受付終了・満席',
     reservationRequired: '予約・申込が必要',
     reservationNotRequired: '予約不要',
@@ -281,6 +286,9 @@ const copy = {
     ended: 'Ended',
     scheduled: 'Scheduled',
     cancelled: 'Cancelled',
+    postponed: 'Postponed',
+    rescheduled: 'Rescheduled',
+    movedOnline: 'Moved online',
     soldOut: 'Full / registration closed',
     reservationRequired: 'Reservation or application required',
     reservationNotRequired: 'No reservation required',
@@ -376,6 +384,9 @@ const copy = {
     ended: '已結束',
     scheduled: '預定舉辦',
     cancelled: '中止',
+    postponed: '延期',
+    rescheduled: '日期已更改',
+    movedOnline: '改為線上舉行',
     soldOut: '已額滿／報名結束',
     reservationRequired: '需要預約或報名',
     reservationNotRequired: '不需預約',
@@ -471,6 +482,9 @@ const copy = {
     ended: '已结束',
     scheduled: '预定举办',
     cancelled: '取消',
+    postponed: '延期',
+    rescheduled: '日期已更改',
+    movedOnline: '改为线上举办',
     soldOut: '已满／报名结束',
     reservationRequired: '需要预约或报名',
     reservationNotRequired: '无需预约',
@@ -566,6 +580,9 @@ const copy = {
     ended: '종료됨',
     scheduled: '개최 예정',
     cancelled: '중지',
+    postponed: '연기됨',
+    rescheduled: '일정 변경',
+    movedOnline: '온라인 개최로 변경',
     soldOut: '마감・만석',
     reservationRequired: '예약 또는 신청 필요',
     reservationNotRequired: '예약 불필요',
@@ -883,19 +900,23 @@ function reservationFor(event, lang) {
   return copy[lang].reservationUnknown;
 }
 
-function statusFor(event) {
-  if (event.eventStatus && ['EventScheduled', 'EventCompleted', 'EventCancelled', 'EventPostponed'].includes(event.eventStatus)) {
+function statusFor(event, referenceDate = today) {
+  if (['EventCancelled', 'EventPostponed', 'EventRescheduled', 'EventMovedOnline'].includes(event.eventStatus)) {
     return event.eventStatus;
   }
-  const text = `${event.title} ${event.summary}`;
+  const text = `${event.title || event.name || ''} ${event.summary || ''}`;
   if (/(開催を中止|開催中止|中止となりました|中止になりました|中止します|中止が決定)/.test(text)) return 'EventCancelled';
-  if (event.end < today) return 'EventCompleted';
+  const endDate = event.endDate || event.end || event.startDate || event.start;
+  if (endDate < referenceDate || event.eventStatus === 'EventCompleted') return 'EventCompleted';
   return 'EventScheduled';
 }
 
-function statusLabelFor(event, lang) {
-  const status = event.eventStatus || statusFor(event);
+function statusLabelFor(event, lang, referenceDate = today) {
+  const status = statusFor(event, referenceDate);
   if (status === 'EventCancelled') return copy[lang].cancelled;
+  if (status === 'EventPostponed') return copy[lang].postponed;
+  if (status === 'EventRescheduled') return copy[lang].rescheduled;
+  if (status === 'EventMovedOnline') return copy[lang].movedOnline;
   if (status === 'EventCompleted') return copy[lang].ended;
   if (reservationState(event) === 'soldOut') return copy[lang].soldOut;
   return copy[lang].scheduled;
@@ -918,6 +939,7 @@ function normalizeEvent(raw) {
     startTime: raw.startTime || '',
     endTime: raw.endTime || '',
     doorsOpenTime: raw.doorsOpenTime || '',
+    overnight: raw.overnight === true,
     time: raw.time || '',
     venueName: raw.place || '',
     address: addressFor(raw),
@@ -940,8 +962,8 @@ function normalizeEvent(raw) {
     registrationUrl: raw.registrationUrl || '',
     offers: raw.offers || null,
     sourceCheckedAt: raw.sourceCheckedAt || '2026-07-13',
-    updatedAt: raw.updatedAt || buildDate,
-    eventStatus: raw.eventStatus || statusFor(raw),
+    updatedAt: raw.updatedAt || raw.sourceCheckedAt || '2026-07-13',
+    eventStatus: statusFor(raw),
     translations,
   };
 }
@@ -950,6 +972,7 @@ const events = rawEvents.map(normalizeEvent);
 
 function translateOngoing(item, lang) {
   if (lang === 'ja') return item;
+  if (ongoingTranslations[item.title]?.[lang]) return { ...item, ...ongoingTranslations[item.title][lang] };
   const label = copy[lang].filters[item.category] || copy[lang].filters.event;
   const title = genericTitle({ title: item.title, category: item.category }, lang);
   const summary = lang === 'en'
@@ -963,14 +986,14 @@ function translateOngoing(item, lang) {
 }
 
 function fmtDate(dateString, lang, includeWeekday = true) {
-  const date = new Date(`${dateString}T12:00:00+09:00`);
-  const y = date.getFullYear();
-  const m = date.getMonth() + 1;
-  const d = date.getDate();
-  const w = copy[lang].weekdays[date.getDay()];
+  const date = new Date(`${dateString}T00:00:00Z`);
+  const y = date.getUTCFullYear();
+  const m = date.getUTCMonth() + 1;
+  const d = date.getUTCDate();
+  const w = copy[lang].weekdays[date.getUTCDay()];
   if (lang === 'ja') return includeWeekday ? `${y}年${m}月${d}日（${w}）` : `${y}年${m}月${d}日`;
   if (lang === 'en') {
-    return new Intl.DateTimeFormat('en-US', { weekday: includeWeekday ? 'long' : undefined, year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+    return new Intl.DateTimeFormat('en-US', { weekday: includeWeekday ? 'long' : undefined, year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(date);
   }
   if (lang === 'ko') return includeWeekday ? `${y}년 ${m}월 ${d}일 ${w}요일` : `${y}년 ${m}월 ${d}일`;
   return includeWeekday ? `${y}年${m}月${d}日（星期${w}）` : `${y}年${m}月${d}日`;
@@ -986,14 +1009,20 @@ function isExtendedEvent(event) {
   return dateSpanDays(event) >= 13;
 }
 
+function isOvernightEvent(event) {
+  if (dateSpanDays(event) !== 1 || !event.startTime || !event.endTime) return false;
+  return event.overnight === true || event.endTime < event.startTime;
+}
+
 function formatTimeRange(event, lang) {
   const start = event.startTime;
   const end = event.endTime;
   if (!start) return event.time || '';
-  // A one-day difference is an overnight event. Longer ranges are exhibition
-  // or programme periods whose start/end times describe opening hours, not a
-  // continuous event running until the final day.
-  const crossesDate = Boolean(end && dateSpanDays(event) === 1);
+  // A two-day festival is not an overnight session. Only preserve a continuous
+  // night when it is explicit or its ending clock time precedes its start.
+  const crossesDate = isOvernightEvent(event);
+  const datedHours = event.time && /\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{2}/.test(event.time);
+  if (!crossesDate && dateSpanDays(event) > 0 && datedHours) return `${event.time}${lang === 'en' ? ' JST' : ''}`;
   if (lang === 'en') {
     const startDate = new Date(`${event.startDate}T${start}:00+09:00`);
     const endDate = end ? new Date(`${event.endDate}T${end}:00+09:00`) : null;
@@ -1015,7 +1044,7 @@ function formatTimeRange(event, lang) {
 function formatEventDateTime(event, lang) {
   const spanDays = dateSpanDays(event);
   const time = formatTimeRange(event, lang);
-  if (spanDays > 1) {
+  if (spanDays > 0 && !isOvernightEvent(event)) {
     const startDate = fmtDate(event.startDate, lang, true);
     const endDate = fmtDate(event.endDate, lang, true);
     const separator = lang === 'en' ? '–' : lang === 'ko' ? '~' : lang === 'ja' ? '〜' : '至';
@@ -1081,6 +1110,8 @@ ${alternateLinks(lang, kind, slug)}
 <link rel="icon" href="/assets/favicon-otaru-20260713.png" type="image/png">
 <link rel="stylesheet" href="/assets/site.css?v=${cssVersion}">
 <link rel="stylesheet" href="/assets/renewal.css?v=${cssVersion}">
+<link rel="stylesheet" href="/assets/everyday.css?v=${cssVersion}">
+<script src="/assets/everyday.js?v=${cssVersion}" defer></script>
 <meta property="og:type" content="${attr(type)}">
 <meta property="og:locale" content="${attr(cfg.ogLocale)}">
 ${ogAlternateMeta(lang)}
@@ -1201,7 +1232,7 @@ function eventJsonLd(event, lang) {
       startDate: start,
       ...(end ? { endDate: end } : {}),
       ...(event.doorsOpenTime ? { doorTime: `${event.startDate}T${event.doorsOpenTime}:00+09:00` } : {}),
-      eventStatus: `https://schema.org/${event.eventStatus}`,
+      eventStatus: `https://schema.org/${event.eventStatus === 'EventCompleted' ? 'EventScheduled' : event.eventStatus}`,
       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
       ...(location ? { location } : {}),
       organizer: {
@@ -1218,14 +1249,12 @@ function eventJsonLd(event, lang) {
 }
 
 function monthEvents(year, month, filter = 'all') {
-  const ms = new Date(year, month, 1);
-  const me = new Date(year, month + 1, 0, 23, 59, 59);
+  const ms = localISODate(new Date(year, month, 1));
+  const me = localISODate(new Date(year, month + 1, 0));
   return events.filter((event) => {
-    if (event.endDate < today) return false;
+    if (me >= today && event.endDate < today) return false;
     if (filter !== 'all' && event.category !== filter) return false;
-    const s = new Date(`${event.startDate}T00:00:00+09:00`);
-    const e = new Date(`${event.endDate}T23:59:59+09:00`);
-    return e >= ms && s <= me;
+    return event.endDate >= ms && event.startDate <= me;
   });
 }
 
@@ -1234,8 +1263,7 @@ function eventsForDate(date, monthEventList) {
   return monthEventList.filter((event) => {
     if (event.startDate > iso || event.endDate < iso || event.excludedDates.includes(iso)) return false;
     if (isExtendedEvent(event)) return event.startDate === iso;
-    const longRunning = dateSpanDays(event) >= 2;
-    return !longRunning || event.startDate === iso;
+    return true;
   });
 }
 
@@ -1246,7 +1274,7 @@ function localISODate(date) {
 function renderStaticCalendar(lang) {
   const y = defaultMonth.year;
   const m = defaultMonth.month;
-  const visibleEventList = events.filter((event) => event.endDate >= today);
+  const visibleEventList = events;
   const first = new Date(y, m, 1);
   const startDay = first.getDay();
   const days = new Date(y, m + 1, 0).getDate();
@@ -1291,21 +1319,18 @@ function fmtShortDate(date, lang) {
 function renderEventCards(eventList, lang) {
   return eventList.sort((a, b) => a.startDate.localeCompare(b.startDate)).map((event) => {
     const text = eventText(event, lang);
-    const date = new Date(`${event.startDate}T12:00:00+09:00`);
-    return `<article class="event-card category-${attr(event.category)}">
-      <div class="date-box"><div><strong>${date.getDate()}</strong><small>${esc(fmtDate(event.startDate, lang, true))}</small></div></div>
+    const date = new Date(`${event.startDate}T00:00:00Z`);
+    return `<article class="event-card category-${attr(event.category)}" data-event-end="${attr(event.endDate)}">
+      <div class="date-box"><div><small>${esc(new Intl.DateTimeFormat(langConfig[lang].dateLocale, { month: 'short', timeZone: 'UTC' }).format(date))}</small><strong>${date.getUTCDate()}</strong><small>${esc(copy[lang].weekdays[date.getUTCDay()])}</small></div></div>
       <div>
-        <div class="meta"><span class="tag">${esc(copy[lang].filters[event.category])}</span><span class="tag">${esc(text.statusLabel)}</span></div>
+        <div class="meta"><span class="tag category-tag">${esc(copy[lang].filters[event.category])}</span>${text.statusLabel !== copy[lang].scheduled ? `<span class="tag status-tag">${esc(text.statusLabel)}</span>` : ''}</div>
         <h3><a href="${attr(pageUrl(lang, 'event', event.slug))}">${esc(text.name)}</a></h3>
-        ${lang !== 'ja' ? `<p class="official-name">${esc(copy[lang].officialName)}：${esc(event.name)}</p>` : ''}
-        <p><strong>${esc(copy[lang].dateTime)}：</strong>${esc(formatEventDateTime(event, lang))}</p>
-        <p><strong>${esc(copy[lang].place)}：</strong>${esc(text.venueName)}</p>
-        <p>${esc(text.summary)}</p>
+        <p class="card-date">${esc(formatEventDateTime(event, lang))}</p>
+        <p class="card-venue">${esc(text.venueName)}</p>
+        <p class="card-summary">${esc(text.summary)}</p>
       </div>
       <div class="event-links">
         <a href="${attr(pageUrl(lang, 'event', event.slug))}">${esc(copy[lang].detailsArrow)}</a>
-        <a href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(copy[lang].calendarAdd)}</a>
-        ${event.registrationUrl ? `<a href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(copy[lang].registrationAction)}</a>` : ''}
         <a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.sourceLinkLabel?.[lang] || copy[lang].official)}</a>
       </div>
     </article>`;
@@ -1336,12 +1361,12 @@ function renderOngoingCards(lang) {
 function googleCalendarUrl(event, lang) {
   let dates;
   let note = '';
-  if (dateSpanDays(event) > 1) {
+  if (dateSpanDays(event) > 0 && !isOvernightEvent(event)) {
     // Represent long-running exhibitions and programmes as an inclusive
     // all-day range. A timed range would incorrectly block the calendar
     // continuously from the first morning until the final evening.
     dates = `${toGoogleDate(event.startDate)}/${toGoogleDate(event.endDate, 1)}`;
-    if (event.startTime) {
+    if (event.startTime || event.time) {
       const hours = formatTimeRange(event, lang);
       if (lang === 'ja') note = `\n開催日の時間：${hours}（休館日・休催日は公式情報をご確認ください）`;
       else if (lang === 'en') note = `\nHours on open days: ${hours}. Check the official source for closed dates.`;
@@ -1375,9 +1400,9 @@ function googleCalendarUrl(event, lang) {
 }
 
 function toGoogleDate(dateString, addDays = 0) {
-  const date = new Date(`${dateString}T12:00:00+09:00`);
-  date.setDate(date.getDate() + addDays);
-  return `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+  const date = new Date(`${dateString}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + addDays);
+  return `${date.getUTCFullYear()}${String(date.getUTCMonth() + 1).padStart(2, '0')}${String(date.getUTCDate()).padStart(2, '0')}`;
 }
 
 function toGoogleDateTime(dateString, timeString) {
@@ -1386,10 +1411,10 @@ function toGoogleDateTime(dateString, timeString) {
 }
 
 function addMinutesToGoogleDateTime(dateString, timeString, minutesToAdd) {
-  const date = new Date(`${dateString}T12:00:00+09:00`);
+  const date = new Date(`${dateString}T00:00:00Z`);
   const [hour, minute] = timeString.split(':').map(Number);
-  date.setHours(hour, minute + minutesToAdd, 0, 0);
-  return `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}T${String(date.getHours()).padStart(2, '0')}${String(date.getMinutes()).padStart(2, '0')}00`;
+  date.setUTCHours(hour, minute + minutesToAdd, 0, 0);
+  return `${date.getUTCFullYear()}${String(date.getUTCMonth() + 1).padStart(2, '0')}${String(date.getUTCDate()).padStart(2, '0')}T${String(date.getUTCHours()).padStart(2, '0')}${String(date.getUTCMinutes()).padStart(2, '0')}00`;
 }
 
 function populationLabel(lang) {
@@ -1412,20 +1437,18 @@ function renderHeader(lang, kind = 'index', slug = '') {
     <div class="header-actions">
       <nav class="header-nav" aria-label="main">
         <a href="${attr(pageUrl(lang))}#calendar">${esc(t.navCalendar)}</a>
-        <a href="${attr(pageUrl(lang))}#akindo">${esc(t.navAkindo)}</a>
-        <a href="${attr(pageUrl(lang, 'privacy'))}">${esc(t.navPrivacy)}</a>
       </nav>
       <a class="header-garbage-btn" href="${attr(garbageHref)}">${esc(t.headerGarbageButton)}</a>
+      ${languageLinks(lang, kind, slug)}
     </div>
   </div>
-  <div class="wrap header-language">${languageLinks(lang, kind, slug)}</div>
 </header>`;
 }
 
 function renderIndexPage(lang) {
   const cfg = langConfig[lang];
   const t = copy[lang];
-  const ui = renewalCopy[lang];
+  const ui = { ...renewalCopy[lang], ...uxCopy[lang] };
   const canonical = pageUrl(lang);
   const currentMonthEvents = monthEvents(defaultMonth.year, defaultMonth.month);
   const currentPeriodEvents = currentMonthEvents.filter(isExtendedEvent);
@@ -1436,15 +1459,22 @@ function renderIndexPage(lang) {
     defaultYear: defaultMonth.year,
     defaultMonth: defaultMonth.month,
     events: events.map((event) => ({
-      ...event,
-      translations: undefined,
+      id: event.id,
+      slug: event.slug,
+      name: event.name,
+      category: event.category,
+      startTime: event.startTime,
+      endTime: event.endTime,
+      excludedDates: event.excludedDates,
+      mapQuery: event.mapQuery,
+      eventStatus: event.eventStatus,
       title: eventText(event, lang).name,
       summary: eventText(event, lang).summary,
       place: eventText(event, lang).venueName,
       address: eventText(event, lang).address,
       statusLabel: eventText(event, lang).statusLabel,
       detailUrl: pageUrl(lang, 'event', event.slug),
-      calendarUrl: googleCalendarUrl(event, lang),
+      calendarParams: Object.fromEntries(new URL(googleCalendarUrl(event, lang)).searchParams),
       timeDisplay: formatTimeRange(event, lang),
       url: event.officialSourceUrl,
       source: event.officialSourceName,
@@ -1484,9 +1514,8 @@ ${renderHeader(lang)}
     <div class="wrap hero-shell">
       <div class="hero-card">
         <span class="hero-kicker">${esc(t.heroKicker)}</span>
-        <h1>${esc(ui.heroTitle).replaceAll('\n', '<br>')}</h1>
+        <h1>${lang === 'ja' ? '<span class="phrase">小樽の予定を、</span><span class="phrase">ひとつに。</span>' : esc(ui.heroTitle)}</h1>
         <p>${esc(ui.heroText)}</p>
-        <div class="hero-actions"><a class="btn" href="#calendar">${esc(ui.explore)} <span aria-hidden="true">↓</span></a></div>
       </div>
       <div class="hero-photo"><img src="/assets/otaru-canal-photo-20260713.jpg" alt="${esc(lang === 'ja' ? '夕暮れの小樽運河' : lang === 'en' ? 'Otaru Canal at dusk' : lang === 'ko' ? '해 질 무렵의 오타루 운하' : '黃昏時的小樽運河')}" width="1672" height="941" fetchpriority="high"><span>OTARU CANAL / HOKKAIDO</span></div>
     </div>
@@ -1496,15 +1525,15 @@ ${renderHeader(lang)}
       <div class="calendar-wrap">
         <div class="cal-head">
           <div>
-            <h2 class="cal-title schedule-en"><span>${esc(t.calendarTitle1)}</span><span>${esc(t.calendarTitle2)}</span></h2>
-            <p class="cal-copy">${esc(t.calendarCopy)}</p>
+            <h2 class="cal-title schedule-en">${esc(ui.findTitle)}</h2>
           </div>
-          <span class="calendar-location">OTARU / JAPAN</span>
+          <div class="view-switch js-only" role="group" aria-label="${attr(ui.viewLabel)}"><button id="viewCalendar" aria-pressed="true">${esc(ui.viewCalendar)}</button><button id="viewList" aria-pressed="false">${esc(ui.viewList)}</button></div>
         </div>
         <div class="calendar-tools js-only">
-          <label class="calendar-search" for="eventSearch"><span>${esc(ui.searchLabel)}</span><input type="search" id="eventSearch" placeholder="${attr(ui.searchPlaceholder)}" autocomplete="off" aria-controls="calendarGrid eventList"></label>
-          <div class="view-switch" role="group" aria-label="${attr(ui.viewLabel)}"><button id="viewCalendar" aria-pressed="true">${esc(ui.viewCalendar)}</button><button id="viewList" aria-pressed="false">${esc(ui.viewList)}</button></div>
+          <label class="calendar-search" for="eventSearch"><span>${esc(ui.searchLabel)}</span><input type="search" id="eventSearch" placeholder="${attr(ui.searchPlaceholder)}" autocomplete="off" aria-controls="calendarGrid eventList" aria-describedby="searchScope"></label>
+          <div class="quick-ranges" id="quickRanges" role="group" aria-label="${attr(ui.rangeLabel)}">${['month','today','weekend','upcoming'].map(range => `<button type="button" data-range="${range}" aria-pressed="${range === 'month'}">${esc(ui[`${range}Range`])}</button>`).join('')}</div>
         </div>
+        <p id="searchScope" class="search-scope" hidden>${esc(ui.searchScope)}</p>
         <div class="calendar-toolbar controls">
           <div class="month-controls toolbar-month">
             <button class="toolbar-arrow mini-btn" onclick="changeMonth(-1)" aria-label="${attr(t.prev)}">‹</button>
@@ -1525,15 +1554,16 @@ ${renderHeader(lang)}
       </div>
       <div class="lower-area">
         <section class="panel category-panel" id="monthlyPanel" data-category="all">
-          <h2>${esc(t.monthlyTitle)}</h2>
-          <p class="lead">${esc(t.monthlyLead)}</p>
+          <div class="results-heading"><h2>${esc(ui.resultsTitle)}</h2><button type="button" id="resetFilters" class="text-button js-only">${esc(ui.reset)}</button></div>
           <p id="listNote" class="note" role="status" aria-live="polite">${esc(t.count(currentMonthEvents.length))}</p>
           <details class="period-events" id="periodEvents"${currentPeriodEvents.length ? '' : ' hidden'}>
             <summary class="period-events-heading"><h3>${esc(t.periodTitle)}</h3><span id="periodCount">${currentPeriodEvents.length}</span></summary>
             <div class="period-event-list" id="periodEventList">${renderPeriodCards(currentPeriodEvents, lang)}</div>
           </details>
           <div class="event-list" id="eventList">${renderEventCards(currentDatedEvents, lang)}</div>
-          <div class="event-list ongoing-list" id="ongoingList">${renderOngoingCards(lang)}</div>
+          <div class="load-more js-only"><button type="button" id="showMoreEvents" class="mini-btn" hidden>${esc(ui.more)}</button></div>
+          <p class="source-note">${esc(ui.sourceNote)}</p>
+          <details class="community-info"><summary>${esc(ui.usefulInfo)}</summary><div class="event-list ongoing-list" id="ongoingList">${renderOngoingCards(lang)}</div></details>
         </section>
       </div>
     </div>
@@ -1569,11 +1599,7 @@ ${renderHeader(lang)}
         <h2>${esc(t.civicTitle)}</h2>
         <p class="lead">${esc(t.civicLead)}</p>
         <div class="archive-grid">
-          <a class="archive-card council" href="https://www.city.otaru.lg.jp/docs/2020112500241/" target="_blank" rel="noopener"><span class="archive-icon">議</span><strong>小樽市議会</strong><small>本会議・委員会の日程</small></a>
-          <a class="archive-card council" href="https://www.city.otaru.lg.jp/docs/2020113000634/" target="_blank" rel="noopener"><span class="archive-icon">録</span><strong>会議録</strong><small>過去の公式記録</small></a>
-          <a class="archive-card video" href="https://www.youtube.com/channel/UCTY8gt4N4cMq7PTGWZwgtNQ" target="_blank" rel="noopener"><span class="archive-icon">▶</span><strong>議会映像</strong><small>YouTube中継・録画</small></a>
-          <a class="archive-card election" href="https://www.city.otaru.lg.jp/docs/2022071500041/" target="_blank" rel="noopener"><span class="archive-icon">票</span><strong>地方選挙</strong><small>候補者・選挙日程</small></a>
-          <a class="archive-card election" href="https://www.city.otaru.lg.jp/docs/2021010400039/" target="_blank" rel="noopener"><span class="archive-icon">歴</span><strong>選挙結果</strong><small>過去の開票結果</small></a>
+          ${['https://www.city.otaru.lg.jp/docs/2020112500241/','https://www.city.otaru.lg.jp/docs/2020113000634/','https://www.youtube.com/channel/UCTY8gt4N4cMq7PTGWZwgtNQ','https://www.city.otaru.lg.jp/docs/2022071500041/','https://www.city.otaru.lg.jp/docs/2021010400039/'].map((url,i)=>`<a class="archive-card" href="${url}" target="_blank" rel="noopener"><strong>${esc(ui.archiveLinks[i][0])}</strong><small>${esc(ui.archiveLinks[i][1])}</small></a>`).join('')}
         </div>
       </section>
     </div>
@@ -1663,7 +1689,7 @@ function renderModal(lang) {
         <h2 id="modalTitle"></h2>
         <div class="meta" id="modalMeta"></div>
       </div>
-      <button class="close" onclick="closeModal()" aria-label="Close">×</button>
+      <button class="close" onclick="closeModal()" aria-label="${attr(uxCopy[lang].close)}">×</button>
     </div>
     <div id="modalBody"></div>
     <div class="source" id="modalSource"></div>
@@ -1681,11 +1707,19 @@ function renderModal(lang) {
 function renderEventPage(event, lang) {
   const cfg = langConfig[lang];
   const t = copy[lang];
+  const ui = uxCopy[lang];
   const text = eventText(event, lang);
   const title = lang === 'ja' ? `${text.name}｜小樽暮らしカレンダー` : `${text.name} | ${cfg.siteName}`;
   const description = text.summary;
   const canonical = pageUrl(lang, 'event', event.slug);
-  const related = events.filter((item) => item.id !== event.id && item.category === event.category).slice(0, 3);
+  const related = events.filter((item) => item.id !== event.id && item.category === event.category && item.endDate >= today)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate)).slice(0, 3);
+  const actions = `<div class="modal-actions detail-actions">
+      <a class="btn" href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.sourceLinkLabel?.[lang] || t.official)}</a>
+      ${event.registrationUrl ? `<a class="btn" href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(t.registrationAction)}</a>` : ''}
+      <a class="btn calendar-btn" href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(t.calendarAdd)}</a>
+      ${event.mapQuery ? `<a class="btn map-external-btn" href="https://www.google.com/maps/search/?api=1&query=${attr(encodeURIComponent(event.mapQuery))}" target="_blank" rel="noopener">${esc(t.mapOpen)}</a>` : ''}
+    </div>`;
   return `${head({ lang, title, description, canonical, kind: 'event', slug: event.slug, type: 'article', jsonLd: eventJsonLd(event, lang) })}
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1693,13 +1727,13 @@ function renderEventPage(event, lang) {
 <!-- End Google Tag Manager (noscript) -->
 ${renderHeader(lang, 'event', event.slug)}
 <main class="detail-main">
-  <article class="event-detail wrap">
-    <nav class="breadcrumbs" aria-label="breadcrumb"><a href="${attr(pageUrl(lang))}">${esc(cfg.siteName)}</a><span>›</span><span>${esc(text.name)}</span></nav>
+  <article class="event-detail wrap" data-event-start="${attr(event.startDate)}" data-event-end="${attr(event.endDate)}" data-event-status="${attr(event.eventStatus)}" data-ended-label="${attr(t.ended)}">
+    <nav class="breadcrumbs" aria-label="breadcrumb"><a class="back-to-results" href="${attr(pageUrl(lang))}#calendar">← ${esc(ui.backResults)}</a></nav>
     <p class="eyebrow">${esc(t.filters[event.category])}</p>
     <h1>${esc(text.name)}</h1>
     ${lang !== 'ja' ? `<p class="official-name">${esc(t.officialName)}：${esc(event.name)}</p>` : ''}
     <p class="detail-summary">${esc(text.summary)}</p>
-    <div class="status-line"><span class="tag">${esc(text.statusLabel)}</span><span class="tag">${esc(t.sourceLabel)}：${esc(event.officialSourceName)}</span></div>
+    <div class="status-line"><span class="tag" data-status-label>${esc(text.statusLabel)}</span><span class="source">${esc(t.sourceLabel)}：${esc(event.officialSourceName)}</span></div>
     <section class="detail-section">
       <h2>${esc(t.eventFactsHeading)}</h2>
       <dl class="fact-list">
@@ -1710,26 +1744,24 @@ ${renderHeader(lang, 'event', event.slug)}
         <div><dt>${esc(t.price)}</dt><dd>${esc(text.price)}</dd></div>
         <div><dt>${esc(t.reservation)}</dt><dd>${esc(text.reservation)}</dd></div>
         <div><dt>${esc(t.organizer)}</dt><dd>${esc(event.organizerName)}</dd></div>
-        <div><dt>${esc(t.checkedLabel)}</dt><dd>${esc(event.sourceCheckedAt)}</dd></div>
-        <div><dt>${esc(t.updatedLabel)}</dt><dd>${esc(event.updatedAt)}</dd></div>
       </dl>
     </section>
+    ${actions}
+    <p class="source-note">${esc(ui.sourceNote)}</p>
     <section class="detail-section">
-      <h2>${esc(t.eventSummaryHeading)}</h2>
-      <p>${esc(text.description)}</p>
+      <h2>${esc(ui.infoTitle)}</h2>
+      ${text.description !== text.summary ? `<p>${esc(text.description)}</p>` : ''}
       <p class="source">${esc(t.sourceLabel)}：<a href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.officialSourceName)}</a></p>
+      <p class="source">${esc(t.checkedLabel)}：${esc(event.sourceCheckedAt)} ／ ${esc(t.updatedLabel)}：${esc(event.updatedAt)}</p>
+      <p class="detail-disclaimer">${esc(t.footerNotice)}</p>
     </section>
-    <div class="modal-actions detail-actions">
-      <a class="btn" href="${attr(event.officialSourceUrl)}" target="_blank" rel="noopener">${esc(event.sourceLinkLabel?.[lang] || t.official)}</a>
-      ${event.registrationUrl ? `<a class="btn" href="${attr(event.registrationUrl)}" target="_blank" rel="noopener">${esc(t.registrationAction)}</a>` : ''}
-      <a class="btn calendar-btn" href="${attr(googleCalendarUrl(event, lang))}" target="_blank" rel="noopener">${esc(t.calendarAdd)}</a>
-      ${event.mapQuery ? `<a class="btn map-external-btn" href="https://www.google.com/maps/search/?api=1&query=${attr(encodeURIComponent(event.mapQuery))}" target="_blank" rel="noopener">${esc(t.mapOpen)}</a>` : `<span class="map-empty">${esc(t.mapEmpty)}<span class="radio-inline"><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640" loading="lazy"></span></span>`}
-      <a class="btn ghost-btn" href="${attr(pageUrl(lang))}#calendar">${esc(t.backHome)}</a>
-    </div>
+    ${!event.mapQuery ? `<div class="map-empty">${esc(t.mapEmpty)}<span class="radio-inline"><img src="/assets/otaru-radio-club-20260925.jpg" alt="ヲタル電波倶楽部" width="1280" height="640" loading="lazy"></span></div>` : ''}
+    ${related.length ? `
     <section class="detail-section">
-      <h2>${esc(t.related)}</h2>
+      <h2>${esc(ui.relatedTitle)}</h2>
       <div class="event-list">${renderEventCards(related, lang)}</div>
-    </section>
+    </section>` : ''}
+    <a class="back-to-results detail-back" href="${attr(pageUrl(lang))}#calendar">← ${esc(ui.backResults)}</a>
   </article>
 </main>
 ${renderFooter(lang)}
@@ -1759,7 +1791,7 @@ ${renderHeader(lang, 'privacy')}
       <h1>${esc(t.privacyHeading)}</h1>
       <p class="lead">${esc(t.privacyLead)}</p>
       ${sections.map((section, i) => `<h2>${i + 1}. ${esc(section.title)}</h2><p>${esc(section.body)}</p>`).join('\n')}
-      <p class="date">制定日：2026年7月</p>
+      <p class="date">${esc(uxCopy[lang].policyDate)}</p>
       <div class="back"><a href="${attr(pageUrl(lang))}">${esc(t.backHome)}</a><a href="https://spady.net/" target="_blank" rel="noopener">Spady</a></div>
     </article>
   </div>
@@ -1840,19 +1872,28 @@ if(location.hostname.endsWith('.otaru-kurashi-calendar.pages.dev')) {
   Object.keys(data.langUrls).forEach(k => { data.langUrls[k]=new URL(data.langUrls[k]).pathname; });
 }
 const events = data.events;
+events.forEach(e=>{if(e.calendarParams)Object.defineProperty(e,'calendarUrl',{get(){return 'https://calendar.google.com/calendar/render?'+new URLSearchParams(e.calendarParams).toString();}});});
 const ongoing = data.ongoing;
 const garbageRegions = data.garbageRegions;
 const garbagePatterns = data.garbagePatterns;
 const categoryLabels = data.categoryLabels;
 const weekdayLabels = data.weekdayLabels;
 const T = data.text;
+const resolveEventStatus = ${statusFor.toString()};
+const statusLabels = { EventCompleted:T.ended, EventCancelled:T.cancelled, EventPostponed:T.postponed, EventRescheduled:T.rescheduled, EventMovedOnline:T.movedOnline };
+events.forEach(event => {
+  event.eventStatus = resolveEventStatus(event, japanISODate());
+  if(statusLabels[event.eventStatus]) event.statusLabel = statusLabels[event.eventStatus];
+});
 const [initialYear, initialMonth] = japanISODate().split('-').map(Number);
 let year = initialYear;
 let month = initialMonth - 1;
 let activeFilter = 'all';
 let currentEventId = '';
 let searchTerm = '';
-let viewMode = 'calendar';
+let viewMode = typeof matchMedia==='function' && matchMedia('(max-width:640px)').matches ? 'list' : 'calendar';
+let rangeMode = 'month';
+let visibleLimit = 12;
 const params = new URLSearchParams(location.search);
 if (/^\\d{4}-\\d{2}$/.test(params.get('month') || '')) {
   const [y,m] = params.get('month').split('-').map(Number);
@@ -1860,8 +1901,10 @@ if (/^\\d{4}-\\d{2}$/.test(params.get('month') || '')) {
 }
 if(Object.hasOwn(categoryLabels, params.get('category'))) activeFilter=params.get('category');
 searchTerm=(params.get('q') || '').slice(0,120);
-try { viewMode=params.get('view') || localStorage.getItem('otaru-calendar-view') || 'calendar'; } catch(e) {}
+try { viewMode=params.get('view') || localStorage.getItem('otaru-calendar-view') || viewMode; } catch(e) {}
 if(!['calendar','list'].includes(viewMode)) viewMode='calendar';
+if(['month','today','weekend','upcoming'].includes(params.get('range'))) rangeMode=params.get('range');
+visibleLimit=Math.min(240,Math.max(12,Number(params.get('limit'))||12));
 try { localStorage.setItem('otaru-calendar-lang', data.lang); } catch(e) {}
 
 function escHtml(value){
@@ -1902,8 +1945,9 @@ function matchesSearch(e){
   return words.every(word=>haystack.includes(word));
 }
 function monthEvents(){
+  const monthEnd = localISODate(new Date(year, month + 1, 0));
   return events.filter(e => {
-    if(e.end < japanISODate()) return false;
+    if(monthEnd >= japanISODate() && e.end < japanISODate()) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     if(!matchesSearch(e)) return false;
     const s = parseDate(e.start), en = parseDate(e.end);
@@ -1915,13 +1959,11 @@ function eventSpanDays(e){ return Math.max(0, Math.round((parseDate(e.end)-parse
 function eventsForDate(date){
   const iso=localISODate(date);
   return events.filter(e => {
-    if(e.end < japanISODate()) return false;
     if(activeFilter !== 'all' && e.category !== activeFilter) return false;
     if(!matchesSearch(e)) return false;
     if(!dateInRange(date,e.start,e.end) || (e.excludedDates || []).includes(iso)) return false;
     if(eventSpanDays(e) >= 13) return e.start === iso;
-    const longRunning = eventSpanDays(e) >= 2;
-    return !longRunning || e.start === iso;
+    return true;
   });
 }
 function timeRange(e){ return e.timeDisplay || (e.startTime ? (e.endTime ? e.startTime+'–'+e.endTime : e.startTime) : (e.time || '')); }
@@ -1964,20 +2006,53 @@ function renderCalendar(){
 function renderList(){
   const list = document.getElementById('eventList');
   if(!list) return;
-  const allMonthEvents = monthEvents().sort((a,b)=>a.start.localeCompare(b.start));
+  const allMonthEvents = selectedEvents().sort((a,b)=>a.start.localeCompare(b.start) || (a.startTime || '').localeCompare(b.startTime || '') || a.id.localeCompare(b.id));
   const periodEvs = allMonthEvents.filter(e => eventSpanDays(e) >= 13);
   const evs = allMonthEvents.filter(e => eventSpanDays(e) < 13);
-  document.getElementById('listNote').textContent = monthTitle()+' / '+allMonthEvents.length+' '+T.resultsUnit;
+  const rangeLabel = rangeMode==='month' ? monthTitle() : rangeMode==='today' ? fullDate(parseDate(japanISODate())) : rangeMode==='weekend' ? T.weekendRange : T.allUpcoming;
+  document.getElementById('listNote').textContent = rangeLabel+' · '+allMonthEvents.length+' '+T.resultsUnit;
   document.getElementById('periodCount').textContent=periodEvs.length;
   const periodSection = document.getElementById('periodEvents');
   const periodList = document.getElementById('periodEventList');
   if(periodSection) periodSection.hidden = periodEvs.length === 0;
-  if(periodList) periodList.innerHTML = periodEvs.map(e => '<article class="period-event-card category-'+e.category+'"><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3><p class="period-event-dates">'+escHtml(fullDate(parseDate(e.start))+' — '+fullDate(parseDate(e.end)))+'</p><p>'+escHtml(e.place)+'</p></article>').join('');
-  list.innerHTML = evs.map(e => {
+  if(periodList) periodList.innerHTML = periodEvs.map(e => '<article class="period-event-card category-'+e.category+'"><div class="meta"><span class="tag category-tag">'+escHtml(categoryLabels[e.category])+'</span></div><h3><a href="'+detailHref(e)+'">'+escHtml(e.title)+'</a></h3><p class="period-event-dates">'+escHtml(fullDate(parseDate(e.start))+' — '+fullDate(parseDate(e.end)))+'</p><p>'+escHtml(e.place)+'</p></article>').join('');
+  if(periodSection && rangeMode!=='month') periodSection.open=true;
+  list.innerHTML = evs.slice(0,visibleLimit).map(e => {
     const d = parseDate(e.start);
-    const officialName = data.lang !== 'ja' ? '<p class="official-name">'+escHtml(T.officialName)+'：'+escHtml(e.name)+'</p>' : '';
-    return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><strong>'+d.getDate()+'</strong><small>'+fullDate(d)+'</small></div></div><div><div class="meta"><span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(e.statusLabel)+'</span></div><h3><a href="'+e.detailUrl+'">'+escHtml(e.title)+'</a></h3>'+officialName+'<p><strong>'+escHtml(T.dateTime)+'：</strong>'+escHtml(fullDate(d)+' '+timeRange(e))+'</p><p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+e.detailUrl+'">'+escHtml(T.detailsArrow)+'</a><a href="'+e.calendarUrl+'" target="_blank" rel="noopener">'+escHtml(T.calendarAdd)+'</a>'+(e.registrationUrl ? '<a href="'+e.registrationUrl+'" target="_blank" rel="noopener">'+escHtml(T.registrationAction)+'</a>' : '')+'<a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(e.sourceLinkLabel || T.official)+'</a></div></article>';
+    const monthLabel=new Intl.DateTimeFormat(data.lang,{month:'short'}).format(d);
+    const dates=fullDate(d)+(e.end!==e.start ? ' — '+fullDate(parseDate(e.end)) : '');
+    return '<article class="event-card category-'+e.category+'"><div class="date-box"><div><small>'+escHtml(monthLabel)+'</small><strong>'+d.getDate()+'</strong><small>'+escHtml(weekdayLabels[d.getDay()])+'</small></div></div><div><div class="meta"><span class="tag category-tag">'+escHtml(categoryLabels[e.category])+'</span>'+(e.statusLabel!==T.scheduled ? '<span class="tag status-tag">'+escHtml(e.statusLabel)+'</span>' : '')+'</div><h3><a href="'+detailHref(e)+'">'+escHtml(e.title)+'</a></h3><p class="card-date">'+escHtml(dates+' '+timeRange(e))+'</p><p class="card-venue">'+escHtml(e.place)+'</p><p class="card-summary">'+escHtml(e.summary)+'</p></div><div class="event-links"><a href="'+detailHref(e)+'">'+escHtml(T.detailsArrow)+' <span aria-hidden="true">→</span></a><a href="'+e.url+'" target="_blank" rel="noopener">'+escHtml(e.sourceLinkLabel || T.official)+'</a></div></article>';
   }).join('') || (periodEvs.length ? '' : '<p class="empty-results">'+escHtml(T.emptyResults)+'</p>');
+  const more=document.getElementById('showMoreEvents');
+  more.hidden=evs.length<=visibleLimit;
+  more.textContent=T.more+' ('+Math.min(evs.length,visibleLimit)+' / '+evs.length+')';
+}
+function selectedEvents(){
+  if(rangeMode==='month') return monthEvents();
+  let from=parseDate(japanISODate()), to=null;
+  if(rangeMode==='today') to=new Date(from);
+  if(rangeMode==='weekend'){
+    const day=from.getDay();
+    from.setDate(from.getDate()+(day===0 ? 0 : day===6 ? 0 : 6-day));
+    to=new Date(from);to.setDate(to.getDate()+(from.getDay()===6 ? 1 : 0));
+  }
+  const start=localISODate(from), end=to ? localISODate(to) : '9999-12-31';
+  return events.filter(e=>e.end>=start && e.start<=end && (activeFilter==='all'||e.category===activeFilter) && matchesSearch(e) && (!to || Array.from({length:Math.round((to-from)/86400000)+1},(_,i)=>{const d=new Date(from);d.setDate(d.getDate()+i);const iso=localISODate(d);return iso>=e.start&&iso<=e.end&&!(e.excludedDates||[]).includes(iso);}).some(Boolean)));
+}
+function browseParams(){
+  const p=new URLSearchParams();p.set('month',year+'-'+String(month+1).padStart(2,'0'));
+  if(activeFilter!=='all')p.set('category',activeFilter);
+  if(searchTerm)p.set('q',searchTerm);
+  p.set('view',viewMode);
+  if(visibleLimit>12)p.set('limit',String(visibleLimit));
+  if(rangeMode!=='month')p.set('range',rangeMode);
+  return p;
+}
+function detailHref(e){const u=new URL(e.detailUrl,location.origin);u.search=browseParams().toString();return escHtml(u.pathname+u.search);}
+function syncRange(){
+  document.getElementById('calendar').classList.toggle('quick-mode',rangeMode!=='month');
+  document.querySelectorAll('[data-range]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.range===rangeMode)));
+  document.getElementById('searchScope').hidden=!searchTerm || rangeMode!=='upcoming';
 }
 function renderOngoing(){
   const box = document.getElementById('ongoingList');
@@ -1989,10 +2064,10 @@ function openEventModal(e){
   currentEventId = e.id;
   const d = parseDate(e.start);
   document.getElementById('modalTitle').textContent = e.title;
-  document.getElementById('modalMeta').innerHTML = '<span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(fullDate(d))+'</span><span class="tag">'+escHtml(timeRange(e))+'</span>';
+  document.getElementById('modalMeta').innerHTML = '<span class="tag">'+escHtml(categoryLabels[e.category])+'</span><span class="tag">'+escHtml(fullDate(d)+(e.end!==e.start ? ' — '+fullDate(parseDate(e.end)) : ''))+'</span><span class="tag">'+escHtml(timeRange(e))+'</span>';
   document.getElementById('modalBody').innerHTML = '<p><strong>'+escHtml(T.place)+'：</strong>'+escHtml(e.place)+'</p><p>'+escHtml(e.summary)+'</p>';
   document.getElementById('modalSource').textContent = T.sourceLabel+'：'+e.source;
-  document.getElementById('modalDetailLink').href = e.detailUrl;
+  document.getElementById('modalDetailLink').href = detailHref(e).replaceAll('&amp;','&');
   document.getElementById('modalDetailLink').style.display = 'inline-flex';
   document.getElementById('modalLink').href = e.url;
   document.getElementById('modalLink').textContent = e.sourceLinkLabel || T.official;
@@ -2068,8 +2143,8 @@ document.addEventListener('keydown',e=>{
     else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
   }
 });
-window.changeMonth = function(delta){ month += delta; if(month<0){month=11;year--;} if(month>11){month=0;year++;} renderCalendar(); };
-window.goToday = function(){ const [y,m] = japanISODate().split('-').map(Number); year=y; month=m-1; renderCalendar(); };
+window.changeMonth = function(delta){ rangeMode='month';visibleLimit=12;month += delta; if(month<0){month=11;year--;} if(month>11){month=0;year++;} syncRange();renderCalendar(); };
+window.goToday = function(){ const [y,m] = japanISODate().split('-').map(Number); year=y; month=m-1;rangeMode='month';visibleLimit=12;syncRange();renderCalendar(); };
 function syncCategoryPresentation(){
   const civicArchive = document.getElementById('civicArchive');
   if(civicArchive) civicArchive.hidden = activeFilter !== 'civic';
@@ -2081,6 +2156,7 @@ document.querySelectorAll('.filter[data-filter]').forEach(btn => btn.addEventLis
   btn.classList.add('active');
   btn.setAttribute('aria-pressed','true');
   activeFilter = btn.dataset.filter;
+  visibleLimit=12;
   renderCalendar();
   renderOngoing();
   syncCategoryPresentation();
@@ -2121,11 +2197,12 @@ function renderGarbageResult(){
   if(!input || !dateString){ result.innerHTML = '<div class="garbage-error">'+escHtml(T.garbageEmpty)+'</div>'; return; }
   if(!region){
     const candidates = garbageRegions.filter(r => normalizeGarbageText(r.label).includes(normalizeGarbageText(input))).slice(0,6);
-    result.innerHTML = '<div class="garbage-error">'+escHtml(T.garbageEmpty)+(candidates.length ? '<div class="garbage-suggestions">'+candidates.map(c => '<button type="button" data-region="'+escHtml(c.label)+'">'+escHtml(c.label)+'</button>').join('')+'</div>' : '')+'</div>';
+    result.innerHTML = '<div class="garbage-error">'+escHtml(T.regionNotFound)+(candidates.length ? '<div class="garbage-suggestions">'+candidates.map(c => '<button type="button" data-region="'+escHtml(c.label)+'">'+escHtml(c.label)+'</button>').join('')+'</div>' : '')+'</div>';
     result.querySelectorAll('[data-region]').forEach(btn => btn.addEventListener('click', () => { document.getElementById('garbageRegion').value=btn.dataset.region; renderGarbageResult(); }));
     return;
   }
   const date = new Date(dateString+'T12:00:00');
+  try{localStorage.setItem('otaru-garbage-region',region.label);}catch(e){}
   if(date.getFullYear() !== 2026){ result.innerHTML = '<div class="garbage-error">'+escHtml(T.garbageYearNote)+' <a href="https://www.city.otaru.lg.jp/docs/2025102700045/" target="_blank" rel="noopener">'+escHtml(T.official)+'</a></div>'; return; }
   const types = garbageFor(region.group, dateString);
   result.innerHTML = '<div class="garbage-result-head"><div><small>'+escHtml(region.label)+'・No.'+region.group+'</small><strong>'+escHtml(fullDate(date))+'</strong></div><a href="https://www.city.otaru.lg.jp/docs/2025102700045/" target="_blank" rel="noopener">'+escHtml(T.garbageOfficial)+'</a></div>' +
@@ -2137,20 +2214,19 @@ function setupGarbageLookup(){
   list.innerHTML = garbageRegions.map(r => '<option value="'+escHtml(r.label)+'">No.'+r.group+'</option>').join('');
   const dateInput = document.getElementById('garbageDate');
   dateInput.value = japanISODate();
+  try{const saved=localStorage.getItem('otaru-garbage-region');if(saved&&findGarbageRegion(saved)){document.getElementById('garbageRegion').value=saved;renderGarbageResult();}}catch(e){}
   document.getElementById('garbageSearchBtn').addEventListener('click', renderGarbageResult);
   document.getElementById('garbageRegion').addEventListener('change', renderGarbageResult);
   dateInput.addEventListener('change', renderGarbageResult);
 }
 function updateLanguageLinks(){
+  const state=browseParams();
+  if(currentEventId)state.set('event',currentEventId);
+  history.replaceState(null,'',location.pathname+'?'+state.toString()+location.hash);
   document.querySelectorAll('[data-lang-link]').forEach(a => {
     const code = a.dataset.langLink;
     const base = data.langUrls[code] || a.href;
-    const p = new URLSearchParams();
-    p.set('month', year+'-'+String(month+1).padStart(2,'0'));
-    if(currentEventId) p.set('event', currentEventId);
-    if(activeFilter !== 'all') p.set('category',activeFilter);
-    if(searchTerm) p.set('q',searchTerm);
-    p.set('view',viewMode);
+    const p = state;
     a.href = base + '?' + p.toString();
   });
 }
@@ -2162,26 +2238,34 @@ function setView(mode){
   try{localStorage.setItem('otaru-calendar-view',mode);}catch(e){}
   updateLanguageLinks();
 }
-document.getElementById('viewCalendar').addEventListener('click',()=>setView('calendar'));
+document.getElementById('viewCalendar').addEventListener('click',()=>{rangeMode='month';syncRange();setView('calendar');renderCalendar();});
 document.getElementById('viewList').addEventListener('click',()=>setView('list'));
+document.querySelectorAll('[data-range]').forEach(b=>b.addEventListener('click',()=>{rangeMode=b.dataset.range;visibleLimit=12;syncRange();renderCalendar();}));
+document.getElementById('showMoreEvents').addEventListener('click',()=>{const count=document.querySelectorAll('#eventList .event-card').length;visibleLimit+=12;renderList();updateLanguageLinks();const next=document.querySelectorAll('#eventList .event-card h3 a')[count];if(next)next.focus({preventScroll:true});});
+document.getElementById('resetFilters').addEventListener('click',()=>{
+  activeFilter='all';searchTerm='';rangeMode='month';visibleLimit=12;searchInput.value='';
+  document.querySelectorAll('.filter[data-filter]').forEach(b=>{b.classList.toggle('active',b.dataset.filter==='all');b.setAttribute('aria-pressed',String(b.dataset.filter==='all'));});
+  syncRange();renderCalendar();renderOngoing();syncCategoryPresentation();
+});
 const searchInput=document.getElementById('eventSearch');
 searchInput.value=searchTerm;
 let searchTimer;
 searchInput.addEventListener('input',()=>{
   clearTimeout(searchTimer);
-  searchTimer=setTimeout(()=>{searchTerm=searchInput.value;renderCalendar();renderOngoing();},120);
+  searchTimer=setTimeout(()=>{searchTerm=searchInput.value;visibleLimit=12;if(searchTerm && year*12+month>=initialYear*12+initialMonth-1)rangeMode='upcoming';syncRange();renderCalendar();renderOngoing();},120);
 });
 document.querySelectorAll('.filter[data-filter]').forEach(btn=>{
   const selected=btn.dataset.filter===activeFilter;
   btn.classList.toggle('active',selected);btn.setAttribute('aria-pressed',String(selected));
 });
-setView(viewMode);
+syncRange();setView(viewMode);
 function runOpening(){
   const splash=document.getElementById('splash');
   const reduce=matchMedia('(prefers-reduced-motion: reduce)');
   let seen=false;
   try{seen=sessionStorage.getItem('otaru-opening-v2')==='seen';}catch(e){}
-  if(reduce.matches || params.get('event') || location.hash || (seen && params.get('opening')!=='1')) return;
+  // The calendar is a repeat-use utility. Only play the full opening on explicit request.
+  if(reduce.matches || params.get('opening')!=='1') return;
   splash.hidden=false;
   document.body.classList.add('opening-active');
   setBackgroundInert(true);
