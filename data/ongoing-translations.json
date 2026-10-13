@@ -23,17 +23,23 @@
     "zh-Hans": {"title": "经营咨询、补助金与企业传承信息", "summary": "小樽商工会议所（小樽商工会議所）的经营支持页面，提供经营、补助金、企业传承及融资等咨询渠道。", "label": "持续更新"},
     "ko": {"title": "경영 상담·보조금·사업 승계 정보", "summary": "오타루 상공회의소(小樽商工会議所)의 경영 지원 페이지입니다. 경영, 보조금, 사업 승계, 금융 관련 상담 창구를 확인할 수 있습니다.", "label": "수시 업데이트"}
   },
+  "おたる水族館 事務員（正社員）募集": {
+    "en": {"title": "Otaru Aquarium: full-time administrative roles", "label": "Apply by October 31", "summary": "Administrative vacancies covering general affairs, HR and accounting. Experienced and entry-level tracks are available. Check the official requirements and documents."},
+    "zh-Hant": {"title": "小樽水族館：正職行政人員招募", "label": "10月31日截止", "summary": "招募總務、人事與會計等行政正職。分經驗者與無經驗限制組別；請查看官方資格及文件要求。"},
+    "zh-Hans": {"title": "小樽水族馆：正式行政人员招聘", "label": "10月31日截止", "summary": "招聘总务、人事和会计等行政正式员工。分有经验与无经验限制类别；请查看官方条件与材料要求。"},
+    "ko": {"title": "오타루 수족관 정규직 사무직 채용", "label": "10월 31일 마감", "summary": "총무·노무·회계 등을 담당할 정규직 모집. 경력자 및 경력 무관 부문이 있습니다. 공식 자격과 제출서류를 확인하세요."}
+  },
   "観光地づくり加速化補助金": {
-    "en": {"title": "Tourism development subsidy (観光地づくり加速化補助金)", "summary": "A subsidy programme for accommodation and tourism-related businesses in Hokkaido. Applications are accepted from August 3 to October 30, 2026.", "label": "Applications open August 3"},
-    "zh-Hant": {"title": "觀光地建設加速化補助金（観光地づくり加速化補助金）", "summary": "面向北海道住宿業者及觀光相關業者的補助制度。申請期間為2026年8月3日至10月30日。", "label": "8月3日起受理"},
-    "zh-Hans": {"title": "旅游目的地建设加速补助金（観光地づくり加速化補助金）", "summary": "面向北海道住宿业及旅游相关企业的补助制度。申请时间为2026年8月3日至10月30日。", "label": "8月3日起受理"},
-    "ko": {"title": "관광지 조성 촉진 보조금（観光地づくり加速化補助金）", "summary": "홋카이도 숙박업자와 관광 관련 사업자를 위한 보조금 제도입니다. 신청 기간은 2026년 8월 3일부터 10월 30일까지입니다.", "label": "8월 3일 접수 시작"}
+    "en": {"title": "Tourism development subsidy (観光地づくり加速化補助金)", "summary": "Equipment support for Hokkaido accommodation and tourism businesses. Apply by October 30, 2026; applications may close earlier if the budget is exhausted.", "label": "Apply by October 30"},
+    "zh-Hant": {"title": "觀光地建設加速化補助金（観光地づくり加速化補助金）", "summary": "北海道住宿與觀光相關業者的設備補助。2026年10月30日申請截止；預算用罄時提前結束。", "label": "10月30日截止"},
+    "zh-Hans": {"title": "旅游目的地建设加速补助金（観光地づくり加速化補助金）", "summary": "北海道住宿与旅游相关企业的设备补助。2026年10月30日申请截止；预算用尽时提前结束。", "label": "10月30日截止"},
+    "ko": {"title": "관광지 조성 촉진 보조금（観光地づくり加速化補助金）", "summary": "홋카이도 숙박·관광 관련 사업자의 설비 지원. 2026년 10월 30일 마감이며 예산 소진 시 조기 종료됩니다.", "label": "10월 30일 마감"}
   },
   "小規模事業者持続化補助金": {
-    "en": {"title": "Small-business sustainability subsidy (小規模事業者持続化補助金)", "summary": "Notice of application guidelines for the 20th general-type standard round and the 4th startup-type round. Applications open on November 5, 2026.", "label": "Applications open November 5"},
-    "zh-Hant": {"title": "小規模業者持續經營補助金（小規模事業者持続化補助金）", "summary": "一般型通常名額第20次及創業型第4次徵件要點的公布資訊。自2026年11月5日起受理申請。", "label": "11月5日起受理"},
-    "zh-Hans": {"title": "小规模企业持续经营补助金（小規模事業者持続化補助金）", "summary": "一般型常规名额第20轮及创业型第4轮申报指南的发布信息。2026年11月5日起受理申请。", "label": "11月5日起受理"},
-    "ko": {"title": "소규모 사업자 지속화 보조금（小規模事業者持続化補助金）", "summary": "일반형 통상 부문(一般型通常枠) 제20차 및 창업형 제4차 모집요강 공개 안내입니다. 신청 접수는 2026년 11월 5일에 시작됩니다.", "label": "11월 5일 접수 시작"}
+    "en": {"title": "Small-business sustainability subsidy (小規模事業者持続化補助金)", "summary": "Applications for general round 20 and startup round 4 run November 5–December 15, 2026. The general scheme's Form 4 request deadline is December 4. Check official eligibility and deadlines.", "label": "Applications open November 5"},
+    "zh-Hant": {"title": "小規模業者持續經營補助金（小規模事業者持続化補助金）", "summary": "一般型第20次及創業型第4次於2026年11月5日至12月15日受理。一般型的事業支援計畫書（樣式4）申請截止為12月4日；請確認官方資格與期限。", "label": "11月5日起受理"},
+    "zh-Hans": {"title": "小规模企业持续经营补助金（小規模事業者持続化補助金）", "summary": "一般型第20轮及创业型第4轮于2026年11月5日至12月15日受理。一般型的事业支持计划书（样式4）申请截止日为12月4日；请确认官方条件和期限。", "label": "11月5日起受理"},
+    "ko": {"title": "소규모 사업자 지속화 보조금（小規模事業者持続化補助金）", "summary": "일반형 제20차·창업형 제4차 접수는 2026년 11월 5일~12월 15일. 일반형 사업지원계획서(양식 4) 발급 신청은 12월 4일 마감. 공식 자격·기한을 확인하세요.", "label": "11월 5일 접수 시작"}
   },
   "小樽市議会 本会議の日程・質問通告・提出議案": {
     "en": {"title": "Otaru City Council: schedules, questions and bills", "summary": "The council holds four regular sessions a year. Check the official page for meeting dates, summaries of submitted questions and proposed bills.", "label": "February, June, September, December"},
@@ -66,10 +72,10 @@
     "ko": {"title": "육아·가족 행사 최신 소식", "summary": "오타루시의 육아·부모와 아이를 위한 행사 안내입니다. 강좌, 체험, 지원센터 행사 등의 새 소식을 확인할 수 있습니다.", "label": "수시 업데이트"}
   },
   "子どものイベント・学習のお知らせ": {
-    "en": {"title": "Children’s activities and learning opportunities", "summary": "Otaru City’s list of activities for children up to junior-high-school age, including library events, general museum programmes and sports classes.", "label": "July–September edition"},
-    "zh-Hant": {"title": "兒童活動與學習資訊", "summary": "小樽市公布的國中生及以下兒童活動一覽，包括圖書館、綜合博物館及運動課程等企劃。", "label": "7至9月版"},
-    "zh-Hans": {"title": "儿童活动与学习信息", "summary": "小樽市发布的面向初中生及以下儿童的活动一览，包括图书馆、综合博物馆和体育课程等项目。", "label": "7至9月版"},
-    "ko": {"title": "어린이 행사·학습 안내", "summary": "오타루시가 안내하는 중학생 이하 어린이 대상 행사 목록입니다. 도서관·종합박물관 프로그램과 스포츠 교실 등을 확인할 수 있습니다.", "label": "7~9월호"}
+    "en": {"title": "Children’s activities and learning opportunities", "summary": "Otaru City’s list of activities for children up to junior-high-school age, including library events, general museum programmes and sports classes.", "label": "October–December 2026 edition"},
+    "zh-Hant": {"title": "兒童活動與學習資訊", "summary": "小樽市公布的國中生及以下兒童活動一覽，包括圖書館、綜合博物館及運動課程等企劃。", "label": "2026年10至12月版"},
+    "zh-Hans": {"title": "儿童活动与学习信息", "summary": "小樽市发布的面向初中生及以下儿童的活动一览，包括图书馆、综合博物馆和体育课程等项目。", "label": "2026年10至12月版"},
+    "ko": {"title": "어린이 행사·학습 안내", "summary": "오타루시가 안내하는 중학생 이하 어린이 대상 행사 목록입니다. 도서관·종합박물관 프로그램과 스포츠 교실 등을 확인할 수 있습니다.", "label": "2026년 10~12월호"}
   },
   "かぜのこルーム": {
     "en": {"title": "Kazenoko Room (かぜのこルーム)", "summary": "For children aged 3 and under with their guardians. Free play, interactive play and picture-book readings take place at であえーる稲北団地.", "label": "Monday afternoons"},

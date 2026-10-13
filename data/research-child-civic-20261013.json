@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-13",
+  "timezone": "Asia/Tokyo",
+  "scope": "Official Otaru City family, library, public museum, art museum and civic/public programmes. This is a verified subset, not a claim that every event was found.",
+  "addedModule": "data/events-child-civic-20261013.mjs",
+  "newRecordCount": 44,
+  "datePolicy": "Dates are inclusive. Non-consecutive sessions have separate IDs. Closure dates explicitly confirmed by official notices are excluded.",
+  "primarySources": [
+    {"url":"https://www.city.otaru.lg.jp/docs/2022100700022/", "notes":"City quarterly children’s learning/event index, updated October 5, 2026; current issue is October–December 2026."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2022100700022/file_contents/R8-10-12-C.pdf", "notes":"Official 23-page October–December programme, information as of October 1. Used pages 4–7 (family/sport), 9–10 (library), 12–13 (museum), 18–19 (art), 22–23 (civic). Library and art tables also visually checked from rendered PDF pages."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2021081300030/", "notes":"Parent–child puppet show October 26, 10:00–11:00; apply by October 18, lottery 10 groups, JPY 700 per group."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2021081300023/", "notes":"Baby yoga October 20, 10:00–11:00; registration closed October 10; seven groups by lottery."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2026040600077/", "notes":"Mother/child balance-ball October 14 and 21, 11:00–11:40. Registration closed September 27."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2026040600084/", "notes":"Elementary beginner basketball October 14 and 28, 18:00–20:00. Registration closed October 4."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2022042500025/", "notes":"Existing preschool sports October 17, 10:00–12:00; registration closed October 7."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2020111500099/", "notes":"Gender-equality lecture November 7, 13:30–15:00, free, 50 places, apply by October 30 at 17:00."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2023031900017/otarumuseum.html", "notes":"Museum event notice updated October 11; newer than quarterly PDF. Confirmed October 18 anniversary talks, October 7–26 diary exhibition, October 30–November 15 research exhibition, November 8 dance, November 21 diary lecture."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2026082600035/", "notes":"Art museum Healing exhibition official notice updated October 6: dates, closure dates, admission, three clinical-art sessions and November 21 concert."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2023031200049/otarumuseum.html", "notes":"Museum opening calendar: main building closed Tuesdays except holidays, then following weekday. Used to exclude November 4 and 10 from research exhibition."}
+  ],
+  "existingEventUpdates": [
+    {
+      "id": "otaru-kids-play-all-20261017",
+      "file": "data/events-discovered-20260925.mjs",
+      "reason": "Official registration deadline October 7 has passed. Event itself is not cancelled; do not describe it as full.",
+      "patch": {
+        "reservationStatus": "closed",
+        "sourceCheckedAt": "2026-10-13",
+        "updatedAt": "2026-10-13",
+        "summary": "園児が気軽に体を動かせる無料のスポーツイベント。定員30人。申込は10月7日に終了しています。",
+        "reservation": {"ja":"10月7日申込締切・受付終了", "en":"Registration closed October 7", "zh-Hant":"10月7日報名截止", "zh-Hans":"10月7日报名截止", "ko":"10월 7일 신청 마감"},
+        "translations": {
+          "en": {"summary":"A free sports event for preschool children. Capacity 30. Registration closed October 7.", "description":"A free sports event for preschool children. Capacity 30. Registration closed October 7.", "reservation":"Registration closed October 7"},
+          "zh-Hant": {"summary":"幼兒免費運動活動，30人。報名已於10月7日截止。", "description":"幼兒免費運動活動，30人。報名已於10月7日截止。", "reservation":"10月7日報名截止"},
+          "zh-Hans": {"summary":"幼儿免费运动活动，30人。报名已于10月7日截止。", "description":"幼儿免费运动活动，30人。报名已于10月7日截止。", "reservation":"10月7日报名截止"},
+          "ko": {"summary":"미취학 아동을 위한 무료 스포츠 행사입니다. 정원 30명이며 10월 7일에 신청이 마감됐습니다.", "description":"미취학 아동을 위한 무료 스포츠 행사입니다. 정원 30명이며 10월 7일에 신청이 마감됐습니다.", "reservation":"10월 7일 신청 마감"}
+        }
+      }
+    }
+  ],
+  "existingVerifiedWithoutNewRecord": [
+    "City cultural festival programmes already in data: calligraphy October 15; youth exhibition October 21; bonsai October 23; photography October 28; flowers October 30; calligraphy/pressed flowers November 5; Japanese traditional performance and dance/ballet November 3; haiku/tanka/senryu October 25. Programme dates were cross-checked against official quarterly PDF; no duplicates added.",
+    "City council: root independently confirmed the latest published plenary schedule remains the September 8–October 1 third session; no exact December session dates inferred."
+  ],
+  "ongoingEntryChanged": {
+    "title": "子どものイベント・学習のお知らせ",
+    "files": ["data/ongoing.json", "data/ongoing-translations.json"],
+    "change": "Only the obsolete July–September label changed to October–December 2026 in all five languages; existing general description and official index URL retained.",
+    "labels": {"ja":"2026年10〜12月版", "en":"October–December 2026 edition", "zh-Hant":"2026年10至12月版", "zh-Hans":"2026年10至12月版", "ko":"2026년 10~12월호"}
+  },
+  "discrepanciesResolved": [
+    {"event":"わくわく講座 親子観劇", "resolution":"The municipal calendar’s September 25–October 18 span is the application period, not show duration. Detailed notice confirms the event is October 26, 10:00–11:00."},
+    {"event":"平原慎太郎パフォーマンス『機関車の夜』", "resolution":"October 1 quarterly PDF says unlimited places, but newer October 11 museum notice says capacity 80. Newer detail notice wins; module includes 80 and actual official registration URL."},
+    {"event":"Baby yoga, mother balance-ball, beginner basketball", "resolution":"Five new individual-date records have passed application deadlines. Explicit reservationStatus closed and translated registration warnings added; no claim of being sold out or cancelled."}
+  ],
+  "notAddedOrNotFullyAudited": [
+    {"url":"https://www.city.otaru.lg.jp/docs/2020111100145/", "reason":"Index suggests a new piyo-club registration deadline October 25, but linked detail still returned August dates. No November occurrence inferred."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2021081300016/", "reason":"Parenting index labels an original herbal-tea course while detail returned a previous haircut course. Exact forthcoming session date not sufficiently verified."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2020111500129/", "reason":"Gender-equality panel exhibition rotates between venues October 21–November 25; venue-specific daily opening schedules not fully verified. Kept as candidate rather than implying daily unrestricted access."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2022100700022/file_contents/R8-10-12-C.pdf", "reason":"Additional confirmed-looking candidates left for a subsequent pass: culture hands-on workshops November 7–8; Lepio exhibition November 16–29; family hula November–December; December mother/child balance-ball; museum sheet-cover volunteering and November 23 fossil/building walk; literature exhibitions and November 3 book sale; October 17 calligraphy workshop and November 14 art lecture. No records added until each full set of conditions/duplicate status has been checked."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2026100200018/", "reason":"Cezanne exhibition through February 14, 2027 found, but full closure schedule and duplicate status not completed; not added in this module."},
+    {"url":"https://www.city.otaru.lg.jp/docs/2022100700022/file_contents/R8-10-12-C.pdf", "reason":"Planetarium quarterly themes do not establish exact individual projection times; not turned into guessed scheduled events. November parent workshop explicitly undecided in the PDF and not added."}
+  ],
+  "validation": {
+    "moduleImport": "passed",
+    "recordCount": 44,
+    "localIdDuplicates": 0,
+    "exactExistingIdOrTitleStartDuplicates": 0,
+    "languageCoverage": ["ja","en","zh-Hant","zh-Hans","ko"],
+    "browserOrProductionTesting": "Not performed by this research subagent; root integrates, builds and verifies."
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "checkedAt": "2026-10-13",
+  "timezone": "Asia/Tokyo",
+  "eventsFile": "data/events-business-20261013.mjs",
+  "newEventCount": 16,
+  "reviewedExisting": [
+    {
+      "id": "akindo-lab-20261021",
+      "url": "https://spady.net/akindo/",
+      "result": "Keep existing organizer-provided October 21, 18:00 doors / 18:30 start and sold-out state. Official page supports October LINE Official Account topic, but has no exact date, location, end time, fee or October 21 sold-out notice. Do not overwrite sourceCheckedAt to imply every fact independently reconfirmed. No invented venue or end time."
+    },
+    {
+      "id": "otaru-ai-job-seminar-20261027",
+      "url": "https://otaru-jobnavi.jp/%E5%B0%B1%E8%81%B7%E3%83%BB%E8%BB%A2%E8%81%B7%E3%81%AB%E5%BD%B9%E7%AB%8B%E3%81%A4ai%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%82%BB%E3%83%9F%E3%83%8A%E3%83%BC%E9%96%8B%E5%82%AC%E3%81%AE%E3%81%94%E6%A1%88/",
+      "result": "Verified unchanged: October 27–30, each 10:00–12:30, Working Women's Center lecture room, free, 30 places, apply October 22. Existing entry accurate; sourceCheckedAt may be set to 2026-10-13 without changing updatedAt."
+    },
+    {
+      "id": "otaru-haccp-seminar-20261028",
+      "url": "https://www.city.otaru.lg.jp/docs/2020100300327/",
+      "result": "Verified unchanged: October 28, 10:00–12:00 or 13:30–15:30 (identical sessions), Otaru Public Health Center hall, free, applications October 16. Existing entry accurate; sourceCheckedAt may be updated, no invented single continuous start/end."
+    }
+  ],
+  "newEventEvidence": [
+    {
+      "ids": ["otaru-employer-appeal-20261020", "otaru-employer-appeal-20261029", "otaru-employer-appeal-20261105", "otaru-employer-appeal-20261112"],
+      "url": "https://otarucci.jp/%E3%80%90%E5%A4%96%E9%83%A8%E6%83%85%E5%A0%B1%E3%80%91%E3%80%8C%E9%AD%85%E5%8A%9B%E7%99%BA%E4%BF%A1%E5%8A%9B%E5%90%91%E4%B8%8A%E3%82%BB%E3%83%9F%E3%83%8A%E3%83%BC%E3%80%8D%E3%81%AE%E9%96%8B%E5%82%AC/",
+      "notes": "Chamber September 30 notice confirms all dates, 14:00–16:00, Wing Bay Building 1 4F Otaru Working Women's Center Main Hall. Official Job Navi organizer page confirms free/20 per session/booking and sessions 1,2,4 online. Sessions deliberately separate, not one October 20–November 12 continuous event."
+    },
+    {
+      "ids": ["otaru-management-consultation-20261105", "otaru-management-consultation-20261112", "otaru-management-consultation-20261119", "otaru-management-consultation-20261126"],
+      "url": "https://otarucci.jp/%E7%B5%8C%E5%96%B6%E5%8A%9B%E5%BC%B7%E5%8C%96%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%80%8B%E5%88%A5%E7%9B%B8%E8%AB%87%E4%BC%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-3/",
+      "notes": "Published October 13. All four dates and 10:00/11:00/13:30/14:30/15:30 appointment slots confirmed; each about 45 minutes. No single continuous start/end time set. Economic Center address matches official Chamber contact address."
+    },
+    {
+      "ids": ["hellowork-otaru-employer-session-20261013", "hellowork-otaru-employer-session-20261014", "hellowork-otaru-employer-session-20261015", "hellowork-otaru-employer-session-20261016", "hellowork-otaru-employer-session-20261019"],
+      "url": "https://jsite.mhlw.go.jp/hokkaido-hellowork/content/contents/002826363.pdf",
+      "notes": "Official October schedule PDF text extracted, all five dates 9:30–11:30 at Hello Work Otaru 2F, no booking, children welcome. Current HTML verified with direct HTTP because web text cache returned obsolete September schedule. Each day is grouped by participating employers, not one event per vacancy. No fee invented (PDF does not state fee)."
+    },
+    {
+      "ids": ["hellowork-toyoko-inn-20261020"],
+      "url": "https://jsite.mhlw.go.jp/hokkaido-hellowork/list/otaru/kyushokusha/toyokoinn.html",
+      "notes": "October 20 at 9:30, ends approximately 11:30. End time intentionally not treated as exact. Free/no booking/casual dress, not an interview."
+    },
+    {
+      "ids": ["hellowork-saiseikai-20261021"],
+      "url": "https://jsite.mhlw.go.jp/hokkaido-hellowork/list/otaru/jigyounushi/setsumeikai_080126_00001.html",
+      "notes": "October 21 9:30–11:30, Hello Work Otaru 2F, free/no booking, children welcome, not an interview."
+    },
+    {
+      "ids": ["otaru-new-employee-training-20261022"],
+      "url": "https://www.city.otaru.lg.jp/docs/2026081000034/",
+      "notes": "October 22 10:00–16:00, free, Public Health Center hall. October 1 page says additional recruitment but specifies deadline October 8; deadline is passed on audit date. Entry marks closed, does not assert current space availability."
+    }
+  ],
+  "ongoingUpdates": [
+    {
+      "title": "観光地づくり加速化補助金",
+      "patch": {"label": "10/30受付締切", "expiresAt": "2026-10-30", "sourceCheckedAt": "2026-10-13", "source": "北海道 観光振興課", "url": "https://www.pref.hokkaido.lg.jp/kz/kkd/261068.html", "summary": "北海道の宿泊・観光関連事業者向け設備導入等の補助制度。申請は2026年10月30日まで。予算上限に達した場合は早期終了します。"},
+      "translations": {
+        "en": {"label": "Apply by October 30", "summary": "Equipment support for Hokkaido accommodation and tourism businesses. Apply by October 30, 2026; applications may close earlier if the budget is exhausted."},
+        "zh-Hant": {"label": "10月30日截止", "summary": "北海道住宿與觀光相關業者的設備補助。2026年10月30日申請截止；預算用罄時提前結束。"},
+        "zh-Hans": {"label": "10月30日截止", "summary": "北海道住宿与旅游相关企业的设备补助。2026年10月30日申请截止；预算用尽时提前结束。"},
+        "ko": {"label": "10월 30일 마감", "summary": "홋카이도 숙박·관광 관련 사업자의 설비 지원. 2026년 10월 30일 마감이며 예산 소진 시 조기 종료됩니다."}
+      }
+    },
+    {
+      "title": "小規模事業者持続化補助金",
+      "patch": {"expiresAt": "2026-12-15", "sourceCheckedAt": "2026-10-13", "summary": "一般型通常枠第20回・創業型第4回は2026年11月5日受付開始、12月15日締切。一般型の事業支援計画書（様式4）発行受付は12月4日までです。要件と提出期限を公式要領でご確認ください。"},
+      "evidenceUrls": ["https://r6.jizokukahojokin.info/index.php", "https://r6.jizokukahojokin.info/sogyo/index.php"],
+      "translations": {
+        "en": {"summary": "Applications for general round 20 and startup round 4 run November 5–December 15, 2026. The general scheme's Form 4 request deadline is December 4. Check official eligibility and deadlines."},
+        "zh-Hant": {"summary": "一般型第20次及創業型第4次於2026年11月5日至12月15日受理。一般型的事業支援計畫書（樣式4）申請截止為12月4日；請確認官方資格與期限。"},
+        "zh-Hans": {"summary": "一般型第20轮及创业型第4轮于2026年11月5日至12月15日受理。一般型的事业支持计划书（样式4）申请截止日为12月4日；请确认官方条件和期限。"},
+        "ko": {"summary": "일반형 제20차·창업형 제4차 접수는 2026년 11월 5일~12월 15일. 일반형 사업지원계획서(양식 4) 발급 신청은 12월 4일 마감. 공식 자격·기한을 확인하세요."}
+      }
+    }
+  ],
+  "newOngoing": [
+    {
+      "title": "おたる水族館 事務員（正社員）募集",
+      "category": "job", "label": "10/31応募締切", "expiresAt": "2026-10-31", "sourceCheckedAt": "2026-10-13",
+      "summary": "総務・労務管理・経理などを担う正社員を募集。経験者区分と経験不問区分があり、新卒・第二新卒も対象。応募資格と提出書類は募集要項をご確認ください。",
+      "source": "株式会社小樽水族館公社", "url": "https://otaru-aq.jp/choineta/news/news-36235",
+      "translations": {
+        "en": {"title": "Otaru Aquarium: full-time administrative roles", "label": "Apply by October 31", "summary": "Administrative vacancies covering general affairs, HR and accounting. Experienced and entry-level tracks are available. Check the official requirements and documents."},
+        "zh-Hant": {"title": "小樽水族館：正職行政人員招募", "label": "10月31日截止", "summary": "招募總務、人事與會計等行政正職。分經驗者與無經驗限制組別；請查看官方資格及文件要求。"},
+        "zh-Hans": {"title": "小樽水族馆：正式行政人员招聘", "label": "10月31日截止", "summary": "招聘总务、人事和会计等行政正式员工。分有经验与无经验限制类别；请查看官方条件与材料要求。"},
+        "ko": {"title": "오타루 수족관 정규직 사무직 채용", "label": "10월 31일 마감", "summary": "총무·노무·회계 등을 담당할 정규직 모집. 경력자 및 경력 무관 부문이 있습니다. 공식 자격과 제출서류를 확인하세요."}
+      }
+    }
+  ],
+  "notAdded": [
+    {"title": "外国人材採用と共生セミナー（11/16）・カスタマーハラスメント防止セミナー（10/20、11/26、12/14）", "reason": "Verified dates in Chamber notices, but venues are Sapporo/online rather than Otaru. Kept out of local event additions, available as wider-area support links if requested."},
+    {"title": "令和9年1月22・23日 合同企業説明会", "reason": "Job Navi notice password-protected; not enough publicly accessible facts to add."},
+    {"title": "創業支援セミナー・外国人材活用セミナー（市）", "reason": "City pages updated later but actual dates were July/August 2026. Did not misclassify update date as a future event."},
+    {"title": "小樽商科大学 公開講座", "reason": "Search did not reveal a verified upcoming October–December 2026 public local session; no dates inferred."}
+  ]
+}

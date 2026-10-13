@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import discoveredEvents from '../data/events-discovered-20260925.mjs';
+import childCivicUpdates from '../data/events-child-civic-20261013.mjs';
+import tourismUpdates from '../data/events-tourism-20261013.mjs';
+import businessUpdates from '../data/events-business-20261013.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -23,10 +26,13 @@ const rawEvents = [
   ...readJson('data/events.json'),
   ...readJson('data/events-curated-20260925.json'),
   ...discoveredEvents,
+  ...childCivicUpdates,
+  ...tourismUpdates,
+  ...businessUpdates,
   ...readJson('data/events-official-municipal-20260723.json'),
   ...readJson('data/events-official-tourism-20260723.json'),
 ];
-const rawOngoing = readJson('data/ongoing.json');
+const rawOngoing = readJson('data/ongoing.json').filter((item) => !item.expiresAt || item.expiresAt >= today);
 const ongoingTranslations = readJson('data/ongoing-translations.json');
 const garbageRegions = readJson('data/garbage-regions.json');
 const garbagePatterns = readJson('data/garbage-patterns.json');
@@ -192,6 +198,7 @@ const copy = {
     rescheduled: '日程変更',
     movedOnline: 'オンライン開催に変更',
     soldOut: '受付終了・満席',
+    registrationClosed: '受付終了',
     reservationRequired: '予約・申込が必要',
     reservationNotRequired: '予約不要',
     reservationUnknown: '公式情報をご確認ください',
@@ -290,6 +297,7 @@ const copy = {
     rescheduled: 'Rescheduled',
     movedOnline: 'Moved online',
     soldOut: 'Full / registration closed',
+    registrationClosed: 'Registration closed',
     reservationRequired: 'Reservation or application required',
     reservationNotRequired: 'No reservation required',
     reservationUnknown: 'Please check the official information',
@@ -388,6 +396,7 @@ const copy = {
     rescheduled: '日期已更改',
     movedOnline: '改為線上舉行',
     soldOut: '已額滿／報名結束',
+    registrationClosed: '報名已截止',
     reservationRequired: '需要預約或報名',
     reservationNotRequired: '不需預約',
     reservationUnknown: '請確認官方資訊',
@@ -486,6 +495,7 @@ const copy = {
     rescheduled: '日期已更改',
     movedOnline: '改为线上举办',
     soldOut: '已满／报名结束',
+    registrationClosed: '报名已截止',
     reservationRequired: '需要预约或报名',
     reservationNotRequired: '无需预约',
     reservationUnknown: '请确认官方信息',
@@ -584,6 +594,7 @@ const copy = {
     rescheduled: '일정 변경',
     movedOnline: '온라인 개최로 변경',
     soldOut: '마감・만석',
+    registrationClosed: '신청 마감',
     reservationRequired: '예약 또는 신청 필요',
     reservationNotRequired: '예약 불필요',
     reservationUnknown: '공식 정보를 확인해 주세요',
@@ -893,6 +904,7 @@ function reservationFor(event, lang) {
   if (event.reservation && typeof event.reservation === 'object') return event.reservation[lang] || event.reservation.ja || copy[lang].reservationUnknown;
   if (typeof event.reservation === 'string' && lang === 'ja') return event.reservation;
   if (typeof event.reservationRequired === 'string' && lang === 'ja') return event.reservationRequired;
+  if (event.reservationStatus === 'closed') return copy[lang].registrationClosed;
   const state = reservationState(event);
   if (state === 'soldOut') return copy[lang].soldOut;
   if (state === 'required') return copy[lang].reservationRequired;
@@ -918,6 +930,7 @@ function statusLabelFor(event, lang, referenceDate = today) {
   if (status === 'EventRescheduled') return copy[lang].rescheduled;
   if (status === 'EventMovedOnline') return copy[lang].movedOnline;
   if (status === 'EventCompleted') return copy[lang].ended;
+  if (event.reservationStatus === 'closed') return copy[lang].registrationClosed;
   if (reservationState(event) === 'soldOut') return copy[lang].soldOut;
   return copy[lang].scheduled;
 }
@@ -941,6 +954,7 @@ function normalizeEvent(raw) {
     doorsOpenTime: raw.doorsOpenTime || '',
     overnight: raw.overnight === true,
     time: raw.time || '',
+    timeTranslations: raw.timeTranslations || null,
     venueName: raw.place || '',
     address: addressFor(raw),
     latitude: raw.latitude ?? null,
@@ -1015,6 +1029,7 @@ function isOvernightEvent(event) {
 }
 
 function formatTimeRange(event, lang) {
+  if (event.timeTranslations?.[lang]) return event.timeTranslations[lang];
   const start = event.startTime;
   const end = event.endTime;
   if (!start) return event.time || '';
@@ -1873,7 +1888,7 @@ if(location.hostname.endsWith('.otaru-kurashi-calendar.pages.dev')) {
 }
 const events = data.events;
 events.forEach(e=>{if(e.calendarParams)Object.defineProperty(e,'calendarUrl',{get(){return 'https://calendar.google.com/calendar/render?'+new URLSearchParams(e.calendarParams).toString();}});});
-const ongoing = data.ongoing;
+const ongoing = data.ongoing.filter(item => !item.expiresAt || item.expiresAt >= japanISODate());
 const garbageRegions = data.garbageRegions;
 const garbagePatterns = data.garbagePatterns;
 const categoryLabels = data.categoryLabels;

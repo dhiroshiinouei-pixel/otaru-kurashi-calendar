@@ -4,6 +4,9 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import discoveredEvents from '../data/events-discovered-20260925.mjs';
+import childCivicUpdates from '../data/events-child-civic-20261013.mjs';
+import tourismUpdates from '../data/events-tourism-20261013.mjs';
+import businessUpdates from '../data/events-business-20261013.mjs';
 
 // Evaluate the generator without invoking build() or writing generated files.
 const toolsDir = path.dirname(fileURLToPath(import.meta.url));
@@ -15,7 +18,7 @@ class TestDate extends Date {
   constructor(...args) { super(...(args.length ? args : ['2026-10-05T12:00:00+09:00'])); }
   static now() { return Date.parse('2026-10-05T12:00:00+09:00'); }
 }
-const context = vm.createContext({ fs, path, discoveredEvents, __testToolsDir: toolsDir, Date: TestDate, Intl, URLSearchParams, URL, console });
+const context = vm.createContext({ fs, path, discoveredEvents, childCivicUpdates, tourismUpdates, businessUpdates, __testToolsDir: toolsDir, Date: TestDate, Intl, URLSearchParams, URL, console });
 vm.runInContext(source + `\nglobalThis.api = {events, rawEvents, copy, normalizeEvent, statusFor, statusLabelFor, eventsForDate, monthEvents, formatTimeRange, formatEventDateTime, googleCalendarUrl, eventJsonLd, toGoogleDate, addMinutesToGoogleDateTime, fmtDate, clientScript};`, context);
 const api = context.api;
 let checks = 0;
@@ -31,6 +34,7 @@ equal(api.statusFor({ ...raw, end: '2026-09-30' }), 'EventCompleted', 'An explic
 equal(api.statusFor({ ...raw, end: '2026-09-30', eventStatus: 'EventCancelled' }), 'EventCancelled', 'Cancellation remains explicit');
 equal(api.statusFor({ ...raw, end: '2026-09-30', eventStatus: 'EventPostponed' }), 'EventPostponed', 'Unknown postponed date must not become a completed event');
 for (const lang of ['ja', 'en', 'zh-Hant', 'zh-Hans', 'ko']) {
+  equal(api.statusLabelFor({...raw, reservationStatus:'closed'}, lang), api.copy[lang].registrationClosed, `Passed deadline is not asserted to be sold out in ${lang}`);
   const ended = api.normalizeEvent({ ...raw, end: '2026-09-30' });
   equal(ended.translations[lang].statusLabel, api.copy[lang].ended, `Elapsed status translated in ${lang}`);
   truth(!/翌日|next day|다음 날|次日/.test(api.formatTimeRange(event, lang)), `Two-day daytime program is not described as overnight in ${lang}`);
@@ -54,12 +58,14 @@ truth(api.monthEvents(2026, 8).some(e => e.startDate === '2026-09-10'), 'Explici
 equal(api.toGoogleDate('2026-10-31', 1), '20261101', 'All-day exclusive end handles month boundary');
 equal(api.addMinutesToGoogleDateTime('2026-10-31', '23:30', 60), '20261101T003000', 'Missing-end editing placeholder rolls into next calendar day');
 truth(api.fmtDate('2026-10-05', 'ja').includes('10月5日（月）'), 'Civil dates do not depend on the build machine timezone');
+const appointment = api.normalizeEvent({ ...raw, timeTranslations: {ja:'10:00／11:00（各45分程度）',en:'10:00 / 11:00 AM JST (about 45 minutes each)'} });
+equal(api.formatTimeRange(appointment, 'en'), appointment.timeTranslations.en, 'Translated appointment slots and approximate timing are not flattened into a continuous range');
 
 // Run the actual generated browser predicates against an elapsed adjacent date
 // and an ongoing short exhibition, without mounting or rewriting the DOM.
 const browserData = {
   lang: 'ja', events: api.events.map(e => ({ ...e, start: e.startDate, end: e.endDate, title: e.translations.ja.name, summary: e.translations.ja.summary, statusLabel: e.translations.ja.statusLabel })),
-  ongoing: [], garbageRegions: [], garbagePatterns: {}, categoryLabels: api.copy.ja.filters, weekdayLabels: api.copy.ja.weekdays, text: api.copy.ja,
+  ongoing: [{title:'expired notice',expiresAt:'2026-10-04'},{title:'last day',expiresAt:'2026-10-05'},{title:'continuing service'}], garbageRegions: [], garbagePatterns: {}, categoryLabels: api.copy.ja.filters, weekdayLabels: api.copy.ja.weekdays, text: api.copy.ja,
 };
 browserData.events.push({ ...shortRange, id: 'browser-short', start: shortRange.startDate, end: shortRange.endDate, title: '検証', statusLabel: '開催予定' });
 const browser = vm.createContext({
@@ -68,8 +74,10 @@ const browser = vm.createContext({
   Date: TestDate, Intl, URLSearchParams, URL, console,
 });
 const runtimePredicates = api.clientScript().split('function renderCalendar(){')[0];
-vm.runInContext(runtimePredicates + `\nglobalThis.browserApi = {events, eventsForDate, monthEvents, setMonth(y,m){year=y;month=m;}};})();`, browser);
+vm.runInContext(runtimePredicates + `\nglobalThis.browserApi = {events, ongoing, eventsForDate, monthEvents, setMonth(y,m){year=y;month=m;}};})();`, browser);
 const b = browser.browserApi;
+equal(b.ongoing.length, 2, 'Expired notices hidden in browser without waiting for another build');
+truth(b.ongoing.some(item => item.title === 'last day'), 'Notice expiry includes its final day in Japan');
 equal(b.eventsForDate(new Date(2026, 9, 6)).filter(e => e.id === 'browser-short').length, 1, 'Browser daily view includes the middle of a short exhibition');
 const previousDayIds = b.eventsForDate(new Date(2026, 8, 30)).map(e => e.id).sort().join(',');
 truth(previousDayIds, 'Previous-month adjacent cell retains events');

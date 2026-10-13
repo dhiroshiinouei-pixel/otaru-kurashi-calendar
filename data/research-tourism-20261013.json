@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-13",
+  "timezone": "Asia/Tokyo",
+  "scope": "Tourism, private museums, Wing Bay Otaru, aquarium, historic buildings and cultural venues. Municipal museums/library are assigned to a separate research file.",
+  "dataModule": "data/events-tourism-20261013.mjs",
+  "newEventCount": 26,
+  "duplicateIdsAgainstPreviousData": [],
+  "handling": [
+    "All end dates are inclusive. Known closure dates are excluded rather than showing closed exhibitions as open.",
+    "Each new event has original concise summaries in Japanese, English, Traditional Chinese, Simplified Chinese and Korean; no flyer images are republished.",
+    "Official names without a verified foreign-language name are preserved. Unknown prices, admission conditions and end times are not fabricated.",
+    "The October 17–18 Workstation applications are already closed, explicitly labelled as such rather than accepting new registrations.",
+    "Evening guided walks announced for January 2027 are included because the same official dated notice confirms them; no annual recurrence is assumed."
+  ],
+  "sources": [
+    { "url": "https://wingbay-otaru.co.jp/wingbay-ishikawa-2/", "verified": "2026-10-04 through 10-16; closed 10-10, 11, 12; 10:00–17:00; 5番街3階ヲタル座SHOP. Official attached flyer visually inspected." },
+    { "url": "https://wingbay-otaru.co.jp/wingbay-tanaporn-1/", "verified": "2026-10-17 canned-food sale at 10:00 and 13:00, each until sold out; 5番街2階喜久屋書店前." },
+    { "url": "https://wingbay-otaru.co.jp/wingbay-kawamura-5/", "verified": "2026-10-17 mini 13:30–16:30, primary grades1–2, 1000yen, 86 places; 10-18 main 10:00–15:00 grades3–6, 2000yen, 250 places. Both lottery registration closed. Official flyer visually inspected." },
+    { "url": "https://wingbay-otaru.co.jp/wingbay-kawamura-3/", "verified": "2026-10-31 Kids Terrace Autumn Festival, 10:30–15:00; ticket set300yen." },
+    { "url": "https://www.nitorihd.co.jp/otaru-art-base/information/%E3%80%90%E9%96%8B%E5%82%AC%E5%91%8A%E7%9F%A5%E3%80%91%E4%BC%81%E7%94%BB%E5%B1%95%E3%80%8C%E6%B1%9F%E6%88%B8%E3%81%8B%E3%82%89%E4%BA%AC%E3%81%B8-%E4%B8%AD%E5%B1%B1%E9%81%93%E3%81%AE%E6%97%85%E3%80%8D/", "verified": "Nakasendo exhibition10-24 to12-06, specific Wednesday closures; talks11-07 and11-23 at14:00, about30minutes. Six closed dates encoded." },
+    { "url": "https://otaru.gr.jp/event/otera-de-marche2026hikari", "verified": "Hikari Marche11-08 11:00–16:00 at Tokugenji; free admission was not stated, so not invented." },
+    { "url": "https://kyu-nippon-yusen-otaru.jp/archives/event", "verified": "Individual official notices inspected for11-21 Christmas wreath,11-22 foil workshop and curator talk,11-29 live,12-19 shimenawa. Each event stores its verified individual URL." },
+    { "url": "https://prtimes.jp/main/html/rd/p/000000528.000007264.html", "verified": "Official operating company release: Yokoi Haru exhibition2026-09-01 to11-29,07:00–24:00; non-guests welcome, free." },
+    { "url": "https://otaru.gr.jp/fall", "verified": "Minako Kuroishi public production10-22 to28 10:00–17:00, copperplate workshop10-25 13:00–16:00, talk11-01 13:00–14:00. These have distinct dates/programmes from existing main exhibition. Fees/reservation unconfirmed." },
+    { "url": "https://otaru.gr.jp/event/kawaguchi-kyogo", "verified": "2026-11-08 concert; doors17:30/start18:00;4000yen plus drink." },
+    { "url": "https://eplus.jp/sf/detail/0010680001", "verified": "Authorized ticket page confirms2026-11-08 Sunday18:00/doors17:30 at裏小樽モンパルナス." },
+    { "url": "https://www3.boj.or.jp/otaru-m/", "verified": "Gold-mining special exhibition11-27 to2027-02-23; seasonal hours; free; Wednesdays and12-29 to01-05 closed. Individual official flyer URL is event source." },
+    { "url": "https://otaru.gr.jp/event/2026-nighttime-city-walking-tour", "verified": "Official10-07 announcement:2026-12-05,2026-12-12,2026-12-19,2027-01-09,2027-01-16,2027-01-23; registration16:00,last departure17:00,about1hour,20people,free,bad-weather cancellation." }
+  ],
+  "existingReviewed": [
+    { "id": "otaru-art-base-kaii-igyo-20260905", "result": "Existing September5–October18 exhibition retained; no duplicate added. Individual official notice confirms date range.", "suggestedUrl": "https://www.nitorihd.co.jp/otaru-art-base/information/%E3%80%90%E9%96%8B%E5%82%AC%E5%91%8A%E7%9F%A5%E3%80%91%E4%BC%81%E7%94%BB%E5%B1%95%E3%80%8C%E6%80%AA%E7%95%B0%E3%81%A8%E7%95%B0%E5%BD%A2%E3%80%8D/" },
+    { "id": "otaru-yusen-kimono-autumn-20261024", "result": "Official2026-10-24/25 dates and venue retained. Main existing event already covers the weekend; no duplicate weekend entry." },
+    { "id": "otaru-minako-kuroishi-exhibition-20261029", "result": "Exhibition10-29 through11-03 retained. Distinct public production/workshop/talk added as timed sessions. Main exhibition opening time not confirmed; no fabricated hours." },
+    { "id": "otaru-blue-canal-20261101", "result": "Tourism autumn calendar confirms11-01 to2027-01-31; existing record retained." },
+    { "id": "otaru-townscape-guide-20261024", "result": "Daytime10-24 tour in official seasonal notice remains current; winter evening tours are different dates and programmes." }
+  ],
+  "discrepancies": [
+    {
+      "event": "河口恭吾 EXTEND LIVE TOUR 2026 小樽公演",
+      "issue": "Seasonal tourism index shows an inconsistent November18 date in one field, while its text and individual event page say November8.",
+      "resolution": "The authorized eplus ticket page independently confirms2026-11-08 18:00 (doors17:30); added only November8."
+    }
+  ],
+  "notAdded": [
+    { "item": "おたる水族館 ラッコ関連10月10〜12日告知", "reason": "Ended before research date; no future recurrence assumed." },
+    { "item": "ウイングベイ 農福連携10月10〜11日、家具展示10月9〜12日", "reason": "Ended before research date; not added as future events." },
+    { "item": "おたる水族館 事務員募集", "url": "https://otaru-aq.jp/choineta/news/news-36235", "reason": "Hiring information without an event date; sent to parent to consider as an ongoing job resource, not a fabricated dated event." },
+    { "item": "2027小樽雪あかりの路", "reason": "Outside current quarter and detailed times/venues not fully verified; no speculative event record." },
+    { "item": "Minako Kuroishi related sessions: prices and booking requirements", "reason": "Not confirmed in official readable notice; event summaries instruct readers to confirm with the venue." }
+  ],
+  "checks": [
+    "Node ESM import:26 records loaded successfully.",
+    "No ID collision against all five previous event data files.",
+    "Every record has title,start,end,place,url and four translation dictionaries.",
+    "No website design, rendering, infrastructure or production changes made by this research task."
+  ]
+}

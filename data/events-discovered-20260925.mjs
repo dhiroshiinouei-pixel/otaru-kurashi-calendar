@@ -119,10 +119,11 @@ export default [
   event({
     id: 'otaru-kids-play-all-20261017', title: '遊びだョ！全員集合！！', category: 'child', start: '2026-10-17',
     time: '10:00〜12:00', startTime: '10:00', endTime: '12:00', place: '小樽市教育委員会 附属屋内運動場', address: '北海道小樽市緑3丁目4-1', mapQuery: '小樽市教育委員会 附属屋内運動場',
-    summary: '園児が気軽に体を動かせる無料のスポーツイベント。定員30人。申込締切は10月7日で、多数の場合は抽選です。',
+    summary: '園児が気軽に体を動かせる無料のスポーツイベント。定員30人。申込は10月7日に終了しています。',
     source: '小樽市教育委員会', organizer: '小樽市教育委員会 生涯スポーツ課', url: 'https://www.city.otaru.lg.jp/docs/2022042500025/',
-    audience: '幼稚園・保育園の園児', price: '無料', reservation: '要申込。10月7日締切、定員30人。', reservationRequired: true,
-    translations: translations('Let’s Play Together! Preschool Sports Day', 'A free sports event for preschool children. Advance registration closes October 7; capacity is 30.', '大家一起玩！幼兒運動活動', '幼兒可免費參加的運動活動。須於10月7日前報名，名額30人。', '大家一起玩！幼儿运动活动', '幼儿可免费参加的运动活动。须在10月7日前报名，限30人。', '다 함께 놀아요! 유아 스포츠 행사', '미취학 아동을 위한 무료 스포츠 행사입니다. 10월 7일까지 신청해야 하며 정원은 30명입니다.'),
+    audience: '幼稚園・保育園の園児', price: '無料', reservation: {ja:'10月7日申込締切・受付終了',en:'Registration closed October 7','zh-Hant':'10月7日報名截止','zh-Hans':'10月7日报名截止',ko:'10월 7일 신청 마감'}, reservationRequired: true,
+    reservationStatus: 'closed', sourceCheckedAt: '2026-10-13', updatedAt: '2026-10-13',
+    translations: translations('Let’s Play Together! Preschool Sports Day', 'A free sports event for preschool children. Capacity 30. Registration closed October 7.', '大家一起玩！幼兒運動活動', '幼兒免費運動活動，30人。報名已於10月7日截止。', '大家一起玩！幼儿运动活动', '幼儿免费运动活动，30人。报名已于10月7日截止。', '다 함께 놀아요! 유아 스포츠 행사', '미취학 아동을 위한 무료 스포츠 행사입니다. 정원 30명이며 10월 7일에 신청이 마감됐습니다.'),
   }),
   event({
     id: 'otaru-aquarium-halloween-concert-20261003', title: 'おたる水族館 ハロウィンコンサート', start: '2026-10-03',
@@ -207,6 +208,7 @@ export default [
   }),
   event({
     id: 'otaru-ai-job-seminar-20261027', title: '就職・転職に役立つAIの使い方セミナー', category: 'job', start: '2026-10-27', end: '2026-10-30',
+    sourceCheckedAt: '2026-10-13',
     time: '各日10:00〜12:30（全4回）', startTime: '10:00', endTime: '12:30',
     place: '小樽市勤労女性センター 講習室（ウイングベイ小樽1番街4階）', mapQuery: '小樽市勤労女性センター ウイングベイ小樽',
     summary: 'AIの基本から履歴書・面接、文書作成、職場での活用まで学ぶ4日間の無料講座。小樽市内で就職・転職を目指す方が対象。10月22日申込締切です。',
@@ -216,6 +218,7 @@ export default [
   }),
   event({
     id: 'otaru-haccp-seminar-20261028', title: '小樽市 HACCPセミナー', category: 'business', start: '2026-10-28',
+    sourceCheckedAt: '2026-10-13',
     time: '午前10:00〜12:00／午後13:30〜15:30（同内容）',
     place: '小樽市保健所 講堂（ウイングベイ小樽1番街4階）', address: '北海道小樽市築港11-1', mapQuery: '小樽市保健所 ウイングベイ小樽1番街4階',
     summary: '飲食店・販売業などの食品事業者向けに、HACCPに沿った衛生管理と計画作成を学ぶ無料講座。午前と午後は同内容。10月16日申込締切です。',

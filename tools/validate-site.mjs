@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import discoveredEvents from '../data/events-discovered-20260925.mjs';
+import childCivicUpdates from '../data/events-child-civic-20261013.mjs';
+import tourismUpdates from '../data/events-tourism-20261013.mjs';
+import businessUpdates from '../data/events-business-20261013.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
@@ -11,7 +14,7 @@ const dataFiles = [
   'data/events-official-municipal-20260723.json',
   'data/events-official-tourism-20260723.json',
 ];
-const events = [...dataFiles.flatMap(readJson), ...discoveredEvents];
+const events = [...dataFiles.flatMap(readJson), ...discoveredEvents, ...childCivicUpdates, ...tourismUpdates, ...businessUpdates];
 const languages = ['', 'en', 'zh-hant', 'zh-hans', 'ko'];
 const errors = [];
 const assert = (condition, message) => { if (!condition) errors.push(message); };
