@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-26",
+  "scope": "User-supplied Chamber flyer for the four-session employer communications seminar",
+  "sources": {
+    "flyer": "https://otarucci.jp/wp-content/uploads/2026/09/38f941935cad964de9517aace9f3d1a9.pdf",
+    "organizer": "https://otaru-jobnavi.jp/%E4%BA%BA%E6%9D%90%E3%81%8C%E9%9B%86%E3%81%BE%E3%82%8Bx%E5%AE%9A%E7%9D%80%E3%81%99%E3%82%8B%EF%BC%81%E9%AD%85%E5%8A%9B%E3%81%82%E3%82%8B%E4%BC%9A%E7%A4%BE%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%9F/",
+    "registration": "https://docs.google.com/forms/d/e/1FAIpQLSeL2uQ6_xofCuWOoicK0NBBbvzJ2ljiyn9RRteTiDyplKFKCQ/viewform"
+  },
+  "existingIdsUpdated": [
+    "otaru-employer-appeal-20261020",
+    "otaru-employer-appeal-20261029",
+    "otaru-employer-appeal-20261105",
+    "otaru-employer-appeal-20261112"
+  ],
+  "newEvents": 0,
+  "duplicateRecordsAdded": 0,
+  "changes": [
+    "Added the distinct topic and verified speaker to each session in Japanese, English, Traditional Chinese, Simplified Chinese and Korean.",
+    "Added the organizer-linked registration form and translated booking methods, capacity closure, and required follow-up survey agreement.",
+    "Clarified the sessions offered by Zoom and that access instructions follow registration; November 5 is in person only.",
+    "Retained IDs, slugs, original dates, 14:00–16:00 JST, free participation and the existing venue/map link.",
+    "October 20 is retained as an ended archive. October 29, November 5 and November 12 remain upcoming on the review date."
+  ],
+  "verification": {
+    "pdf": "Both A4 pages visually reviewed; text is outlined and unavailable to pdftotext.",
+    "independentReview": "Dates, times, topics, speakers and application conditions were checked independently against rendered pages.",
+    "liveAvailability": "No statement asserting current vacancies or a sold-out state was added. The source states registration ends when capacity is reached.",
+    "registrationForm": "Read only; no application or test submission sent."
+  }
+}
